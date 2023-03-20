@@ -61,8 +61,7 @@ public class AdminGoodsServiceImpl implements AdminGoodsService{
 
 	@Override
 	public String selectGoods(Model model, Integer pageCur, String act) {
-		List<Goods> allGoods = adminGoodsDao.selectGoods();
-		int temp = allGoods.size();
+		int temp = adminGoodsDao.getGoodsCount();
 		model.addAttribute("totalCount", temp);
 		int totalPage = 0;
 		if (temp == 0) {
@@ -80,7 +79,7 @@ public class AdminGoodsServiceImpl implements AdminGoodsService{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("startIndex", (pageCur - 1) * 10);
 		map.put("perPageSize", 10);
-		allGoods = adminGoodsDao.selectAllGoodsByPage(map);
+		List<Goods> allGoods = adminGoodsDao.selectAllGoodsByPage(map);
 		model.addAttribute("allGoods", allGoods);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("pageCur", pageCur);

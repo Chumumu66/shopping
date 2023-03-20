@@ -3,6 +3,10 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="demo.shopping.dao.AdminGoodsDao">
+	<!-- 查询商品数量 -->
+	<select id="getGoodsCount" resultType="Integer">
+		select count(*) from goodstable
+	</select>
 	<!-- 查询商品 -->
 	<select id="selectGoods"  resultType="Goods">
 		select * from goodstable

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>selectGoods.jsp</title>
+    <link href="../../static/css/admin/common.css" type="text/css" rel="stylesheet">
+    <style type="text/css">
+        table{
+            text-align: center;
+            border-collapse: collapse;
+        }
+        .bgcolor{
+            background-color: #F08080;
+        }
+    </style>
+    <script type="text/javascript">
+        function changeColor(obj){
+            obj.className = "bgcolor";
+        }
+        function changeColor1(obj){
+            obj.className = "";
+        }
+    </script>
+</head>
+<body>
+    <div th:if="${allGoods.size() == 0}">
+        <span th:text="#{selectGodds.page.notice}"></span>
+    </div>
+    <div th:if="${allGoods.size() != 0}">
+        <table border="1" bordercolor="PaleGreen">
+            <tr>
+                <th width="100px" th:text="#{selectGoods.page.id}"></th>
+                <th width="200px" th:text="#{selectGoods.page.name}"></th>
+                <th width="200px" th:text="#{selectGoods.page.price}"></th>
+                <th width="100px" th:text="#{selectGoods.page.stock}"></th>
+                <th width="200px" th:text="#{selectGoods.page.detail}"></th>
+            </tr>
+            <tr onmousemove="changeColor(this)" onmouseout="changeColor1(this)" th:each="goods:${allGoods}">
+                <td th:text="${goods.id}"></td>
+                <td th:text="${goods.gname}"></td>
+                <td th:text="${goods.grprice}"></td>
+                <td th:text="${goods.gstore}"></td>
+                <td><a th:href="@{/adminGoods/selectAGoods(id = ${goods.id})}" target="_blank" th:text="#{selectGoods.page.detail}"></a></td>
+            </tr>
+            <tr>
+                <td colspan="5" align="right">
+                    <span th:text="#{selectGoods.page.info(${totalCount}, ${totalPage}, ${pageCur})}"></span>
+                    <!-- 第一页没有上一页 -->
+                    <div th:if="${pageCur != 1}">
+                        <a th:href="@{/adminGoods/selectGoods(pageCur = $(pageCur - 1)}" th:text="#{selectGoods.page.pre}"></a>
+                    </div>
+                    <!-- 最后一页，没有下一页 -->
+                    <div th:if="${pageCur != totalPage && totalPage != 0}">
+                        <a th:href="@{/adminGoods/selectGoods(pageCur = $(pageCur + 1)}" th:text="selectGoods.page.next"></a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
