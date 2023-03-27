@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:form="http://www.w3.org/1999/XSL/Transform" xmlns:th="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{before.login.title}"></title>
+    <link href="../../static/css/before/daohang.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/before/common.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/before/style.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        table{
+            text-align: center;
+        }
+        .textSize{
+            width: 200px;
+            height: 20px;
+        }
+    </style>
+    <script type="text/javascript">
+        //确定按钮
+        function gogo(){
+            document.loginform.submit();
+        }
+        //取消按钮
+        function cancel(){
+            document.loginform.action="";
+        }
+        function refreshCode(){
+            document.getElementById("code").src = "validateCode?" + Math.random();
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <form:form action="user/login" method="post" modelAttribute="buser"  name = "loginform">
+            <table>
+                <tr>
+                    <td colspan="2"><img src="../../static/images/admin/login.gif"></td>
+                </tr>
+                <tr>
+                    <td th:text="#{before.login.email}"></td>
+                    <td><input type="text" name="bemail" class="textSize"/></td>
+                </tr>
+                <tr>
+                    <td th:text="#{before.login.password}"></td>
+                    <td><input type="password" name="bpwd" class="textSize"/></td>
+                </tr>
+                <tr>
+                    <td th:text="#{before.login.code}"</td>
+                    <td><input type="text" name="code" class="textSize"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        <img id="code" src="validateCode"/>
+                    </td>
+                    <td class="ared">
+                        <a href="javascript:refreshCode();"><font color="blue" th:text="#{before.login.change}"></font></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="image" src="../../static/images/admin/ok.gif" onclick="gogo()">
+                        <input type="image" src="../../static/images/admin/cancel.gif" onclick="cancel()">
+                    </td>
+                </tr>
+            </table>
+        </form:form>
+        <span th:text="${msg}"></span>
+    </center>
+</body>
+</html>

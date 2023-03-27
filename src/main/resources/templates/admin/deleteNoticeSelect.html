@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{deleteNoticeSelect.page.title}"></title>
+    <link href="../../static/css/admin/common.css" type="text/css" rel="stylesheet">
+    <style type="text/css">
+        table{
+            text-align: center;
+            border-collapse: collapse;
+        }
+        .bgcolor{
+            background-color: #F08080;
+        }
+    </style>
+    <script type="text/javascript">
+        function changeColor(obj){
+            obj.className = "bgcolor";
+        }
+        function changeColor1(obj){
+            obj.className = "";
+        }
+    </script>
+    <script type="text/javascript">
+        function checkDel(id){
+            if(window.confirm("是否删除该公告？")){
+                window.location.href = "/ch20/adminNotice/deleteNotice?id="+id;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div th:if="${allNotices.size() == 0}">
+        <span th:text="#{deleteNoticeSelect.page.noProduct}"></span>
+    </div>
+    <div th:if="${allNotices.size() != 0}">
+        <table border="1" bordercolor="PaleGreen">
+            <tr>
+                <th width="200px" th:text="#{deleteNoticeSelect.page.id}"></th>
+                <th width="200px" th:text="#{deleteNoticeSelect.page.head}"></th>
+                <th width="200px" th:text="#{deleteNoticeSelect.page.time}"></th>
+                <th width="100px" th:text="#{deleteNoticeSelect.page.detail}"></th>
+                <th width="100px" th:text="#{deleteNoticeSelect.page.operate}"></th>
+            </tr>
+            <div th:each="notice:${allNotices}">
+                <tr onmousemove="changeColor(this)" onmouseout="changeColor1(this)">
+                    <td th:text="${notice.id}"></td>
+                    <td th:text="${notice.ntitle}"></td>
+                    <td th:text="${notice.ntime}"></td>
+                    <td><a th:href="@{/adminNotice/selectANotice(id = ${notice.id})}" target="_blank" th:text="#{deleteNoticeSelect.page.detail}"></a></td>
+                    <td>
+                        <a href="javascript:checkDel('${notice.id }')" th:text="#{deleteNoticeSelect.page.delete}"></a>
+                    </td>
+                </tr>
+            </div>
+        </table>
+    </div>
+</body>
+</html>

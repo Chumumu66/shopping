@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{addType.page.title}"></title>
+    <link href="../../static/css/admin/common.css" type="text/css" rel="stylesheet">
+    <style type="text/css">
+        table{
+            text-align: center;
+            border-collapse: collapse;
+        }
+        .bgcolor{
+            background-color: #F08080;
+        }
+    </style>
+</head>
+<body>
+    <div th:if="${allTypes.size() == 0}">
+        <span th:text="#{addType.page.type}"></span>
+    </div>
+    <div th:if="${allTypes.size() != 0}">
+        <table border="1" bordercolor="PaleGreen" >
+            <tr>
+                <th width="200px" th:text="#{addType.page.typeId}"></th>
+                <th width="600px" th:text="#{addType.page.typeName}"></th>
+            </tr>
+            <div th:each="goodsType:${allTypes}">
+                <tr>
+                    <td th:text="${goodsType.id}"></td>
+                    <td th:text="${goodsType.typename}"></td>
+                </tr>
+            </div>
+        </table>
+    </div>
+    <form action="adminType/addType" method="post">
+        <span th:text="#{addType.page.typeName1}"></span>
+        <input type="text" name="typename"/>
+        <input type="submit" value="添加"/>
+    </form>
+</body>
+</html>

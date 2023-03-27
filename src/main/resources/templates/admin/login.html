@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/XSL/Transform">
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title th:text="#{login.page.title}"></title>
 </head>
 <body>
-<h1>登录</h1>
+<h1 th:text="#{login.page.login}"></h1>
 <form action="/admin/login" method="post">
     <input type="text" id="aname" name="aname">
     <br/>
