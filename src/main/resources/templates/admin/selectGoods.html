@@ -24,7 +24,7 @@
 </head>
 <body>
     <div th:if="${allGoods.size() == 0}">
-        <span th:text="#{selectGodds.page.notice}"></span>
+        <span th:text="#{page.noProduct}"></span>
     </div>
     <div th:if="${allGoods.size() != 0}">
         <table border="1" bordercolor="PaleGreen">

@@ -31,7 +31,7 @@
 </head>
 <body>
     <div th:if="${allNotices.size() == 0}">
-        <span th:text="#{admin.deleteNoticeSelect.noProduct}"></span>
+        <span th:text="#{page.noProduct}"></span>
     </div>
     <div th:if="${allNotices.size() != 0}">
         <table border="1" bordercolor="PaleGreen">

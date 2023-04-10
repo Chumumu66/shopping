@@ -1,10 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="#{admin.updateSelectGoods.title}"></title>
+    <link href="../../static/css/admin/common.css" type="text/css" rel="stylesheet">
+    <style type="text/css">
+        table{
+            text-align: center;
+            border-collapse: collapse;
+        }
+        .bgcolor{
+            background-color: #F08080;
+        }
+    </style>
+    <script type="text/javascript">
+        function changeColor(obj){
+            obj.className = "bgcolor";
+        }
+        function changeColor1(obj){
+            obj.className = "";
+        }
+    </script>
 </head>
 <body>
+    <div th:if="${allGoods.size() == 0}">
+        <span th:text="#{page.noProduct}"></span>
+    </div>
+    <div th:if="${allGoods.size() != 0}">
+        <table border="1" bordercolor="PaleGreen">
+            <tr>
+                <th width="100px" th:text="#{page.id}"></th>
+                <th width="200px" th:text="#{page.name}"></th>
+                <th width="200px" th:text="#{page.price}"></th>
+                <th width="100px" th:text="#{page.stock}"></th>
+                <th width="100px" th:text="#{page.detail}"></th>
+                <th width="100px" th:text="#{page.operate}"></th>
+            </tr>
+            <div th:each="goods:${allGoods}">
+                <tr onmousemove="changeColor(this)" onmouseout="changeColor1(this)">
+                    <td th:text="${goods.id}"></td>
+                    <td th:text="${goods.gname}"></td>
+                    <td th:text="${goods.grprice}"></td>
+                    <td th:text="${goods.gstore}"></td>
+                    <td><a th:href="@{adminGoods/selectAGoods(id = ${goods.id})}" target="_blank"><span th:text="#{page.detail}"></span></a></td>
+                    <td><a th:href="@{adminGoods/selectAGoods(id= ${goods.id}, act = updateAgoods)}" target="center"><span th:text="#{admin.updateSelectGoods.change}"></span></a></td>
+                </tr>
+            </div>
+            <tr>
+                <td colspan="6" align="right">
+                    <span th:text="#{page.info(${totalCount}, ${totalPage}, ${pageCur})}"></span>
 
+                    <th:url var="url_pre" value="adminGoods/selectGoods">
+                        <th:param name="pageCur" value="${pageCur - 1 }"/>
+                        <th:param name="act" value="updateSelect"/>
+                    </th:url>
+                    <th:url var="url_next" value="adminGoods/selectGoods">
+                        <th:param name="pageCur" value="${pageCur + 1 }"/>
+                        <th:param name="act" value="updateSelect"/>
+                    </th:url>
+                    <!-- 第一页没有上一页 -->
+                    <div th:if-="${pageCur != 1}">
+                        <a href="${url_pre}"><span th:text="#{page.pre}"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <!-- 最后一页，没有下一页 -->
+                    <div th:if="${pageCur != totalPage && totalPage != 0}">
+                        <a href="${url_next}"><span th:text="#{page.next}"></span></a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

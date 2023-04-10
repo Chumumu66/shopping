@@ -9,11 +9,11 @@
     <form th:action="@{adminGoods/addGoods(updateAct = update)}" method="post" modelAttribute="goods" enctype="multipart/form-data">
         <table border=1 style="border-collapse: collapse">
             <caption>
-                <font size=4 face=华文新魏 th:text="#{admin.updateAGoods.changeProduct}"></font>
+                <font size=4 face=华文新魏 th:text="#{page.changeProduct}"></font>
                 <th:hidden path="id"/>
             </caption>
             <tr>
-                <td><span th:text="#{admin.updateAGoods.name}"></span><font color="red" th:text="#{page.star}"></font></td>
+                <td><span th:text="#{page.name}"></span><font color="red" th:text="#{page.star}"></font></td>
                 <td>
                     <th:input path="gname"/>
                 </td>

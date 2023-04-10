@@ -14,11 +14,11 @@
             <td th:text="${goods.gname}"></td>
         </tr>
         <tr>
-            <td th:text="#{admin.goodsDetail.price}"></td>
+            <td th:text="#{page.originalPrice}"></td>
             <td th:text="${goods.goprice}"></td>
         </tr>
         <tr>
-            <td th:text="#{admin.goodsDetail.discountPrice}"></td>
+            <td th:text="#{page.discountPrice}"></td>
             <td th:text="${goods.grprice}"></td>
         </tr>
         <tr>
@@ -26,7 +26,7 @@
             <td th:text="${goods.gstore}"></td>
         </tr>
         <tr>
-            <td th:text="#{admin.goodsDetail.image}"></td>
+            <td th:text="#{page.image}"></td>
             <td>
                 <div th:if="${goods.gpicture != ''}">
                     <img alt="" width="250" height="250"
@@ -35,7 +35,7 @@
             </td>
         </tr>
         <tr>
-            <td th:text="#{admin.goodsDetail.type}"></td>
+            <td th:text="#{page.type}"></td>
             <td th:text="${goods.typename}"></td>
         </tr>
     </table>

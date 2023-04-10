@@ -58,7 +58,7 @@
 </head>
 <body>
     <div th:if="${allGoods.size() == 0}">
-        <span th:text="#{admin.deleteSelectGoods.head}"></span>
+        <span th:text="#{page.noProduct}"></span>
     </div>
     <div th:if="${allGoods.size() != 0}">
         <form th:action="@{/adminGoods/deleteGoods}" name="deleteForm">
