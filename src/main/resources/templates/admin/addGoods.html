@@ -2,47 +2,47 @@
 <html lang="en" xmlns:form="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title th:text="#{addGoods.page.title}"></title>
+    <title th:text="#{admin.addGoods.title}"></title>
     <link href="../../static/css/admin/common.css" type="text/css" rel="stylesheet">
 </head>
 <body>
     <form:form action="adminGoods/addGoods" method="post" modelAttribute="goods" enctype="multipart/form-data">
         <table border=1 style="border-collapse: collapse">
             <caption>
-                <font size=4 face=华文新魏 th:text="#{addGoods.page.addProduct}"></font>
+                <font size=4 face=华文新魏 th:text="#{admin.addGoods.addProduct}"></font>
             </caption>
             <tr>
-                <td><span th:text="#{addGoods.page.name}"></span><font color="red" th:text="#{page.star}"></font></td>
+                <td><span th:text="#{admin.addGoods.name}"></span><font color="red" th:text="#{page.star}"></font></td>
                 <td>
                     <form:input path="gname"/>
                 </td>
             </tr>
             <tr>
-                <td><span th:text="#{addGoods.page.price}"></span><font color="red" th:text="page.star"></font></td>
+                <td><span th:text="#{admin.addGoods.price}"></span><font color="red" th:text="page.star"></font></td>
                 <td>
                     <form:input path="goprice"/>
                 </td>
             </tr>
             <tr>
-                <td thLtext="#{addGoods.page.discount}"></td>
+                <td thLtext="#{admin.addGoods.discount}"></td>
                 <td>
                     <form:input path="grprice"/>
                 </td>
             </tr>
             <tr>
-                <td th:text="#{addGoods.page.stock}"></td>
+                <td th:text="#{admin.addGoods.stock}"></td>
                 <td>
                     <form:input path="gstore"/>
                 </td>
             </tr>
             <tr>
-                <td th:text="#{addGoods.page.picture}"></td>
+                <td th:text="#{admin.addGoods.picture}"></td>
                 <td>
                     <input type="file" name="logoImage"/>
                 </td>
             </tr>
             <tr>
-                <td th:text="#{addGoods.page.type}"></td>
+                <td th:text="#{admin.addGoods.type}"></td>
                 <td>
                     <form:select path="goodstype_id">
                         <form:options items="${goodsType}" itemLabel="typename" itemValue="id"/>

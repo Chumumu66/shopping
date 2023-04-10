@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="#{main.page.title}"></title>
+    <title th:text="#{admin.main.title}"></title>
     <style type="text/css">
         * {
             margin: 0px;
@@ -96,47 +96,47 @@
     <div id="header">
         <br>
         <br>
-        <h1 th:text="#{main.page.welcome(${auser.aname})}"></h1>
+        <h1 th:text="#{admin.main.welcome(${auser.aname})}"></h1>
     </div>
     <div id="navigator">
         <ul>
-            <li><a th:text="#{main.page.manageProduct}"></a>
+            <li><a th:text="#{admin.main.manageProduct}"></a>
                 <ul>
-                    <li><a th:href="@{/adminGoods/toAddGoods}" target="center" th:text="#{main.page.addProduct}"></a></li>
-                    <li><a th:href="@{/adminGoods/selectGoods(act = deleteSelect)}" target="center" th:text="#{main.page.deleteProduct}"></a></li>
-                    <li><a th:href="@{/adminGoods/selectGoods(act = updateSelect)}" target="center" th:text="#{main.page.changeProduct}"></a></li>
-                    <li><a th:href="@{/adminGoods/selectGoods}" target="center" th:text="#{main.page.selectProduct}"></a></li>
+                    <li><a th:href="@{/adminGoods/toAddGoods}" target="center" th:text="#{admin.main.addProduct}"></a></li>
+                    <li><a th:href="@{/adminGoods/selectGoods(act = deleteSelect)}" target="center" th:text="#{admin.main.deleteProduct}"></a></li>
+                    <li><a th:href="@{/adminGoods/selectGoods(act = updateSelect)}" target="center" th:text="#{admin.main.changeProduct}"></a></li>
+                    <li><a th:href="@{/adminGoods/selectGoods}" target="center" th:text="#{admin.main.selectProduct}"></a></li>
                 </ul>
             </li>
-            <li><a th:text="#{main.page.manageType}"></a>
+            <li><a th:text="#{admin.main.manageType}"></a>
                 <ul>
-                    <li><a th:href="@{/adminType/toAddType}" target="center" th:text="#{main.page.addType}"></a></li>
-                    <li><a th:href="@{/adminType/toDeleteType}" target="center" th:text="#{main.page.deleteType}"></a></li>
+                    <li><a th:href="@{/adminType/toAddType}" target="center" th:text="#{admin.main.addType}"></a></li>
+                    <li><a th:href="@{/adminType/toDeleteType}" target="center" th:text="#{admin.main.deleteType}"></a></li>
                 </ul>
             </li>
-            <li><a th:text="#{main.page.manageUser}"></a>
+            <li><a th:text="#{admin.main.manageUser}"></a>
                 <ul>
-                    <li><a th:href="@{/adminUser/userInfo}" target="center" th:text="#{main.page.deleteUser}"></a></li>
+                    <li><a th:href="@{/adminUser/userInfo}" target="center" th:text="#{admin.main.deleteUser}"></a></li>
                 </ul>
             </li>
-            <li><a th:text="#{main.page.manageOrder}"></a>
+            <li><a th:text="#{admin.main.manageOrder}"></a>
                 <ul>
-                    <li><a th:href="@{/adminOrder/orderInfo}" target="center" th:text="#{main.page.deleteOrder}"></a></li>
+                    <li><a th:href="@{/adminOrder/orderInfo}" target="center" th:text="#{admin.main.deleteOrder}"></a></li>
                 </ul>
             </li>
-            <li><a th:text="#{main.page.manageNotice}"></a>
+            <li><a th:text="#{admin.main.manageNotice}"></a>
                 <ul>
-                    <li><a th:href="@{/adminNotice/toAddNotice}" target="center" th:text="#{main.page.addNotice}"></a></li>
-                    <li><a th:href="@{/adminNotice/deleteNoticeSelect}" target="center" th:text="#{main.page.deleteNotice}"></a></li>
+                    <li><a th:href="@{/adminNotice/toAddNotice}" target="center" th:text="#{admin.main.addNotice}"></a></li>
+                    <li><a th:href="@{/adminNotice/deleteNoticeSelect}" target="center" th:text="#{admin.main.deleteNotice}"></a></li>
                 </ul>
             </li>
-            <li><a th:href="@{/exit}" th:text="#{main.page.exit}"></a></li>
+            <li><a th:href="@{/exit}" th:text="#{admin.main.exit}"></a></li>
         </ul>
 
     </div>
     <div id="content">
         <iframe th:src="@{/adminGoods/selectGoods}"  name="center" frameborder="0"></iframe>
     </div>
-    <div id="footer" th:text="#{main.page.copyright}"></div>
+    <div id="footer" th:text="#{admin.main.copyright}"></div>
 </body>
 </html>

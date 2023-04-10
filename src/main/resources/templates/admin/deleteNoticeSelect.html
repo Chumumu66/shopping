@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
-    <title th:text="#{deleteNoticeSelect.page.title}"></title>
+    <title th:text="#{admin.deleteNoticeSelect.title}"></title>
     <link href="../../static/css/admin/common.css" type="text/css" rel="stylesheet">
     <style type="text/css">
         table{
@@ -31,25 +31,25 @@
 </head>
 <body>
     <div th:if="${allNotices.size() == 0}">
-        <span th:text="#{deleteNoticeSelect.page.noProduct}"></span>
+        <span th:text="#{admin.deleteNoticeSelect.noProduct}"></span>
     </div>
     <div th:if="${allNotices.size() != 0}">
         <table border="1" bordercolor="PaleGreen">
             <tr>
-                <th width="200px" th:text="#{deleteNoticeSelect.page.id}"></th>
-                <th width="200px" th:text="#{deleteNoticeSelect.page.head}"></th>
-                <th width="200px" th:text="#{deleteNoticeSelect.page.time}"></th>
-                <th width="100px" th:text="#{deleteNoticeSelect.page.detail}"></th>
-                <th width="100px" th:text="#{deleteNoticeSelect.page.operate}"></th>
+                <th width="200px" th:text="#{page.id}"></th>
+                <th width="200px" th:text="#{page.head}"></th>
+                <th width="200px" th:text="#{page.time}"></th>
+                <th width="100px" th:text="#{page.detail}"></th>
+                <th width="100px" th:text="#{page.operate}"></th>
             </tr>
             <div th:each="notice:${allNotices}">
                 <tr onmousemove="changeColor(this)" onmouseout="changeColor1(this)">
                     <td th:text="${notice.id}"></td>
                     <td th:text="${notice.ntitle}"></td>
                     <td th:text="${notice.ntime}"></td>
-                    <td><a th:href="@{/adminNotice/selectANotice(id = ${notice.id})}" target="_blank" th:text="#{deleteNoticeSelect.page.detail}"></a></td>
+                    <td><a th:href="@{/adminNotice/selectANotice(id = ${notice.id})}" target="_blank" th:text="#{page.detail}"></a></td>
                     <td>
-                        <a href="javascript:checkDel('${notice.id }')" th:text="#{deleteNoticeSelect.page.delete}"></a>
+                        <a th:href="javascript:checkDel('${notice.id}')" th:text="#{page.delete}"></a>
                     </td>
                 </tr>
             </div>
