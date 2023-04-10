@@ -1,10 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="#{admin.updateAGoods.title}"></title>
+    <link href="css/admin/common.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-
+    <form th:action="@{adminGoods/addGoods(updateAct = update)}" method="post" modelAttribute="goods" enctype="multipart/form-data">
+        <table border=1 style="border-collapse: collapse">
+            <caption>
+                <font size=4 face=华文新魏 th:text="#{admin.updateAGoods.changeProduct}"></font>
+                <th:hidden path="id"/>
+            </caption>
+            <tr>
+                <td><span th:text="#{admin.updateAGoods.name}"></span><font color="red" th:text="#{page.star}"></font></td>
+                <td>
+                    <th:input path="gname"/>
+                </td>
+            </tr>
+            <tr>
+                <td><span th:text="#{page.originalPrice}"></span><font color="red" th:text="#{page.star}"></font></td>
+                <td>
+                    <th:input path="goprice"/>
+                </td>
+            </tr>
+            <tr>
+                <td th:text="#{page.discount}"></td>
+                <td>
+                    <th:input path="grprice"/>
+                </td>
+            </tr>
+            <tr>
+                <td th:text="#{page.stock}"></td>
+                <td>
+                    <th:input path="gstore"/>
+                </td>
+            </tr>
+            <tr>
+                <td th:text="#{page.picture}"></td>
+                <td>
+                    <input type="file" name="logoImage"/>
+                    <br>
+                    <!-- 从数据库取出的文件名 -->
+                    <div th:if="${goods.gpicture != ''}">
+                        <img alt="" width="50" height="50"
+                             th:src="@{'/logos/' + ${goods.gpicture}}"/>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td th:text="#{page.noType}"></td>
+                <td>
+                    <select path="goodstype_id">
+                        <option th:each="typename:${goodsType}" th:value="id"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <input type="submit" value="#{page.submit}"/>
+                </td>
+                <td align="left">
+                    <input type="reset" value="#{page.reset}"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <span th:text="${msg}"></span>
 </body>
 </html>

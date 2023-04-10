@@ -53,10 +53,9 @@
                 </td>
                 <td th:text="${n.orderdate}"></td>
                 <td>
-                    <c:if test="${n.status == 0}" >
+                    <div th:if="${n.status == 0}">
                         <a href="javaScript:checkDel('${n.id}')"><span th:text="#{page.delete}"></span></a>
-                    </c:if>
-                    &nbsp;
+                    </div>
                 </td>
             </tr>
         </div>

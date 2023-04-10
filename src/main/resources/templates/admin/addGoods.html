@@ -18,25 +18,25 @@
                 </td>
             </tr>
             <tr>
-                <td><span th:text="#{admin.addGoods.price}"></span><font color="red" th:text="#{page.star}"></font></td>
+                <td><span th:text="#{page.originalPrice}"></span><font color="red" th:text="#{page.star}"></font></td>
                 <td>
                     <input path="goprice"/>
                 </td>
             </tr>
             <tr>
-                <td thLtext="#{admin.addGoods.discount}"></td>
+                <td thLtext="#{page.discount}"></td>
                 <td>
                     <input path="grprice"/>
                 </td>
             </tr>
             <tr>
-                <td th:text="#{admin.addGoods.stock}"></td>
+                <td th:text="#{page.stock}"></td>
                 <td>
                     <input path="gstore"/>
                 </td>
             </tr>
             <tr>
-                <td th:text="#{admin.addGoods.picture}"></td>
+                <td th:text="#{page.picture}"></td>
                 <td>
                     <input type="file" name="logoImage"/>
                 </td>
@@ -45,8 +45,7 @@
                 <td th:text="#{admin.addGoods.type}"></td>
                 <td>
                     <select path="goodstype_id">
-                        <div th:each=""></div>
-                        <options items="${goodsType}" itemLabel="typename" itemValue="id"/>
+                        <option th:each="typename:${goodsType}" th:value="id"></option>
                     </select>
                 </td>
             </tr>
