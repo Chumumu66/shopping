@@ -59,11 +59,11 @@
                         <th:param name="act" value="updateSelect"/>
                     </th:url>
                     <!-- 第一页没有上一页 -->
-                    <div th:if-="${pageCur != 1}">
+                    <div th:if="${pageCur} != 1">
                         <a href="${url_pre}"><span th:text="#{page.pre}"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                     <!-- 最后一页，没有下一页 -->
-                    <div th:if="${pageCur != totalPage && totalPage != 0}">
+                    <div th:if="(${pageCur} != {totalPage}) && ({totalPage} != 0})">
                         <a href="${url_next}"><span th:text="#{page.next}"></span></a>
                     </div>
                 </td>

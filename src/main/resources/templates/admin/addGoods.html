@@ -24,7 +24,7 @@
                 </td>
             </tr>
             <tr>
-                <td thLtext="#{page.discount}"></td>
+                <td th:text="#{page.discount}"></td>
                 <td>
                     <input path="grprice"/>
                 </td>
@@ -42,7 +42,7 @@
                 </td>
             </tr>
             <tr>
-                <td th:text="#{admin.addGoods.type}"></td>
+                <td th:text="#{page.type}"></td>
                 <td>
                     <select path="goodstype_id">
                         <option th:each="typename:${goodsType}" th:value="id"></option>
