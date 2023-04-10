@@ -77,15 +77,15 @@
                         <td th:text="${goods.gname}"></td>
                         <td th:text="${goods.grprice}"></td>
                         <td th:text="${goods.gstore}"></td>
-                        <td><a th:href="@{adminGoods/selectAGoods(id = ${goods.id})}" target="_blank"><span th:text="#{admin.deleteSelectGoods.detail}"></span></a></td>
+                        <td><a th:href="@{adminGoods/selectAGoods(id = ${goods.id})}" target="_blank"><span th:text="#{page.detail}"></span></a></td>
                         <td>
-                            <a th:href="javascript:checkDel('${goods.id}')"><span th:text="#{admin.deleteSelectGoods.delete}"></span></a>
+                            <a href="javascript:checkDel('${goods.id}')"><span th:text="#{page.delete}"></span></a>
                         </td>
                     </tr>
                 </div>
                 <tr>
                     <td colspan="6">
-                        <input type="button" value="#{admin.deleteSelectGoods.delete}" onclick="confirmDelete()">
+                        <input type="button" th:value="#{page.delete}" onclick="confirmDelete()">
                     </td>
                 </tr>
                 <tr>
@@ -100,9 +100,9 @@
                             <th:param name="act" value="deleteSelect"/>
                         </th:url>
                         <!-- 第一页没有上一页 -->
-                        <th:if test="${pageCur != 1 }">
+                        <div th:i="${pageCur != 1}">
                             <a th:href="${url_pre}"><span th:text="#{page.pre}"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        </th:if>
+                        </div>
                         <!-- 最后一页，没有下一页 -->
                         <div th:if="${pageCur != totalPage && totalPage != 0}">
                             <a th:href="${url_next}"><span th:text="#{page.next}"></span></a>

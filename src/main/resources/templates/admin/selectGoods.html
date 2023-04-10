@@ -40,7 +40,7 @@
                 <td th:text="${goods.gname}"></td>
                 <td th:text="${goods.grprice}"></td>
                 <td th:text="${goods.gstore}"></td>
-                <td><a th:href="@{/adminGoods/selectAGoods(id = ${goods.id})}" target="_blank" th:text="#{admin.selectGoods.detail}"></a></td>
+                <td><a th:href="@{/adminGoods/selectAGoods(id = ${goods.id})}" target="_blank" th:text="#{page.detail}"></a></td>
             </tr>
             <tr>
                 <td colspan="5" align="right">
