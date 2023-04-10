@@ -61,7 +61,7 @@
         <span th:text="#{admin.deleteSelectGoods.head}"></span>
     </div>
     <div th:if="${allGoods.size() != 0}">
-        <form:form th:action="@{/adminGoods/deleteGoods}" name="deleteForm">
+        <form th:action="@{/adminGoods/deleteGoods}" name="deleteForm">
             <table border="1" bordercolor="PaleGreen">
                 <tr>
                     <th width="100px" th:text="#{page.id}"></th>
@@ -77,7 +77,7 @@
                         <td th:text="${goods.gname}"></td>
                         <td th:text="${goods.grprice}"></td>
                         <td th:text="${goods.gstore}"></td>
-                        <td><a th:href="@{adminGoods/selectAGoods(id = ${goods.id})}" target="_blank"><span th:text="#{page.detail}"></span></a></td>
+                        <td><a th:href="@{/adminGoods/selectAGoods(id = ${goods.id})}" target="_blank"><span th:text="#{page.detail}"></span></a></td>
                         <td>
                             <a href="javascript:checkDel('${goods.id}')"><span th:text="#{page.delete}"></span></a>
                         </td>
@@ -113,7 +113,7 @@
                     <td colspan="6" th:text="${msg}"></td>
                 </tr>
             </table>
-        </form:form>
+        </form>
     </div>
 </body>
 </html>

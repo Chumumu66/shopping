@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:form="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title th:text="#{admin.addGoods.title}"></title>
     <link href="../../static/css/admin/common.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-    <form:form action="adminGoods/addGoods" method="post" modelAttribute="goods" enctype="multipart/form-data">
+    <form action="adminGoods/addGoods" method="post" modelAttribute="goods" enctype="multipart/form-data">
         <table border=1 style="border-collapse: collapse">
             <caption>
                 <font size=4 face=华文新魏 th:text="#{admin.addGoods.addProduct}"></font>
@@ -14,25 +14,25 @@
             <tr>
                 <td><span th:text="#{admin.addGoods.name}"></span><font color="red" th:text="#{page.star}"></font></td>
                 <td>
-                    <form:input path="gname"/>
+                    <input path="gname"/>
                 </td>
             </tr>
             <tr>
                 <td><span th:text="#{admin.addGoods.price}"></span><font color="red" th:text="#{page.star}"></font></td>
                 <td>
-                    <form:input path="goprice"/>
+                    <input path="goprice"/>
                 </td>
             </tr>
             <tr>
                 <td thLtext="#{admin.addGoods.discount}"></td>
                 <td>
-                    <form:input path="grprice"/>
+                    <input path="grprice"/>
                 </td>
             </tr>
             <tr>
                 <td th:text="#{admin.addGoods.stock}"></td>
                 <td>
-                    <form:input path="gstore"/>
+                    <input path="gstore"/>
                 </td>
             </tr>
             <tr>
@@ -44,9 +44,10 @@
             <tr>
                 <td th:text="#{admin.addGoods.type}"></td>
                 <td>
-                    <form:select path="goodstype_id">
-                        <form:options items="${goodsType}" itemLabel="typename" itemValue="id"/>
-                    </form:select>
+                    <select path="goodstype_id">
+                        <div th:each=""></div>
+                        <options items="${goodsType}" itemLabel="typename" itemValue="id"/>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -58,6 +59,6 @@
                 </td>
             </tr>
         </table>
-    </form:form>
+    </form>
 </body>
 </html>
