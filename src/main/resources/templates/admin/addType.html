@@ -16,13 +16,13 @@
 </head>
 <body>
     <div th:if="${allTypes.size() == 0}">
-        <span th:text="#{admin.addType.type}"></span>
+        <span th:text="#{page.type}"></span>
     </div>
     <div th:if="${allTypes.size() != 0}">
         <table border="1" bordercolor="PaleGreen" >
             <tr>
-                <th width="200px" th:text="#{admin.addType.typeId}"></th>
-                <th width="600px" th:text="#{admin.addType.typeName}"></th>
+                <th width="200px" th:text="#{page.typeId}"></th>
+                <th width="600px" th:text="#{page.typeName}"></th>
             </tr>
             <div th:each="goodsType:${allTypes}">
                 <tr>
