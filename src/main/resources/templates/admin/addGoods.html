@@ -44,8 +44,8 @@
             <tr>
                 <td th:text="#{page.type}"></td>
                 <td>
-                    <select path="goodstype_id">
-                        <option th:each="typename:${goodsType}" th:value="id"></option>
+                    <select>
+                        <option th:each="goodsType:${goodsType}" th:value="${goodsType.id}" th:text="${goodsType.typename}"></option>
                     </select>
                 </td>
             </tr>

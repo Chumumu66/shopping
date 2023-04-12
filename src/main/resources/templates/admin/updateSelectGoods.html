@@ -49,22 +49,13 @@
             <tr>
                 <td colspan="6" align="right">
                     <span th:text="#{page.info(${totalCount}, ${totalPage}, ${pageCur})}"></span>
-
-                    <th:url var="url_pre" value="adminGoods/selectGoods">
-                        <th:param name="pageCur" value="${pageCur - 1 }"/>
-                        <th:param name="act" value="updateSelect"/>
-                    </th:url>
-                    <th:url var="url_next" value="adminGoods/selectGoods">
-                        <th:param name="pageCur" value="${pageCur + 1 }"/>
-                        <th:param name="act" value="updateSelect"/>
-                    </th:url>
                     <!-- 第一页没有上一页 -->
                     <div th:if="${pageCur} != 1">
-                        <a href="${url_pre}"><span th:text="#{page.pre}"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a th:href="@{/adminGoods/selectGoods(pageCur = ${(pageCur) - 1})}" th:text="#{page.pre}"></a>
                     </div>
                     <!-- 最后一页，没有下一页 -->
-                    <div th:if="(${pageCur} != {totalPage}) && ({totalPage} != 0})">
-                        <a href="${url_next}"><span th:text="#{page.next}"></span></a>
+                    <div th:if="${pageCur != totalPage && totalPage != 0}">
+                        <a th:href="@{/adminGoods/selectGoods(pageCur = ${(pageCur) + 1})}" th:text="#{page.next}"></a>
                     </div>
                 </td>
             </tr>

@@ -47,11 +47,11 @@
                     <span th:text="#{page.info(${totalCount}, ${totalPage}, ${pageCur})}"></span>
                     <!-- 第一页没有上一页 -->
                     <div th:if="${pageCur} != 1">
-                        <a th:href="@{/adminGoods/selectGoods(pageCur = $(pageCur - 1)}" th:text="#{page.pre}"></a>
+                        <a th:href="@{/adminGoods/selectGoods(pageCur = ${(pageCur) - 1})}" th:text="#{page.pre}"></a>
                     </div>
                     <!-- 最后一页，没有下一页 -->
-                    <div th:if="(${pageCur} != {totalPage}) && ({totalPage} != 0})">
-                        <a th:href="@{/adminGoods/selectGoods(pageCur = $(pageCur + 1)}" th:text="#{page.next}"></a>
+                    <div th:if="${pageCur != totalPage && totalPage != 0}">
+                        <a th:href="@{/adminGoods/selectGoods(pageCur = ${(pageCur) + 1})}" th:text="#{page.next}"></a>
                     </div>
                 </td>
             </tr>
