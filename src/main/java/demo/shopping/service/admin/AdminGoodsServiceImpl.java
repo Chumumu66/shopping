@@ -28,15 +28,14 @@ public class AdminGoodsServiceImpl implements AdminGoodsService{
 		String fileName = goods.getLogoImage().getOriginalFilename(); 
 
 		if(fileName.length() > 0){
-			String realpath = request.getServletContext().getRealPath("logos");
+			String realpath = "D:\\javaeeFile\\shopping\\src\\main\\resources\\static\\images\\admin\\product";
 			String fileType = fileName.substring(fileName.lastIndexOf('.'));
 			newFileName = MyUtil.getStringID() + fileType;
 			goods.setGpicture(newFileName);
 			File targetFile = new File(realpath, newFileName); 
 			if(!targetFile.exists()){  
 	            targetFile.mkdirs();  
-	        } 
-
+	        }
 	        try {   
 	        	goods.getLogoImage().transferTo(targetFile);
 	        } catch (Exception e) {  

@@ -6,7 +6,7 @@
     <link href="../../static/css/admin/common.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-    <form action="adminGoods/addGoods" method="post" modelAttribute="goods" enctype="multipart/form-data">
+    <form th:action="@{/adminGoods/addGoods}" method="post" modelAttribute="goods" enctype="multipart/form-data">
         <table border=1 style="border-collapse: collapse">
             <caption>
                 <font size=4 face=华文新魏 th:text="#{admin.addGoods.addProduct}"></font>
@@ -14,25 +14,25 @@
             <tr>
                 <td><span th:text="#{page.name}"></span><font color="red" th:text="#{page.star}"></font></td>
                 <td>
-                    <input path="gname"/>
+                    <input name="gname"/>
                 </td>
             </tr>
             <tr>
                 <td><span th:text="#{page.originalPrice}"></span><font color="red" th:text="#{page.star}"></font></td>
                 <td>
-                    <input path="goprice"/>
+                    <input name="goprice"/>
                 </td>
             </tr>
             <tr>
                 <td th:text="#{page.discount}"></td>
                 <td>
-                    <input path="grprice"/>
+                    <input name="grprice"/>
                 </td>
             </tr>
             <tr>
                 <td th:text="#{page.stock}"></td>
                 <td>
-                    <input path="gstore"/>
+                    <input name="gstore"/>
                 </td>
             </tr>
             <tr>
@@ -44,7 +44,7 @@
             <tr>
                 <td th:text="#{page.type}"></td>
                 <td>
-                    <select>
+                    <select name="goodstype_id">
                         <option th:each="goodsType:${goodsType}" th:value="${goodsType.id}" th:text="${goodsType.typename}"></option>
                     </select>
                 </td>
