@@ -3,37 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{admin.updateAGoods.title}"></title>
-    <link href="css/admin/common.css" type="text/css" rel="stylesheet">
+    <link href="../../static/css/admin/common.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-    <form th:action="@{adminGoods/addGoods(updateAct = update)}" method="post" modelAttribute="goods" enctype="multipart/form-data">
+    <form th:action="@{/adminGoods/addGoods(updateAct = update)}" method="post" modelAttribute="goods" enctype="multipart/form-data">
         <table border=1 style="border-collapse: collapse">
             <caption>
                 <font size=4 face=华文新魏 th:text="#{page.changeProduct}"></font>
-                <th:hidden path="id"/>
+                <th:hidden name="id"/>
             </caption>
             <tr>
                 <td><span th:text="#{page.name}"></span><font color="red" th:text="#{page.star}"></font></td>
                 <td>
-                    <th:input path="gname"/>
+                    <input name="gname"/>
                 </td>
             </tr>
             <tr>
                 <td><span th:text="#{page.originalPrice}"></span><font color="red" th:text="#{page.star}"></font></td>
                 <td>
-                    <th:input path="goprice"/>
+                    <input name="goprice"/>
                 </td>
             </tr>
             <tr>
                 <td th:text="#{page.discount}"></td>
                 <td>
-                    <th:input path="grprice"/>
+                    <input name="grprice"/>
                 </td>
             </tr>
             <tr>
                 <td th:text="#{page.stock}"></td>
                 <td>
-                    <th:input path="gstore"/>
+                    <input name="gstore"/>
                 </td>
             </tr>
             <tr>
@@ -44,24 +44,24 @@
                     <!-- 从数据库取出的文件名 -->
                     <div th:if="${goods.gpicture != ''}">
                         <img alt="" width="50" height="50"
-                             th:src="@{'/logos/' + ${goods.gpicture}}"/>
+                             th:src="@{'/images/admin/product/' + ${goods.gpicture}}"/>
                     </div>
                 </td>
             </tr>
             <tr>
-                <td th:text="#{page.noType}"></td>
+                <td th:text="#{page.type}"></td>
                 <td>
-                    <select path="goodstype_id">
-                        <option th:each="typename:${goodsType}" th:value="id"></option>
+                    <select name="goodstype_id">
+                        <option th:each="goodsType:${goodsType}" th:value="${goodsType.id}" th:text="${goodsType.typename}" th:selected="${goods.goodstype_id == goodsType.id}"></option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td align="center">
-                    <input type="submit" value="#{page.submit}"/>
+                    <input type="submit" th:value="#{page.submit}"/>
                 </td>
                 <td align="left">
-                    <input type="reset" value="#{page.reset}"/>
+                    <input type="reset" th:value="#{page.reset}"/>
                 </td>
             </tr>
         </table>

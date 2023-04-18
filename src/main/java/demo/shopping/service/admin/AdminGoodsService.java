@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 
 import demo.shopping.po.Goods;
 public interface AdminGoodsService {
-	public String selectAGoods(Model model, Integer id, String act);
+	public String selectAGoods(Model model, Integer id, String act, HttpServletRequest request);
 	public String deleteGoods(Integer ids[], Model model);
 	public String deleteAGoods(Integer id, Model model);
 	public String addOrUpdateGoods(Goods goods, HttpServletRequest request, String updateAct);

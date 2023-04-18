@@ -13,7 +13,7 @@
             background-color: #F08080;
         }
     </style>
-    <script type="text/javascript">
+    <script th:inline="javascript">
         function changeColor(obj){
             obj.className = "bgcolor";
         }
@@ -51,7 +51,7 @@
         }
         function checkDel(id){
             if(window.confirm("是否删除该商品？")){
-                window.location.href = "/ch20/adminGoods/deleteAGoods?id="+id;
+                window.location.href = "/adminGoods/deleteAGoods?id=" + id;
             }
         }
     </script>
@@ -79,7 +79,7 @@
                         <td th:text="${goods.gstore}"></td>
                         <td><a th:href="@{/adminGoods/selectAGoods(id = ${goods.id})}" target="_blank"><span th:text="#{page.detail}"></span></a></td>
                         <td>
-                            <a href="javascript:checkDel('${goods.id}')"><span th:text="#{page.delete}"></span></a>
+                            <a href="#" th:onclick="'javascript:checkDel(' + ${goods.id} + ')'"><span th:text="#{page.delete}"></span></a>
                         </td>
                     </tr>
                 </div>
@@ -93,11 +93,11 @@
                         <span th:text="#{page.info(${totalCount}, ${totalPage}, ${pageCur})}"></span>
                         <!-- 第一页没有上一页 -->
                         <div th:if="${pageCur} != 1">
-                            <a th:href="@{/adminGoods/selectGoods(pageCur = ${(pageCur) - 1})}" th:text="#{page.pre}"></a>
+                            <a th:href="@{/adminGoods/selectGoods(pageCur = ${(pageCur) - 1}, act = deleteSelect)}" th:text="#{page.pre}"></a>
                         </div>
                         <!-- 最后一页，没有下一页 -->
                         <div th:if="${pageCur != totalPage && totalPage != 0}">
-                            <a th:href="@{/adminGoods/selectGoods(pageCur = ${(pageCur) + 1})}" th:text="#{page.next}"></a>
+                            <a th:href="@{/adminGoods/selectGoods(pageCur = ${(pageCur) + 1}, act = deleteSelect)}" th:text="#{page.next}"></a>
                         </div>
                     </td>
                 </tr>
