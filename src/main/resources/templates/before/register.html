@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../../static/css/before/daohang.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/before/common.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/before/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        //刷新验证码
+        function refreshCode(){
+            document.getElementById("code").src = "validateCode?" + Math.random();
+        }
+        //表单验证
+        function checkForm(){
+            var bpwd = document.registerForm.bpwd.value;
+            var rebpwd = document.registerForm.rebpwd.value;
+            if(bpwd != rebpwd){
+                alert("两次密码不一致！");
+                return false;
+            }
+            document.registerForm.submit();
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="clearfix">
+        <div class="blank20"></div>
+        <div class="box4">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="100%" valign="bottom">
+                        <h2 th:text="#{register.page.title}"></h2>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="blank10"></div>
+        <div class="box4">
+            <div class="case_ll clearfix">
+                <div class="regist">
+                    <form action="user/register" method="post" modelAttribute="buser"  name="registerForm">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                               class="ttbb2">
+                            <tr>
+                                <td width="16%" align="right"><span class="cl_f30">*</span>
+                                    <span th:text="#{register.page.email}"></span></td>
+                                <td width="59%"><input type="text" name="bemail"
+                                                       id="textfield" class="my_txt_350"/></td>
+                                <td width="25%" th:text="${msg}"></td>
+                            </tr>
+                            <tr>
+                                <td align="right">&nbsp;</td>
+                                <td colspan="2" style="font-size: 12px; padding-bottom: 25px;" th:text="#{register.page.rightEmail}"></td>
+                            </tr>
+                            <tr>
+                                <td align="right"><span class="cl_f30">*</span><sapn th:text="#{register.page.pwd}"></sapn></td>
+                                <td><input type="password" name="bpwd" id="textfield2"
+                                           class="my_txt_350" /></td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td align="right">&nbsp;</td>
+                                <td colspan="2" style="font-size: 12px; padding-bottom: 25px;" th:text="#{register.page.rightPwd}"></td>
+                            </tr>
+                            <tr>
+                                <td align="right"><span class="cl_f30">*</span><span th:text="#{register.page.rePwd}"></span> </td>
+                                <td><input type="password" name="rebpwd" id="textfield3"
+                                           class="my_txt_350" /></td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td align="right">&nbsp;</td>
+                                <td colspan="2" style="font-size: 12px; padding-bottom: 25px;" th:text="#{register.page.surePwd}"></td>
+                            </tr>
+                            <tr>
+                                <td align="right"><span class="cl_f30">*</span> <spac th:text="#{register.page.verificationCode}"></spac></td>
+                                <td class="ared"><input type="text" name="code"
+                                                        id="textfield5" class="my_txt_120" />
+                                    <img id="code" src="validateCode" />
+                                    <a href="javascript:refreshCode();"><font color="blue" th:text="#{register.page.font}"></font></a>
+                                </td>
+                                <td th:text="${codeError}"></td>
+                            </tr>
+                            <tr>
+                                <td align="right">&nbsp;</td>
+                                <td colspan="2" class="cl_f30" style="font-size: 12px; padding-bottom: 25px;"></td>
+                            </tr>
+                            <tr>
+                                <td align="right">&nbsp;</td>
+                                <td height="50"><input type="button" name="button" id="button" onclick="checkForm()" value="注册账号" class="my_ann1" /></td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </form>
+                    <div class="blank20"></div>
+                </div>
+            </div>
+        </div>
+        <div class="blank10"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/XSL/Transform">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{admin.login.title}"></title>
+</head>
+<body>
+    <h1 th:text="#{admin.login.login}"></h1>
+    <form th:action="@{/admin/login}" method="post">
+        <input type="text" id="aname" name="aname">
+        <br/>
+        <input type="password" id="apwd" name="apwd" minlength="2" maxlength="20">
+        <input type="submit" text="登录">
+    </form>
+</body>
+</html>

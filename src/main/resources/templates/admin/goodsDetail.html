@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{admin.goodsDetail.title}"></title>
+</head>
+<body>
+    <table border=1 style="border-collapse: collapse">
+        <caption>
+            <font size=4 face=华文新魏 th:text="#{admin.goodsDetail.detail}"></font>
+        </caption>
+        <tr>
+            <td th:text="#{page.name}"></td>
+            <td th:text="${goods.gname}"></td>
+        </tr>
+        <tr>
+            <td th:text="#{page.originalPrice}"></td>
+            <td th:text="${goods.goprice}"></td>
+        </tr>
+        <tr>
+            <td th:text="#{page.discount}"></td>
+            <td th:text="${goods.grprice}"></td>
+        </tr>
+        <tr>
+            <td th:text="#{page.stock}"></td>
+            <td th:text="${goods.gstore}"></td>
+        </tr>
+        <tr>
+            <td th:text="#{page.picture}"></td>
+            <td>
+                <div th:if="${goods.gpicture != ''}">
+                    <img alt="" width="250" height="250"
+                         th:src="@{'/images/admin/product/' + ${goods.gpicture} + '.jpg'}"/>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td th:text="#{page.type}"></td>
+            <td th:text="${goods.typename}"></td>
+        </tr>
+    </table>
+</body>
+</html>

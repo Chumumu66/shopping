@@ -1,8 +1,14 @@
 package demo.shopping.po;
 
+import javax.validation.constraints.NotBlank;
+
 public class Auser {
+	@NotBlank
 	private String aname;
+
+	@NotBlank
 	private String apwd;
+
 	public String getAname() {
 		return aname;
 	}

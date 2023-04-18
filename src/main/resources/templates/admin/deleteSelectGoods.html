@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{admin.deleteSelectGoods.title}"></title>
+    <link href="../../static/css/admin/common.css" type="text/css" rel="stylesheet">
+    <style type="text/css">
+        table{
+            text-align: center;
+            border-collapse: collapse;
+        }
+        .bgcolor{
+            background-color: #F08080;
+        }
+    </style>
+    <script type="text/javascript">
+        function changeColor(obj){
+            obj.className = "bgcolor";
+        }
+        function changeColor1(obj){
+            obj.className = "";
+        }
+        function confirmDelete(){
+            var n = document.deleteForm.ids.length;
+            var count = 0;//统计没有选中的个数
+            for(var i = 0; i < n; i++){
+                if(!document.deleteForm.ids[i].checked){
+                    count++;
+                }else{
+                    break;
+                }
+            }
+            if(n > 1){
+                if(count == n){
+                    alert("请选择被删除的商品！");
+                    count = 0;
+                    return false;
+                }
+            }else{
+                if(!document.deleteForm.ids.checked){
+                    alert("请选择被删除的商品！");
+                    return false;
+                }
+            }
+
+            if(window.confirm("真的删除吗？really?")){
+                document.deleteForm.submit();
+                return true;
+            }
+            return false;
+        }
+        function checkDel(id){
+            if(window.confirm("是否删除该商品？")){
+                window.location.href = "/ch20/adminGoods/deleteAGoods?id="+id;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div th:if="${allGoods.size() == 0}">
+        <span th:text="#{page.noProduct}"></span>
+    </div>
+    <div th:if="${allGoods.size() != 0}">
+        <form th:action="@{/adminGoods/deleteGoods}" name="deleteForm">
+            <table border="1" bordercolor="PaleGreen">
+                <tr>
+                    <th width="100px" th:text="#{page.id}"></th>
+                    <th width="200px" th:text="#{page.name}"></th>
+                    <th width="200px" th:text="#{page.price}"></th>
+                    <th width="100px" th:text="#{page.stock}"></th>
+                    <th width="100px" th:text="#{page.detail}"></th>
+                    <th width="100px" th:text="#{page.delete}"></th>
+                </tr>
+                <div th:each="goods:${allGoods}">
+                    <tr onmousemove="changeColor(this)" onmouseout="changeColor1(this)">
+                        <td><input type="checkbox" name="ids" value="${goods.id}"/><span th:text="${goods.id}"></span></td>
+                        <td th:text="${goods.gname}"></td>
+                        <td th:text="${goods.grprice}"></td>
+                        <td th:text="${goods.gstore}"></td>
+                        <td><a th:href="@{/adminGoods/selectAGoods(id = ${goods.id})}" target="_blank"><span th:text="#{page.detail}"></span></a></td>
+                        <td>
+                            <a href="javascript:checkDel('${goods.id}')"><span th:text="#{page.delete}"></span></a>
+                        </td>
+                    </tr>
+                </div>
+                <tr>
+                    <td colspan="6">
+                        <input type="button" th:value="#{page.delete}" onclick="confirmDelete()">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" align="right">
+                        <span th:text="#{page.info(${totalCount}, ${totalPage}, ${pageCur})}"></span>
+                        <!-- 第一页没有上一页 -->
+                        <div th:if="${pageCur} != 1">
+                            <a th:href="@{/adminGoods/selectGoods(pageCur = ${(pageCur) - 1})}" th:text="#{page.pre}"></a>
+                        </div>
+                        <!-- 最后一页，没有下一页 -->
+                        <div th:if="${pageCur != totalPage && totalPage != 0}">
+                            <a th:href="@{/adminGoods/selectGoods(pageCur = ${(pageCur) + 1})}" th:text="#{page.next}"></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" th:text="${msg}"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

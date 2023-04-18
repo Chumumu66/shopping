@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{admin.userManager.title}"></title>
+    <link href="../../static/css/admin/common.css" type="text/css" rel="stylesheet">
+    <style type="text/css">
+        table{
+            text-align: center;
+            border-collapse: collapse
+        }
+        .bgcolor{
+            background-color: #F08080;
+        }
+    </style>
+    <script type="text/javascript">
+        function changeColor(obj){
+            obj.className = "bgcolor";
+        }
+        function changeColor1(obj){
+            obj.className = "";
+        }
+        function checkDel(id){
+            if(window.confirm("是否删除该用户？")){
+                window.location.href="/ch20/adminUser/deleteuserManager?id="+id;
+            }
+        }
+    </script>
+</head>
+<body>
+    <br>
+    <table border="1" bordercolor="PaleGreen">
+        <tr>
+            <th width="200px" th:text="#{admin.userManager.userId}"></th>
+            <th width="200px" th:text="#{admin.userManager.userEmail}"></th>
+            <th width="200px" th:text="#{admin.userManager.userPassword}"></th>
+            <th width="250px" th:text="#{page.delete}"></th>
+        </tr>
+        <div th:each="n:${userList}">
+            <tr onmousemove="changeColor(this)" onmouseout="changeColor1(this)">
+                <td th:text="${n.id}"></td>
+                <td th:text="${n.bemail}"></td>
+                <td><input type="password" value="${n.bpwd}" readonly></td>
+                <td>
+                    <a href="javaScript:checkDel('${n.id}')"><span th:text="#{page.delete}"></span></a>
+                </td>
+            </tr>
+        </div>
+        <tr>
+            <td colspan="4" th:text="${msg}"></td>
+        </tr>
+    </table>
+</body>
+</html>

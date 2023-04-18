@@ -10,6 +10,7 @@ import demo.shopping.po.Goods;
 @Repository("adminGoodsDao")
 @Mapper
 public interface AdminGoodsDao {
+	public int getGoodsCount();
 	public List<Goods> selectGoods();
 	public List<Goods> selectAllGoodsByPage(Map<String, Object> map);
 	public int addGoods(Goods goods);

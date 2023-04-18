@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="admin.deleteType.title"></title>
+    <link href="../../static/css/admin/common.css" type="text/css" rel="stylesheet">
+    <style type="text/css">
+        table{
+            text-align: center;
+            border-collapse: collapse;
+        }
+        .bgcolor{
+            background-color: #F08080;
+        }
+    </style>
+    <script type="text/javascript">
+        function checkDel(id){
+            if(window.confirm("是否删除该商品类型？")){
+                window.location.href = "/ch20/adminType/deleteType?id="+id;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div th:if="${allTypes.size() == 0}">
+        <span th:text="#{page.noType}"></span>
+    </div>
+    <div th:if="${allTypes.size() != 0}">
+        <table border="1" bordercolor="PaleGreen" >
+            <tr>
+                <th width="200px" th:text="#{page.typeId}"></th>
+                <th width="300px" th:text="#{page.typeName}"></th>
+                <th width="300px" th:text="#{admin.addType.delete}"></th>
+            </tr>
+            <div th:each="goodsType:${allTypes}">
+                <tr>
+                    <td th:text="${goodsType.id}"></td>
+                    <td th:text="${goodsType.typename}"></td>
+                    <td><a href="javascript:checkDel('${goodsType.id}')"><span th:text="#{page.delete}"></span></a></td>
+                </tr>
+            </div>
+            <tr>
+                <td colspan="3" th:text="${msg}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

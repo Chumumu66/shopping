@@ -1,4 +1,5 @@
 package demo.shopping.controller.admin;
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import demo.shopping.po.Goods;
 import demo.shopping.service.admin.AdminGoodsService;
+
+import java.net.http.HttpRequest;
+
 @Controller
 @RequestMapping("/adminGoods")
 public class AdminGoodsController extends BaseController{
@@ -20,8 +24,9 @@ public class AdminGoodsController extends BaseController{
 	}
 
 	@RequestMapping("/toAddGoods")
-	public String toAddGoods(Model model){
+	public String toAddGoods(Model model, HttpServletRequest request){
 		model.addAttribute("goods", new Goods());
+		model.addAttribute("goodsType", request.getSession().getAttribute("goodsType"));
 		return "admin/addGoods";
 	}
 

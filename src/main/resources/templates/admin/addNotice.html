@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:form="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{admin.addNotice.title}"></title>
+    <link href="../../static/css/admin/common.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <form action="adminNotice/addNotice" method="post" modelAttribute="notice">
+        <table border=1 style="border-collapse: collapse">
+            <caption>
+                <font size=4 face=华文新魏 th:text="#{admin.addNotice.addNotice}"></font>
+            </caption>
+            <tr>
+                <td><span th:text="#{page.title}"></span><font color="red" th:text="#{page.star}"></font></td>
+                <td>
+                    <form:input path="ntitle"/>
+                </td>
+            </tr>
+            <tr>
+                <td><span th:text="#{admin.addNotice.content}"></span><font color="red" th:text="#{page.star}"></font></td>
+                <td>
+                    <form:textarea path="ncontent"/>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <input type="submit" th:value="#{page.submit}"/>
+                </td>
+                <td align="left">
+                    <input type="reset" th:value="#{page.reset}"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
