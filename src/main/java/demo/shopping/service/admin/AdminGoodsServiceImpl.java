@@ -92,9 +92,10 @@ public class AdminGoodsServiceImpl implements AdminGoodsService{
 	}
 
 	@Override
-	public String selectAGoods(Model model, Integer id, String act) {
+	public String selectAGoods(Model model, Integer id, String act, HttpServletRequest request) {
 		Goods agoods = adminGoodsDao.selectGoodsById(id);
 		model.addAttribute("goods", agoods);
+		model.addAttribute("goodsType", request.getSession().getAttribute("goodsType"));
 		if("updateAgoods".equals(act)){
 			return "admin/updateAgoods";
 		}

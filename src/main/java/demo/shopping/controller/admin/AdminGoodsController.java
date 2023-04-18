@@ -36,8 +36,8 @@ public class AdminGoodsController extends BaseController{
 	}
 
 	@RequestMapping("/selectAGoods")
-	public String selectAGoods(Model model, Integer id, String act){
-		return adminGoodsService.selectAGoods(model, id, act);
+	public String selectAGoods(Model model, Integer id, String act, HttpServletRequest request){
+		return adminGoodsService.selectAGoods(model, id, act, request);
 	}
 
 	@RequestMapping("/deleteGoods")
