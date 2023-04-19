@@ -10,7 +10,7 @@
 	<div class="blank"></div>
 	<div class="block clearfix">
 		<div class="location ared">
-			我的订单
+			<span th:text="#{before.userCenter.myAttention}"></span>
 		</div>
 		<div class="blank"></div>
 		<div>
@@ -18,11 +18,11 @@
 				<table width="99%" align="center" border="0" cellpadding="5"
 					cellspacing="1" bgcolor="#dddddd">
 					<tr>
-						<th th:text="#{before.userCenter.id}">订单编号</th>
-						<th th:text="#{before.userCenter.price}">订单金额</th>
-						<th th:text="#{before.userCenter.date}">订单日期</th>
-						<th th:text="#{before.userCenter.statue}">订单状态</th>
-						<th th:text="#{before.userCenter.detail}">详情</th>
+						<th th:text="#{before.userCenter.id}"></th>
+						<th th:text="#{before.userCenter.price}"></th>
+						<th th:text="#{before.userCenter.date}"></th>
+						<th th:text="#{before.userCenter.statue}"></th>
+						<th th:text="#{before.userCenter.detail}"></th>
 					</tr>
 					<tr>
 						<td colspan="5" height="15px"
@@ -35,13 +35,17 @@
 							<td align="center" bgcolor="#ffffff">${mo.orderdate}</td>
 							<td bgcolor="#ffffff"  align="center">
 							<th:if test="${mo.status == 0}" >
-							未付款&nbsp;&nbsp;
-							<a style="text-decoration: none;" class="f6" th:href="@{/order/pay?ordersn=${mo.id}}">去支付</a>
+							<span th:text="#{before.userCenter.unpaid}"></span>
+							<a style="text-decoration: none;" class="f6" th:href="@{/order/pay?ordersn=${mo.id}}">
+								<span th:text="#{before.userOrderDetail.toPay}"></span></a>
 							</th:if>
-							<th:if test="${mo.status == 1}" >已付款</th:if>
+							<th:if test="${mo.status == 1}" >
+								<span th:text="#{before.userCenter.paid}"></span>
+							</th:if>
 							</td>
 							<td align="center" bgcolor="#ffffff">
-							<a style="text-decoration: none;" class="f6" th:href="@{/orderDetail?ordersn=${mo.id}}" target="_blank">详情</a>
+							<a style="text-decoration: none;" class="f6" th:href="@{/orderDetail?ordersn=${mo.id}}" target="_blank">
+								<span th:text="#{before.userCenter.detail}"></span></a>
 							</td>
 						</tr>
 
@@ -49,7 +53,7 @@
 			</div>
 		</div>
 		<div class="location ared">
-			我的关注
+			<span th:text="#{before.userCenter.myAttention}"></span>
 		</div>
 		<div class="blank"></div>
 		<div>
@@ -77,7 +81,7 @@
 									title="${mf.gname}" /> </td>
 							<td align="center" bgcolor="#ffffff">${mf.grprice}</td>
 							<td align="center" bgcolor="#ffffff">
-								<a style="text-decoration: none;" class="f6" th:href="@{/goodsDetail?id=${mf.id}}">去看看</a>
+								<a style="text-decoration: none;" class="f6" th:href="@{/goodsDetail?id=${mf.id}}"><span th:text="#{before.userCenter.goodgoLook}"></span></a>
 							</td>
 						</tr>
 

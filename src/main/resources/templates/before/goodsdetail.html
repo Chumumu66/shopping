@@ -39,13 +39,14 @@
 				<div class="goods_show">
 					<ul>
 						<li><span th:text="#{before.goodsdetail.price}"></span>
-							<strong class="yj">${goods.goprice }元</strong></li>
+							<strong class="yj"><span th:text="#{before.index.symbol}"></span>{goods.goprice }
+								<span th:text="#{before.index.money}"></span></strong></li>
 						<li><span th:text="#{before.goodsdetail.discount}"></span><strong
-							class="xj">${goods.grprice }元</strong>
+							class="xj"><span th:text="#{before.index.symbol}"></span>{goods.grprice }<span th:text="#{before.index.money}"></span></strong>
 						</li>
 						<li><span th:text="#{before.goodsdetail.categoly}"></span> ${goods.typename }</li>
 						<li><span th:text="#{before.goodsdetail.num}"></span><input type="text" name="shoppingnum"
-							class="good_txt" th:placeholder="1" /> (库存${goods.gstore }件)</li>
+							class="good_txt" th:placeholder="1" /><span th:text="before.goodsdetail.inventory"></span>${goods.gstore}<span th:text="before.goodsdetail.piece"></span></li>
 					</ul>
 				</div>
 				<p class="bottom10 top5">
