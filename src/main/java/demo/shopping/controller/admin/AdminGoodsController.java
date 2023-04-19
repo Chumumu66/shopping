@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import demo.shopping.po.Goods;
 import demo.shopping.service.admin.AdminGoodsService;
-
 import java.net.http.HttpRequest;
 
 @Controller

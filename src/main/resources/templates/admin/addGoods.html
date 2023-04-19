@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{admin.addGoods.title}"></title>
-    <link href="../../static/css/admin/common.css" type="text/css" rel="stylesheet">
+    <link th:href="@{/css/admin/common.css}" type="text/css" rel="stylesheet">
 </head>
 <body>
     <form th:action="@{/adminGoods/addGoods}" method="post" modelAttribute="goods" enctype="multipart/form-data">

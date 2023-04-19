@@ -9,16 +9,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import demo.shopping.service.before.UserCenterService;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 @Controller
 public class UserCenterController extends BaseBeforeController{
+	Logger logger=Logger.getLogger("UserCenterController");
 	@Autowired
 	private UserCenterService userCenterService;
 	@RequestMapping("/userCenter")
 	public String userCenter(HttpSession session, Model model) {
+		logger.log(Level.INFO,"获取用户中心");
 		return userCenterService.userCenter(session, model);
 	}
 	@RequestMapping("/orderDetail")
 	public String orderDetail(Model model, Integer ordersn) {
+		logger.log(Level.INFO,"获取细节");
 		return userCenterService.orderDetail(model, ordersn);
 	}
 }

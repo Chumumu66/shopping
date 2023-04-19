@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>订单完成</title>
+    <link th:href="@{/css/before/daohang.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/before/common.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/before/style.css}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        //确定按钮
+        function gogo(){
+            document.payForm.submit();
+        }
+    </script>
+    <script type="text/javascript">
+        function clearValue(){
+            document.myForm.mykey.value = "";
+        }
+    </script>
+</head>
+<body>
+  <div th:include="before/head::head"></div>
+  	<div class="blank"></div>
+	<div class="block clearfix"><!--当前位置-->
+	<div class="location ared" th:text="#{before.orderconfirm.locationared}"><a th:href="@{/''}">首页</a>
+        <span th:text="#{before.orderdone.msg}"></span> </div>
+	<div class="blank"></div>
+	<div class="nFlowBox">
+    <h2 style="text-align:center; height:30px; line-height:30px;" th:text="#{before.orderdone.congratulation}">
+
+         	请记住您的订单号: <font style="color:red" size='5'>${ordersn}</font></h2><br/>
+      <center>
+      <form th:action="@{order/pay}" method="post" name="payForm">
+            	<input type="hidden" name="ordersn" th:placeholder="${ordersn}"/>
+            	<input type="image" src="images/before/Chinapay_logo.jpg" onclick="gogo()"/>
+      </form>
+      </center>
+    </div>
+    </div>
+  </body>
+</html>

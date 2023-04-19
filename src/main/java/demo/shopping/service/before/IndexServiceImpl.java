@@ -45,8 +45,11 @@ public class IndexServiceImpl implements IndexService{
 
 	@Override
 	public String toLogin(Model model) {
+
 		model.addAttribute("lbuser", new Buser());
-		return "before/login";
+
+		return "before/login.html";
+
 	}
 
 	@Override

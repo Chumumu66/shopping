@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
+<head>
+    <title>订单确认</title>
+    <link th:href="@{/css/before/daohang.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/before/common.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/before/style.css}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        function submitorder(total){
+            if(window.confirm("是否真的提交订单，提交后不可再修改订单信息！")){
+                window.location.href="/ch20/order/orderSubmit?amount=" + total;
+                return true;
+            }
+            return false;
+        }
+    </script>
+    <script type="text/javascript">
+        function clearValue(){
+            document.myForm.mykey.value = "";
+        }
+    </script>
+</head>
+  <body>
+  <div th:include="before/head::head"></div>
+	<div class="blank"></div>
+	<div class="block clearfix"><!--当前位置-->
+        <div class="location ared" th:text="#{before.orderconfirm.locationared}">
+            <a th:href="@{/''}">首页</a><span th:text="#{before.orderconfirm.msg}"></span> </div>
+	<div class="blank"></div>
+			<div class="nFlowBox">
+   <form th:action="@{''}" method="post">
+    <h6>商品列表</h6>
+             <table width="100%" align="center" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+            <tr>
+              <th bgcolor="#ffffff" th:text="#{before.orderconfirm.name}"></th>
+              <th bgcolor="#ffffff" th:text="#{before.orderconfirm.price}"></th>
+              <th bgcolor="#ffffff" th:text="#{before.orderconfirm.num}"></th>
+              <th bgcolor="#ffffff" th:text="#{before.orderconfirm.total}"></th>
+            </tr> 
+
+            <tr th:each ="ce:${cartlist}">
+              <td bgcolor="#ffffff" align="center">
+                  	${ce.gname}
+              </td>
+              <td align="center" bgcolor="#ffffff">${ce.grprice}</td>
+              <td align="center" bgcolor="#ffffff">
+                ${ce.shoppingnum}
+              </td>
+              <td align="center" bgcolor="#ffffff">￥&nbsp;${ce.smallsum}&nbsp;元 </td>
+            </tr>
+
+       	  	<tr>
+       	  		<td bgcolor="#ffffff" colspan="4" align="right" th:text="#{before.orderconfirm.pay}">
+
+       	 			<font class="pricetype" size="5" color="red">￥&nbsp;${total}&nbsp;元</font>  	
+              </td>
+          </tr>   	
+        </table>   
+        <div align="center" style="margin:8px auto;">
+       		 <img style="cursor:pointer;"  onclick="submitorder(${total})" src="images/before/bnt_subOrder.gif" />
+    	</div> 
+    	<input type="hidden" name="goodsamount" th:placeholder="20"/>
+    </form>
+</div>
+</div>
+</body>
+</html>
+
+
+
+

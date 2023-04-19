@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<title>用户中心</title>
+	<link th:href="@{/css/before/daohang.css}" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/before/common.css}" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/before/style.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="blank"></div>
+	<div class="block clearfix">
+		<div class="location ared">
+			我的订单
+		</div>
+		<div class="blank"></div>
+		<div>
+			<div class="nFlowBox">
+				<table width="99%" align="center" border="0" cellpadding="5"
+					cellspacing="1" bgcolor="#dddddd">
+					<tr>
+						<th th:text="#{before.userCenter.id}">订单编号</th>
+						<th th:text="#{before.userCenter.price}">订单金额</th>
+						<th th:text="#{before.userCenter.date}">订单日期</th>
+						<th th:text="#{before.userCenter.statue}">订单状态</th>
+						<th th:text="#{before.userCenter.detail}">详情</th>
+					</tr>
+					<tr>
+						<td colspan="5" height="15px"
+							style="border: 0 none; background: #FFF"></td>
+					</tr> 
+
+						<tr th:each ="mo :${myOrder}">
+							<td bgcolor="#ffffff" align="center">${mo.id}</td>
+							<td bgcolor="#ffffff"  align="center">${mo.amount}</td>
+							<td align="center" bgcolor="#ffffff">${mo.orderdate}</td>
+							<td bgcolor="#ffffff"  align="center">
+							<th:if test="${mo.status == 0}" >
+							未付款&nbsp;&nbsp;
+							<a style="text-decoration: none;" class="f6" th:href="@{/order/pay?ordersn=${mo.id}}">去支付</a>
+							</th:if>
+							<th:if test="${mo.status == 1}" >已付款</th:if>
+							</td>
+							<td align="center" bgcolor="#ffffff">
+							<a style="text-decoration: none;" class="f6" th:href="@{/orderDetail?ordersn=${mo.id}}" target="_blank">详情</a>
+							</td>
+						</tr>
+
+				</table>
+			</div>
+		</div>
+		<div class="location ared">
+			我的关注
+		</div>
+		<div class="blank"></div>
+		<div>
+			<div class="nFlowBox">
+				<table width="99%" align="center" border="0" cellpadding="5"
+					cellspacing="1" bgcolor="#dddddd">
+					<tr>
+						<th th:text="#{before.userCenter.goodid}"></th>
+						<th th:text="#{before.userCenter.goodname}"></th>
+						<th th:text="#{before.userCenter.goodpicture}"></th>
+						<th th:text="#{before.userCenter.goodprice}"></th>
+						<th th:text="#{before.userCenter.goodgoLook}"></th>
+					</tr>
+					<tr>
+						<td colspan="5" height="15px"
+							style="border: 0 none; background: #FFF"></td>
+					</tr> 
+
+						<tr th:each ="mf:${myFocus}">
+							<td bgcolor="#ffffff" align="center">${mf.id}</td>
+							<td bgcolor="#ffffff"  align="center">${mf.gname}</td>
+							<td align="center" bgcolor="#ffffff" height="60px"> <img
+									style="width: 50px; height: 50px;"
+									src="logos/${mf.gpicture}" border="0"
+									title="${mf.gname}" /> </td>
+							<td align="center" bgcolor="#ffffff">${mf.grprice}</td>
+							<td align="center" bgcolor="#ffffff">
+								<a style="text-decoration: none;" class="f6" th:href="@{/goodsDetail?id=${mf.id}}">去看看</a>
+							</td>
+						</tr>
+
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

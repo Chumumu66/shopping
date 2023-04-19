@@ -1,0 +1,121 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<title th:text="#{before.index.title}"></title>
+	<link th:href="@{/css/before/daohang.css}" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/before/common.css}" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/before/style.css}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+			function openNotice(url){
+				window.open (url, '站内公告', 'height=400, width=400, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no');
+			}
+	</script>
+	<script type="text/javascript">
+		function clearValue(){
+			document.myForm.mykey.value = "";
+		}
+	</script>
+</head>
+<body>
+<div th:include="before/head::head"></div>
+	<div class="blank"></div>
+	<div class="block clearfix">
+		<div class="AreaL">
+			<!--销售排行-->
+			<div class="box">
+				<div class="box_2">
+					<div class="top10Tit">
+						<span th:text="#{before.index.salesRanking}"></span>
+					</div>
+					<div class="top10List clearfix">
+							<ul class="clearfix" th:each ="sg,sgStat:${salelist}" >
+								<img class="iteration" th:src="@{'/images/before/top_' + ${sgStat.index+1} +'.gif'}" />
+								<li class="topimg">
+								<a th:href="@{/goodsDetail(id = ${sg.id})}">
+									<img class="samllimg" alt="" th:src="@{'/images/before/product/' + ${sg.gpicture}}" /></a></li>
+								<li class="iteration1">
+									<a th:href="@{/goodsDetail(id = ${sg.id})}"><span th:text="${sg.gname}"></span></a><br/>
+									<span th:text="#{before.index.price}"></span><font class="f1"><span th:text="#{before.index.symbol}"></span><span th:text="${sg.grprice}"></span><span th:text="#{before.index.money}"></span></font><br /></li>
+							</ul>
+					</div>
+				</div>
+			</div>
+			<!--销售排行 end -->
+			<!--人气排行-->
+			<div class="blank5"></div>
+			<div class="box">
+				<div class="box_2">
+					<div class="top10Tit">
+						<span th:text="#{before.index.popularityRanking}"></span>
+					</div>
+					<div class="top10List clearfix">
+						<ul class="clearfix" th:each="sg,sgStat:${focuslist}">
+							<img class="iteration" th:src="@{'/images/before/top_' + ${sgStat.index+1} + '.gif'}" />
+							<li class="topimg">
+							<a th:href="@{/goodsDetail(id = ${sg.id})}">
+								<img class="samllimg" alt="" th:src="@{'/images/before/product/' + ${sg.gpicture}}" /></a></li>
+							<li class="iteration1">
+								<a th:href="@{/goodsDetail?id=${sg.id}}"><span th:text="${sg.gname}"></span></a><br/>
+								<span th:text="#{before.index.price }"></span><font class="f1"><span th:text="#{before.index.symbol}"></span><span th:text="${sg.grprice}"></span><span th:text="#{before.index.money}"></span></font><br /></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--人气排行 end -->
+		</div>
+		<div class="AreaR">
+			<div class="AreaR">
+				<div class="AreaM clearfix">
+					<div id="focus">
+						<img th:src="@{/images/before/540.jpg}" />
+					</div>
+				</div>
+				<div class="AreaRR clearfix">
+					<!--公告栏-->
+					<div class="box">
+						<div class="box_1">
+							<div class="title_bt">
+								<h3 th:text="#{before.index.notice}"></h3>
+							</div>
+							<div class="post_list ared">
+								<ul th:each ="nt:${noticelist}" >
+									<li><a href="#" th:onclick="'javascript:openNotice(/selectANotice?id = ' + ${nt.id} + ')'"><span th:text="${nt.ntitle}"></span></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!--公告栏 end-->
+				</div>
+			</div>
+			<div class="AreaR">
+				<!--最新商品列表-->
+				<div class="blank5"></div>
+				<div class="box">
+					<div class="box_color ared">
+						<div class="title_bt">
+							<span><a href="#"><span th:text="#{before.index.more}"></span></a></span>
+							<h3 th:text="#{before.index.newProduct}"></h3>
+						</div>
+						<div class="itemgood_nr clearfix">
+							<ul th:each ="sg:${lastedlist }" >
+									<li>
+										<div>
+											<p class="pic">
+												<a th:href="@{/goodsDetail?id=${sg.id }}">
+												<img src="/logos/${sg.gpicture}" /></a>
+											</p>
+											<p class="wz">
+												<strong><a th:href="@{/goodsDetail(id=${sg.id})}"><span th:text="${sg.gname}"></span></a></strong>
+												<em><span th:text="#{before.index.currentPrice}"></span><span th:text="#{before.index.symbol}"></span><span th:text="${sg.grprice}"></span></em>
+											</p>
+										</div>
+									</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!--最新商品列表end-->
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -17,24 +17,26 @@ import demo.shopping.po.Buser;
 public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserDao userDao;
+
 	@Override
 	public String register(Buser buser, Model model, HttpSession session, String code) {
 		if(!code.equalsIgnoreCase(session.getAttribute("code").toString())) {
-			model.addAttribute("codeError", "��֤�����");
+			model.addAttribute("codeError", "验证码错误");
 			return "before/register";
 		}
 		int n = userDao.register(buser);
 		if(n > 0) {
 			return "before/login";
 		}else {
-			model.addAttribute("msg", "ע��ʧ�ܣ�");
+			model.addAttribute("msg", "登录错误");
 			return "before/register";
 		}
 	}
+
 	@Override
 	public String login(Buser buser, Model model, HttpSession session, String code) {
 		if(!code.equalsIgnoreCase(session.getAttribute("code").toString())) {
-			model.addAttribute("msg", "��֤�����");
+			model.addAttribute("msg", "验证码错误");
 			return "before/login";
 		}
 		Buser ruser = null;
@@ -44,9 +46,11 @@ public class UserServiceImpl implements UserService{
 		}
 		if(ruser != null) {
 			session.setAttribute("bruser", ruser);
+			model.addAttribute("bruser", ruser);
+			System.out.println(ruser.getBemail());
 			return "forward:/before";
 		}else {
-			model.addAttribute("msg", "�û������������");
+			model.addAttribute("msg", "登录错误");
 			return "before/login";
 		}
 	}
