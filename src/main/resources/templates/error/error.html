@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
-  <base href="<%=basePath%>">
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Insert title here</title>
+  <meta charset="UTF-8"/>
+  <title>愿世界没有Bug</title>
 </head>
 <body>
-<H1>未知错误：</H1>
-<H2>错误内容：</H2>
-
+<h1>Sorry,异常了(自定义)</h1>
+<div>
+  <p th:text="'错误码：' + ${errorInfo.code}"/>
+  <p th:text="'映射路径：' + ${errorInfo.url}"/>
+  <p th:text="'错误信息：' + ${errorInfo.message}"/>
+</div>
 </body>
 </html>
