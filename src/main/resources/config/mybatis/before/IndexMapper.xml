@@ -5,13 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="demo.shopping.dao.IndexDao">
 	<!-- 查询销售排行 -->
 	<select id="getSaleOrder"  resultType="map">
-		select sum(od.SHOPPINGNUM) shopnumber,
+		select sum(od.shoppingnum) shopnumber,
 				gd.id id, 
 				gd.GNAME gname, 
 				gd.GOPRICE goprice,  
 				gd.GRPRICE grprice, 
 				gd.GPICTURE  gpicture
-		from GOODSTABLE gd   LEFT JOIN ORDERDETAIL  od  ON od.goodstable_id=gd.id
+		from goodstable gd   LEFT JOIN orderdetail od  ON od.goodstable_id=gd.id
 				 group by 
 				 gd.id, 
 				 gd.GNAME, 
@@ -24,8 +24,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getFocusOrder" resultType="map">
 		select count(ft.goodstable_id) fn, gt.id id, gt.gname gname, 
 		gt.grprice grprice, gt.gpicture gpicture 
-		from GOODSTABLE gt 
-  		LEFT JOIN FOCUSTABLE ft  ON ft.goodstable_id=gt.id   
+		from goodstable gt
+  		LEFT JOIN focustable ft  ON ft.goodstable_id=gt.id
 		group by gt.id, gt.gname, gt.grprice, gt.gpicture
  		order by fn desc limit 10
 	</select>
@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 最新商品 -->
 	<select id="getLastedGoods" resultType="Goods" parameterType="Goods">
-		select gt.*, gy.typename from GOODSTABLE gt,GOODSTYPE gy where gt.goodstype_id = gy.id 
+		select gt.*, gy.typename from goodstable gt,goodstype gy where gt.goodstype_id = gy.id
 		<if test="id != 0">
 			and gy.id = #{id} 
 		</if>
@@ -47,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 首页搜索 -->
 	<select id="search" resultType="Goods" parameterType="String">
-		select gt.*, gy.typename from GOODSTABLE gt,GOODSTYPE gy where gt.goodstype_id = gy.id 
+		select gt.*, gy.typename from goodstable gt,goodstype gy where gt.goodstype_id = gy.id
 		and gt.gname like concat('%',#{mykey},'%')
 	</select>
 </mapper>
