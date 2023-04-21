@@ -50,7 +50,7 @@
 							class="ttbb2">
 							<tr>
 								<td width="16%" align="right"><span class="cl_f30">*</span>
-									E-mail：</td>
+									<span th:text="#{before.register.email}"></span></td>
 								<td width="59%"><input type="text" name="bemail"
 									id="textfield" class="my_txt_350" th:placeholder="#{before.register.bemail}" /></td>
 								<td width="25%" th:text="${msg}"></td>
@@ -61,7 +61,7 @@
 									</td>
 							</tr>
 							<tr>
-								<td align="right"><span class="cl_f30">*</span> 密码：</td>
+								<td align="right"><span class="cl_f30">*</span> <span th:text="#{before.register.pwd}"></span></td>
 								<td><input type="password" name="bpwd" id="textfield2"
 									class="my_txt_350" /></td>
 								<td>&nbsp;</td>
@@ -72,7 +72,7 @@
 									</td>
 							</tr>
 							<tr>
-								<td align="right"><span class="cl_f30">*</span> 重复密码：</td>
+								<td align="right"><span class="cl_f30">*</span><span th:text="#{before.register.repeatPwd}"></span> </td>
 								<td><input type="password" name="rebpwd" id="textfield3"
 									class="my_txt_350" /></td>
 								<td>&nbsp;</td>
@@ -83,11 +83,11 @@
 									</td>
 							</tr>				
 							<tr>
-								<td align="right"><span class="cl_f30">*</span> 验证码：</td>
+								<td align="right"><span class="cl_f30">*</span><span th:text="#{before.register.code}"></span></td>
 								<td class="ared"><input type="text" name="code"
 									id="textfield5" class="my_txt_120" />
 									<img id="code" src="validateCode" /> 
-									<a href="javascript:refreshCode()"><font color="blue">看不清，换一个！</font></a>
+									<a href="javascript:refreshCode()"><font color="blue"><span th:text="#{before.register.prompt}"></span></font></a>
 								</td>
 								<td th:text="${codeError}"></td>
 							</tr>

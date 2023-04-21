@@ -26,11 +26,11 @@
 	<div class="blank"></div>
 	<div class="block clearfix"><!--当前位置-->
         <div class="location ared" th:text="#{before.orderconfirm.locationared}">
-            <a th:href="@{/''}">首页</a><span th:text="#{before.orderconfirm.msg}"></span> </div>
+            <a th:href="@{/''}"><span th:text="#{before.orderconfirm.homePage}"></span></a><span th:text="#{before.orderconfirm.msg}"></span> </div>
 	<div class="blank"></div>
 			<div class="nFlowBox">
    <form th:action="@{''}" method="post">
-    <h6>商品列表</h6>
+    <h6><span th:text="#{before.orderconfirm.ProductList}"></span></h6>
              <table width="100%" align="center" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
             <tr>
               <th bgcolor="#ffffff" th:text="#{before.orderconfirm.name}"></th>
@@ -53,7 +53,7 @@
        	  	<tr>
        	  		<td bgcolor="#ffffff" colspan="4" align="right" th:text="#{before.orderconfirm.pay}">
 
-       	 			<font class="pricetype" size="5" color="red">￥&nbsp;${total}&nbsp;元</font>  	
+       	 			<font class="pricetype" size="5" color="red"><span th:text="#{before.orderconfirm.symbol}"></span>&nbsp;${total}<span th:text="#{before.orderconfirm.money}"></span></font>
               </td>
           </tr>   	
         </table>   

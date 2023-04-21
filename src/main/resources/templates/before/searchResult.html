@@ -15,7 +15,8 @@
 <div th:include="before/head::head"></div>
 	<div class="blank"></div>
 	<div class="block clearfix">
-		<div class="location ared" th:text="#{before.searchResult.locationared}"><a th:href="@{/before?id=0}">首页</a>
+		<div class="location ared" th:text="#{before.searchResult.locationared}"><a th:href="@{/before?id=0}">
+			<span th:text="#{before.searchResult.homePage}"></span></a>
 			<span th:text="#{before.searchResult.result}"></span></div>
 		<div class="blank"></div>
 		<div>
@@ -44,7 +45,7 @@
 							<td align="center" bgcolor="#ffffff">${mf.grprice }</td>
 							<td align="center" bgcolor="#ffffff"><a
 								style="text-decoration: none;" class="f6"
-								th:href="@{/goodsDetail?id=${mf.id}}">去看看</a></td>
+								th:href="@{/goodsDetail?id=${mf.id}}"><span th:text="#{before.searchResult.goLook}"></span></a></td>
 						</tr>
 
 				</table>

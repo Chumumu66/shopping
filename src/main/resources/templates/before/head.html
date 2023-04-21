@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="all_zong" th:fragment="head">
-		<!--最上面 灰色条部分-->
+		<!--最上面 灰色条部分本地cc修改-->
 		<div class="all_zong_top">
 			<div class="all_zong_top_right a8c">
 				<table border="0" cellspacing="0" cellpadding="0" class="main_login">
@@ -20,10 +20,10 @@
 						<td>
 
 							<p id="content" th:if="${bruser}">
-								欢迎 <span th:text="${bruser.bemail}"></span>
+								<span th:text="#{before.head.welcome}"> </span><span th:text="${bruser.bemail}"></span>
 							</p>
 							<p th:if="!${bruser}">
-								<a th:href="@{/toLogin}">登录</a>
+								<a th:href="@{/toLogin}"><span th:text="#{before.head.login}"> </span></a>
 							</p>
 
 
@@ -73,7 +73,7 @@
 				<div class="all_zong">
 					<div class="front_daohang">
 						<ul>
-							<li class="backbj"><a th:href="@{/before?id=0}">首页</a></li>
+							<li class="backbj"><a th:href="@{/before?id=0}"><span th:text="#{before.head.homePage}"></span></a></li>
 							<!-- 显示商品类型 -->
 
 								<li th:each=" g : ${goodsType}"><a th:href="@{/before?id=${g.id }}">
@@ -82,7 +82,7 @@
 
 							<li class="buy">
 								<p class="car">
-									<a th:href="@{/cart/selectCart}">购物车</a>
+									<a th:href="@{/cart/selectCart}"><span th:text="#{before.head.cart}"></span></a>
 								</p>
 							</li>
 						</ul>
