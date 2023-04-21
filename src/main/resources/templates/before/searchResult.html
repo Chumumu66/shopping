@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<title>搜索结果</title>
+	<link th:href="@{/css/before/daohang.css}" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/before/common.css}" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/before/style.css}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+		function clearValue(){
+			document.myForm.mykey.value = "";
+		}
+	</script>
+</head>
+<body>
+<div th:include="before/head::head"></div>
+	<div class="blank"></div>
+	<div class="block clearfix">
+		<div class="location ared" th:text="#{before.searchResult.locationared}"><a th:href="@{/before?id=0}">
+			<span th:text="#{before.searchResult.homePage}"></span></a>
+			<span th:text="#{before.searchResult.result}"></span></div>
+		<div class="blank"></div>
+		<div>
+			<div class="nFlowBox">
+				<table width="99%" align="center" border="0" cellpadding="5"
+					cellspacing="1" bgcolor="#dddddd">
+					<tr>
+						<th th:text="#{before.searchResult.id}"></th>
+						<th th:text="#{before.searchResult.name}"></th>
+						<th th:text="#{before.searchResult.picture}"></th>
+						<th th:text="#{before.searchResult.price}"></th>
+						<th th:text="#{before.searchResult.goLook}"></th>
+					</tr>
+					<tr>
+						<td colspan="5" height="15px"
+							style="border: 0 none; background: #FFF"></td>
+					</tr>
+
+						<tr th:each ="mf:${searchlist }" >
+							<td bgcolor="#ffffff" align="center">${mf.id }</td>
+							<td bgcolor="#ffffff" align="center">${mf.gname }</td>
+							<td align="center" bgcolor="#ffffff" height="60px"><img
+								style="width: 50px; height: 50px;"
+								src="logos/${mf.gpicture }" border="0" title="${mf.gname }" />
+							</td>
+							<td align="center" bgcolor="#ffffff">${mf.grprice }</td>
+							<td align="center" bgcolor="#ffffff"><a
+								style="text-decoration: none;" class="f6"
+								th:href="@{/goodsDetail?id=${mf.id}}"><span th:text="#{before.searchResult.goLook}"></span></a></td>
+						</tr>
+
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

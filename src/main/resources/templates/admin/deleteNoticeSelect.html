@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{admin.deleteNoticeSelect.title}"></title>
-    <link href="../../static/css/admin/common.css" type="text/css" rel="stylesheet">
+    <link th:href="@{/css/admin/common.css}" type="text/css" rel="stylesheet">
     <style type="text/css">
         table{
             text-align: center;
@@ -24,7 +24,7 @@
     <script type="text/javascript">
         function checkDel(id){
             if(window.confirm("是否删除该公告？")){
-                window.location.href = "/ch20/adminNotice/deleteNotice?id="+id;
+                window.location.href = "/adminNotice/deleteNotice?id="+id;
             }
         }
     </script>
