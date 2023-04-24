@@ -1,6 +1,10 @@
 package demo.shopping.service.admin;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +13,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -16,6 +22,9 @@ import org.springframework.ui.Model;
 import demo.shopping.dao.AdminGoodsDao;
 import demo.shopping.po.Goods;
 import demo.shopping.util.MyUtil;
+import org.springframework.util.ClassUtils;
+import org.springframework.util.ResourceUtils;
+
 @Service("adminGoodsService")
 @Transactional
 public class AdminGoodsServiceImpl implements AdminGoodsService{
@@ -92,18 +101,19 @@ public class AdminGoodsServiceImpl implements AdminGoodsService{
 	}
 
 	@Override
-	public String addOrUpdateGoods(Goods goods, HttpServletRequest request, String updateAct) {
+	public int addOrUpdateGoods(Goods goods, HttpServletRequest request, String flag) throws IOException {
 		String newFileName = "";
 		String fileName = goods.getLogoImage().getOriginalFilename();
 
 		if(fileName.length() > 0){
-			String realpath = "D:\\javaeeFile\\shopping\\src\\main\\resources\\static\\images\\admin\\product";
+			File file = new File("");
+			String realpath = file.getCanonicalPath() + "\\src\\main\\resources\\static\\images\\admin\\product";
 			String fileType = fileName.substring(fileName.lastIndexOf('.'));
 			newFileName = MyUtil.getStringID() + fileType;
 			goods.setGpicture(newFileName);
 			File targetFile = new File(realpath, newFileName);
 			if(!targetFile.exists()){
-				targetFile.mkdirs();
+				targetFile.mkdir();
 			}
 			try {
 				goods.getLogoImage().transferTo(targetFile);
@@ -111,18 +121,17 @@ public class AdminGoodsServiceImpl implements AdminGoodsService{
 				e.printStackTrace();
 			}
 		}
-
-		if("update".equals(updateAct)){
+		if(flag.equals("update")){
 			if(adminGoodsDao.updateGoodsById(goods) > 0){
-				return "forward:/adminGoods/selectGoods?act=updateSelect";
+				return 1;
 			}else{
-				return "/adminGoods/updateAgoods";
+				return 0;
 			}
 		}else{
 			if(adminGoodsDao.addGoods(goods) > 0){
-				return "forward:/adminGoods/selectGoods";
+				return 1;
 			}else{
-				return "card/addCard";
+				return 0;
 			}
 		}
 	}

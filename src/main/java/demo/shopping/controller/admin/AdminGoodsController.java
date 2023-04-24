@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import demo.shopping.po.Goods;
 import demo.shopping.service.admin.AdminGoodsService;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.http.HttpRequest;
 import java.util.List;
 
@@ -78,8 +81,21 @@ public class AdminGoodsController extends BaseController{
 	}
 
 	@RequestMapping("/addGoods")
-	public String addGoods(@ModelAttribute Goods goods, HttpServletRequest request, String updateAct){
-		return adminGoodsService.addOrUpdateGoods(goods, request, updateAct);
+	public String addGoods(@ModelAttribute Goods goods, HttpServletRequest request, String updateAct) throws IOException {
+		if("update".equals(updateAct)){
+			String flag = "update";
+			if(adminGoodsService.addOrUpdateGoods(goods, request, flag) > 0){
+				return "forward:/adminGoods/selectGoods?act=updateSelect";
+			}else{
+				return "/adminGoods/updateAgoods";
+			}
+		}else{
+			String flag = "add";
+			if(adminGoodsService.addOrUpdateGoods(goods, request, flag) > 0){
+				return "forward:/adminGoods/selectGoods";
+			}else{
+				return "card/addCard";
+			}
+		}
 	}
-
 }

@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 
 import demo.shopping.po.Goods;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public interface AdminGoodsService {
@@ -15,6 +17,5 @@ public interface AdminGoodsService {
 	public Goods getAGood(Integer id);
 	public boolean deleteGoods(Integer ids[], Model model);
 	public boolean deleteAGoods(Integer id, Model model);
-	public String addOrUpdateGoods(Goods goods, HttpServletRequest request, String updateAct);
-
+	public int addOrUpdateGoods(Goods goods, HttpServletRequest request, String updateAct) throws IOException;
 }
