@@ -30,7 +30,7 @@ public class AdminUserServiceImpl implements AdminUserService{
 			return "forward:/adminUser/userInfo";
 		}
 		if(adminUserDao.deleteuserManager(id) > 0) 
-			model.addAttribute("msg", "�ɹ�ɾ���û���");
+			model.addAttribute("msg", "删除成功！");
 		return "forward:/adminUser/userInfo";
 	}
 

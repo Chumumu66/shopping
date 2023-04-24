@@ -32,7 +32,7 @@
             </div>
         </table>
     </div>
-    <form action="adminType/addType" method="post">
+    <form th:action="@{/adminType/addType}" method="post">
         <span th:text="#{admin.addType.typeName1}"></span>
         <input type="text" name="typename"/>
         <input type="submit" th:value="#{admin.addType.add}"/>

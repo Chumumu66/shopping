@@ -36,11 +36,11 @@ public class AdminTypeServiceImpl implements AdminTypeService{
 	@Override
 	public String deleteType(Integer id, Model model) {
 		if(adminTypeDao.selectGoodsByType(id).size() > 0) {
-			model.addAttribute("msg", "�����й�����������ɾ����");
+			model.addAttribute("msg", "删除成功！");
 			return "forward:/adminType/toDeleteType";
 		}
 		if(adminTypeDao.deleteType(id) > 0) 
-			model.addAttribute("msg", "���ͳɹ�ɾ����");
+			model.addAttribute("msg", "删除成功！");
 		return "forward:/adminType/toDeleteType";
 	}
 	

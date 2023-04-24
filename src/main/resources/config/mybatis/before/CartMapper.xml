@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 查询购物车 -->
 	<select id="selectCart" parameterType="Integer" resultType="map">
 		select gt.id, gt.gname, gt.gpicture, gt.grprice, ct.shoppingnum, ct.shoppingnum*gt.grprice smallsum 
-		from GOODSTABLE gt, CARTTABLE ct where gt.id=ct.goodstable_id and ct.busertable_id=#{id}
+		from goodstable gt, carttable ct where gt.id=ct.goodstable_id and ct.busertable_id=#{id}
 	</select>
 	<!-- 删除购物车 -->
 	<delete id="deleteAgoods" parameterType="map">

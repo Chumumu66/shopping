@@ -49,8 +49,11 @@
                     <td th:text="${notice.ntime}"></td>
                     <td><a th:href="@{/adminNotice/selectANotice(id = ${notice.id})}" target="_blank" th:text="#{page.detail}"></a></td>
                     <td>
-                        <a href="javascript:checkDel('${notice.id}')" th:text="#{page.delete}"></a>
+                        <a href="#" th:onclick="'javascript:checkDel(' + ${notice.id} + ')'" th:text="#{page.delete}"></a>
                     </td>
+                </tr>
+                <tr>
+                    <td colspan="5" th:text="${msg}"></td>
                 </tr>
             </div>
         </table>
