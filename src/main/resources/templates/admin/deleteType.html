@@ -16,7 +16,7 @@
     <script type="text/javascript">
         function checkDel(id){
             if(window.confirm("是否删除该商品类型？")){
-                window.location.href = "/ch20/adminType/deleteType?id="+id;
+                window.location.href = "/adminType/deleteType?id="+id;
             }
         }
     </script>
@@ -36,7 +36,7 @@
                 <tr>
                     <td th:text="${goodsType.id}"></td>
                     <td th:text="${goodsType.typename}"></td>
-                    <td><a href="javascript:checkDel('${goodsType.id}')"><span th:text="#{page.delete}"></span></a></td>
+                    <td><a href="#" th:onclick="'javascript:checkDel(' + ${goodsType.id} + ')'"><span th:text="#{page.delete}"></span></a></td>
                 </tr>
             </div>
             <tr>

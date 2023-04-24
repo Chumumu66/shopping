@@ -22,7 +22,7 @@
         }
         function checkDel(id){
             if(window.confirm("是否删除该用户？")){
-                window.location.href="/ch20/adminUser/deleteuserManager?id="+id;
+                window.location.href="/adminUser/deleteuserManager?id="+id;
             }
         }
     </script>
@@ -42,7 +42,7 @@
                 <td th:text="${n.bemail}"></td>
                 <td><input type="password" value="${n.bpwd}" readonly></td>
                 <td>
-                    <a href="javaScript:checkDel('${n.id}')"><span th:text="#{page.delete}"></span></a>
+                    <a href="#" th:onclick="'javaScript:checkDel(' + ${n.id} + ')'"><span th:text="#{page.delete}"></span></a>
                 </td>
             </tr>
         </div>

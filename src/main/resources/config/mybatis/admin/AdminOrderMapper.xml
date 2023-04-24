@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="demo.shopping.dao.AdminOrderDao">
 	<select id="orderInfo"  resultType="map" >
 		select ot.id, ot.amount, ot.status,  orderdate, bt.bemail, ot.busertable_id 
-		from ORDERBASETABLE ot, BUSERTABLE bt where ot.busertable_id=bt.id
+		from orderbasetable ot, busertable bt where ot.busertable_id=bt.id
 	</select>
 	<delete id="deleteOrderDetail" parameterType="Integer">
 		delete from orderdetail where orderbasetable_id=#{id}

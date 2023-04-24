@@ -22,7 +22,7 @@
         }
         function checkDel(id){
             if(window.confirm("是否删除该订单？")){
-                window.location.href="/ch20/adminOrder/deleteorderManager?id="+id;
+                window.location.href="/adminOrder/deleteorderManager?id="+id;
             }
         }
     </script>
@@ -54,7 +54,7 @@
                 <td th:text="${n.orderdate}"></td>
                 <td>
                     <div th:if="${n.status == 0}">
-                        <a href="javaScript:checkDel('${n.id}')"><span th:text="#{page.delete}"></span></a>
+                        <a href="#" th:onclick="'javaScript:checkDel(' + ${n.id} + ')'"><span th:text="#{page.delete}"></span></a>
                     </div>
                 </td>
             </tr>

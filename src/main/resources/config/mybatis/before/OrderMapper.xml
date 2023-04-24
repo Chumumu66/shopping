@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<!-- 生成订单详情 -->
 	<insert id="addOrderDetail" parameterType="map">
-		insert into ORDERDETAIL (orderbasetable_id, goodstable_id, SHOPPINGNUM) select #{ordersn}, goodstable_id, SHOPPINGNUM from CARTTABLE where busertable_id = #{uid} 
+		insert into ordertable (orderbasetable_id, goodstable_id, shoppingnum) select #{ordersn}, goodstable_id, shoppingnum from carttable where busertable_id = #{uid}
 	</insert>
 	<!-- 查询商品购买量，以便更新库存使用 -->
 	<select id="selectGoodsShop"  parameterType="Integer" resultType="map">
@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 更新商品库存 -->
 	<update id="updateStore" parameterType="map">
-		update GOODSTABLE set GSTORE=GSTORE-#{gshoppingnum} where id=#{gid} 
+		update goodstable set gstore=gstore-#{gshoppingnum} where id=#{gid}
 	</update>
 	<!-- 清空购物车 -->
 	<delete id="clear" parameterType="Integer">

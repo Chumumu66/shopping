@@ -4,14 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{admin.login.title}"></title>
+    <style type="text/css">
+        table{
+            text-align: center;
+        }
+        .textSize{
+            width: 120px;
+            height: 25px;
+        }
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            margin: 10px 10px auto;
+            background-image: url(/images/admin/bb.jpg);
+        }
+    </style>
+    <script type="text/javascript">
+        //确定按钮
+        function gogo(){
+            document.forms[0].submit();
+        }
+        //取消按钮
+        function cancel(){
+            document.forms[0].action = "";
+        }
+    </script>
 </head>
 <body>
-    <h1 th:text="#{admin.login.login}"></h1>
-    <form th:action="@{/admin/login}" method="post">
-        <input type="text" id="aname" name="aname">
-        <br/>
-        <input type="password" id="apwd" name="apwd" minlength="2" maxlength="20">
-        <input type="submit" text="登录">
+    <form th:action="@{/admin/login}" modelAttribute="auser" method="post">
+        <table>
+            <tr>
+                <td colspan="2"><img th:src="@{/images/admin/login.gif}"></td>
+            </tr>
+            <tr>
+                <td>姓名：</td>
+                <td>
+                    <input name="aname" class="textSize"/>
+                </td>
+            </tr>
+            <tr>
+                <td>密码：</td>
+                <td>
+                    <input type="password" name="apwd" class="textSize" maxlength="20"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="image" th:src="@{/images/admin/ok.gif}" th:onclick="gogo()" >
+                    <input type="image" th:src="@{/images/admin/cancel.gif}" th:onclick="cancel()" >
+                </td>
+            </tr>
+        </table>
     </form>
+    <span th:text="${msg}"></span>
 </body>
 </html>

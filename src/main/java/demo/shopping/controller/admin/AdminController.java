@@ -31,4 +31,10 @@ public class AdminController {
 		return "admin/login";
 	}
 
+
+	@RequestMapping(value = "/mul")
+	public int mulParam(int param) {
+		return 9/param;
+	}
+
 }
