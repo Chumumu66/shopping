@@ -14,7 +14,9 @@ import demo.shopping.service.admin.AdminGoodsService;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.http.HttpRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/adminGoods")
@@ -25,13 +27,11 @@ public class AdminGoodsController extends BaseController{
 
 	@RequestMapping("/selectGoods")
 	public String selectGoods(Model model, Integer pageCur, String act) {
-		int temp = adminGoodsService.getGoodsCount();
-		model.addAttribute("totalCount", temp);
-		int totalPage = adminGoodsService.getTotalPage(temp);
-		model.addAttribute("totalPage", totalPage);
-		int pageCur1 = adminGoodsService.getPageCur(temp, pageCur);
-		model.addAttribute("pageCur", pageCur1);
-		List<Goods> allGoods = adminGoodsService.selectGoods(pageCur1);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		model.addAttribute("totalCount", map.get("totalCount"));
+		model.addAttribute("totalPage", map.get("totalPage"));
+		model.addAttribute("pageCur", map.get("pageCur"));
+		List<Goods> allGoods = adminGoodsService.selectGoods(map.get("pageCur"));
 		model.addAttribute("allGoods", allGoods);
 		if("deleteSelect".equals(act)){
 			return "admin/deleteSelectGoods";
@@ -84,14 +84,14 @@ public class AdminGoodsController extends BaseController{
 	public String addGoods(@ModelAttribute Goods goods, HttpServletRequest request, String updateAct) throws IOException {
 		if("update".equals(updateAct)){
 			String flag = "update";
-			if(adminGoodsService.addOrUpdateGoods(goods, request, flag) > 0){
+			if(adminGoodsService.addOrUpdateGoods(goods, request, flag) == true){
 				return "forward:/adminGoods/selectGoods?act=updateSelect";
 			}else{
 				return "/adminGoods/updateAgoods";
 			}
 		}else{
 			String flag = "add";
-			if(adminGoodsService.addOrUpdateGoods(goods, request, flag) > 0){
+			if(adminGoodsService.addOrUpdateGoods(goods, request, flag) == true){
 				return "forward:/adminGoods/selectGoods";
 			}else{
 				return "card/addCard";

@@ -32,31 +32,25 @@ public class AdminGoodsServiceImpl implements AdminGoodsService{
 	private AdminGoodsDao adminGoodsDao;
 
 	@Override
-	public int getGoodsCount() {
+	public Map<String, Integer> getPaginationQuery(Integer pageCur) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
 		int temp = adminGoodsDao.getGoodsCount();
-		return temp;
-	}
-
-	@Override
-	public int getTotalPage(int temp) {
+		map.put("totalCount", temp);
 		int totalPage = 0;
 		if (temp == 0) {
 			totalPage = 0;
 		} else {
 			totalPage = (int) Math.ceil((double) temp / 10);
 		}
-		return totalPage;
-	}
-
-	@Override
-	public int getPageCur(int temp, Integer pageCur) {
+		map.put("totalPage", totalPage);
 		if (pageCur == null) {
 			pageCur = 1;
 		}
 		if ((pageCur - 1) * 10 > temp) {
 			pageCur = pageCur - 1;
 		}
-		return pageCur;
+		map.put("pageCur", pageCur);
+		return map;
 	}
 
 	@Override
@@ -101,7 +95,7 @@ public class AdminGoodsServiceImpl implements AdminGoodsService{
 	}
 
 	@Override
-	public int addOrUpdateGoods(Goods goods, HttpServletRequest request, String flag) throws IOException {
+	public boolean addOrUpdateGoods(Goods goods, HttpServletRequest request, String flag) throws IOException {
 		String newFileName = "";
 		String fileName = goods.getLogoImage().getOriginalFilename();
 
@@ -123,15 +117,15 @@ public class AdminGoodsServiceImpl implements AdminGoodsService{
 		}
 		if(flag.equals("update")){
 			if(adminGoodsDao.updateGoodsById(goods) > 0){
-				return 1;
+				return true;
 			}else{
-				return 0;
+				return false;
 			}
 		}else{
 			if(adminGoodsDao.addGoods(goods) > 0){
-				return 1;
+				return true;
 			}else{
-				return 0;
+				return false;
 			}
 		}
 	}

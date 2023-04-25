@@ -4,9 +4,11 @@ import org.springframework.ui.Model;
 
 import demo.shopping.po.Notice;
 
+import java.util.List;
+
 public interface AdminNoticeService {
-	public String addNotice(Notice notice);
-	public String deleteNoticeSelect(Model model);
-	public String selectANotice(Model model, Integer id);
-	public String deleteNotice(Integer id);
+	public boolean addNotice(Notice notice);
+	public List<Notice> deleteNoticeSelect();
+	public Notice selectANotice(Integer id);
+	public boolean deleteNotice(Integer id);
 }
