@@ -1,6 +1,7 @@
 package demo.shopping.controller.before;
 import javax.servlet.http.HttpSession;
 
+import demo.shopping.po.Notice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,14 +15,21 @@ import java.util.logging.Logger;
 
 @Controller
 public class IndexController {
-	Logger logger=Logger.getLogger("IndexController");
+
+	Logger logger = Logger.getLogger("IndexController");
+
 	@Autowired
 	private IndexService indexService;
 
 	@RequestMapping("/before")
-	public String before(Model model,HttpSession session, Goods goods) {
+	public String before(Model model, Goods goods) {
+		model.addAttribute("goodsType", indexService.getGoodsType());
+		model.addAttribute("salelist", indexService.getSaleList());
+		model.addAttribute("focuslist", indexService.getFocusList());
+		model.addAttribute("noticelist", indexService.getNoticeList());
+		model.addAttribute("lastedlist", indexService.getLastedList(goods));
 		logger.log(Level.INFO,"获取前端页面");
-		return indexService.before(model, session, goods);
+		return "before/index";
 	}
 
 	@RequestMapping("/toRegister")
@@ -44,8 +52,10 @@ public class IndexController {
 
 	@RequestMapping("/selectANotice")
 	public String selectANotice(Model model,Integer id) {
+		Notice notice = indexService.selectANotice(id);
+		model.addAttribute("notice", notice);
 		logger.log(Level.INFO,"获取商品细节页面");
-		return indexService.selectANotice(model, id);
+		return "admin/noticeDetail";
 	}
 
 	@RequestMapping("/search")

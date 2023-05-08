@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="deleteNoticeSelect"  resultType="Notice" >
 		select * from noticetable
 	</select>
-	<insert id="addNotice" parameterType="Notice">
+	<insert id="addNotice" parameterType="Notice" useGeneratedKeys="true" keyProperty="id">
 		insert into noticetable (id,ntitle,ncontent,ntime) 
 		values (null,#{ntitle},#{ncontent},now())
 	</insert>

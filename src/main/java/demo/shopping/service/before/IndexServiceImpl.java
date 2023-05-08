@@ -1,10 +1,12 @@
 package demo.shopping.service.before;
 
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
+import java.util.Map;
+import java.util.logging.Logger;
+import demo.shopping.po.GoodsType;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -19,22 +21,40 @@ import demo.shopping.po.Notice;
 @Service("indexService")
 @Transactional
 public class IndexServiceImpl implements IndexService{
+
 	@Autowired
 	private IndexDao indexDao;
+
 	@Autowired
 	private AdminTypeDao adminTypeDao;
+
 	@Autowired
 	private AdminNoticeDao adminNoticeDao;
+
 	@Override
-	public String before(Model model, HttpSession session, Goods goods) {
-		session.setAttribute("goodsType", adminTypeDao.selectGoodsType());
-		model.addAttribute("salelist", indexDao.getSaleOrder());
-		model.addAttribute("focuslist", indexDao.getFocusOrder());
-		model.addAttribute("noticelist", indexDao.selectNotice());
-		if(goods.getId() == null) 
-			goods.setId(0);
-		model.addAttribute("lastedlist", indexDao.getLastedGoods(goods));
-		return "before/index";
+	public List<GoodsType> getGoodsType() {
+		return adminTypeDao.selectGoodsType();
+	}
+
+	@Override
+	public List<Map<String, Object>> getSaleList() {
+		return indexDao.getSaleOrder();
+	}
+
+	@Override
+	public List<Map<String, Object>> getFocusList() {
+		return indexDao.getFocusOrder();
+	}
+
+	@Cacheable(value =  "noticeList")
+	@Override
+	public List<Map<String, Object>> getNoticeList() {
+		return indexDao.selectNotice();
+	}
+
+	@Override
+	public List<Map<String, Object>> getLastedList(Goods goods) {
+		return indexDao.getLastedGoods(goods);
 	}
 
 	@Override
@@ -59,11 +79,11 @@ public class IndexServiceImpl implements IndexService{
 		return "before/goodsdetail";
 	}
 
+	@Cacheable(value = "notices", key = "#id")
 	@Override
-	public String selectANotice(Model model, Integer id) {
+	public Notice selectANotice(Integer id) {
 		Notice notice = adminNoticeDao.selectANotice(id);
-		model.addAttribute("notice", notice);
-		return "admin/noticeDetail";
+		return notice;
 	}
 
 	@Override

@@ -25,12 +25,7 @@ public class AdminNoticeController extends BaseController{
 
 	@RequestMapping("/addNotice")
 	public String addNotice(@ModelAttribute Notice notice, Model model) {
-		boolean flag = adminNoticeService.addNotice(notice);
-		if(flag == true){
-			model.addAttribute("msg", "删除成功");
-		}else{
-			model.addAttribute("msg", "删除失败");
-		}
+		Notice notice1 = adminNoticeService.addNotice(notice);
 		return "forward:/adminNotice/deleteNoticeSelect";
 	}
 
@@ -49,13 +44,8 @@ public class AdminNoticeController extends BaseController{
 	}
 
 	@RequestMapping("/deleteNotice")
-	public String deleteNotice(Model model, Integer id) {
-		boolean flag = adminNoticeService.deleteNotice(id);
-		if(flag == true){
-			model.addAttribute("msg", "删除成功");
-		}else{
-			model.addAttribute("msg", "删除失败");
-		}
+	public String deleteNotice(Integer id) {
+		adminNoticeService.deleteNotice(id);
 		return "forward:/adminNotice/deleteNoticeSelect";
 	}
 }

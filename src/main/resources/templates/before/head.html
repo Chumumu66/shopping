@@ -18,17 +18,12 @@
 				<table border="0" cellspacing="0" cellpadding="0" class="main_login">
 					<tr>
 						<td>
-
 							<p id="content" th:if="${bruser}">
 								<span th:text="#{before.head.welcome}"> </span><span th:text="${bruser.bemail}"></span>
 							</p>
 							<p th:if="!${bruser}">
 								<a th:href="@{/toLogin}"><span th:text="#{before.head.login}"> </span></a>
 							</p>
-
-
-
-
 						</td>
 						<td>
 							<p>
@@ -75,14 +70,16 @@
 						<ul>
 							<li class="backbj"><a th:href="@{/before?id=0}"><span th:text="#{before.head.homePage}"></span></a></li>
 							<!-- 显示商品类型 -->
-
-								<li th:each=" g : ${goodsType}"><a th:href="@{/before?id=${g.id }}">
-								${g.typename }</a>
+								<li th:each=" g : ${goodsType}">
+									<a th:href="@{/before?id=${g.id}}">
+										<span th:text="${g.typename}"></span>
+									</a>
 								</li>
-
 							<li class="buy">
 								<p class="car">
-									<a th:href="@{/cart/selectCart}"><span th:text="#{before.head.cart}"></span></a>
+									<a th:href="@{/cart/selectCart}">
+										<span th:text="#{before.head.cart}"></span>
+									</a>
 								</p>
 							</li>
 						</ul>

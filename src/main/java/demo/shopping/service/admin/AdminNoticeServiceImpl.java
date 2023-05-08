@@ -1,6 +1,10 @@
 package demo.shopping.service.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -13,16 +17,16 @@ import java.util.List;
 @Service("adminNoticeService")
 @Transactional
 public class AdminNoticeServiceImpl implements AdminNoticeService{
+
 	@Autowired
 	private AdminNoticeDao adminNoticeDao;
+
+	@CacheEvict(value = "noticeList", allEntries = true)
 	@Override
-	public boolean addNotice(Notice notice) {
-		int flag = adminNoticeDao.addNotice(notice);
-		if(flag != 0){
-			return true;
-		}else{
-			return false;
-		}
+	public Notice addNotice(Notice notice) {
+		adminNoticeDao.addNotice(notice);
+		adminNoticeDao.selectANotice(notice.getId());
+		return notice;
 	}
 	@Override
 	public List<Notice> deleteNoticeSelect() {
@@ -34,14 +38,11 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 		Notice notice = adminNoticeDao.selectANotice(id);
 		return notice;
 	}
+
+	@Caching(evict = {@CacheEvict(value = "notices"), @CacheEvict(value = "noticeList", allEntries = true)})
 	@Override
-	public boolean deleteNotice(Integer id) {
-		int flag = adminNoticeDao.deleteNotice(id);
-		if(flag != 0){
-			return true;
-		}else{
-			return false;
-		}
+	public void deleteNotice(Integer id) {
+		adminNoticeDao.deleteNotice(id);
 	}
 
 }
