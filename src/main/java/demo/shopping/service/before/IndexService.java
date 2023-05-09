@@ -8,14 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 public interface IndexService {
-	public List<GoodsType> getGoodsType();
-	public List<Map<String, Object>> getSaleList();
-	public List<Map<String, Object>> getFocusList();
-	public List<Map<String, Object>> getNoticeList();
-	public List<Map<String, Object>> getLastedList(Goods goods);
-	public String toRegister(Model model);
-	public String toLogin(Model model);
-	public String goodsDetail(Model model,Integer id);
-	public Notice selectANotice(Integer id);
-	public String search(Model model,String mykey);
+	List<GoodsType> getGoodsType();
+	List<Map<String, Object>> getSaleList();
+	List<Map<String, Object>> getFocusList();
+	List<Map<String, Object>> getNoticeList();
+	List<Map<String, Object>> getLastedList(Goods goods);
+	Goods goodsDetail(Integer id);
+	Notice selectANotice(Integer id);
+	List<Goods> search(String mykey);
 }

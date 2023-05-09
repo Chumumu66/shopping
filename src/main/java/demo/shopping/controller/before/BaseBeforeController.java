@@ -11,9 +11,9 @@ import demo.shopping.exception.UserLoginNoException;
 public class BaseBeforeController {
 
 	@ModelAttribute  
-    public void isLogin(HttpSession session, HttpServletRequest request) throws UserLoginNoException {      
+    public void isLogin(HttpSession session) throws UserLoginNoException {
        if(session.getAttribute("bruser") == null){  
-            throw new UserLoginNoException("û�е�¼");
+            throw new UserLoginNoException("未登录！");
        }  
     } 
 }

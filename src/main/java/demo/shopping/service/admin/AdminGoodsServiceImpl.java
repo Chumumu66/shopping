@@ -33,7 +33,7 @@ public class AdminGoodsServiceImpl implements AdminGoodsService{
 
 	@Override
 	public Map<String, Integer> getPaginationQuery(Integer pageCur) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
+		Map<String, Integer> map = new HashMap<>();
 		int temp = adminGoodsDao.getGoodsCount();
 		map.put("totalCount", temp);
 		int totalPage = 0;

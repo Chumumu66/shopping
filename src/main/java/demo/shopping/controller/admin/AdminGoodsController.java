@@ -27,7 +27,7 @@ public class AdminGoodsController extends BaseController{
 
 	@RequestMapping("/selectGoods")
 	public String selectGoods(Model model, Integer pageCur, String act) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
+		Map<String, Integer> map = adminGoodsService.getPaginationQuery(pageCur);
 		model.addAttribute("totalCount", map.get("totalCount"));
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("pageCur", map.get("pageCur"));

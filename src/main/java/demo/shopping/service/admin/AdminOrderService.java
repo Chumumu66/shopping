@@ -6,6 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface AdminOrderService {
-	public List<Map<String,Object>> orderInfo(Model model);
-	public boolean deleteorderManager(Integer id);
+	List<Map<String,Object>> orderInfo(Model model);
+	boolean deleteorderManager(Integer id);
 }

@@ -11,19 +11,17 @@ import demo.shopping.po.Auser;
 @Service("adminService")
 @Transactional
 public class AdminServiceImpl implements AdminService{
+
 	@Autowired
 	private AdminDao adminDao;
-	@Autowired
-	private AdminTypeDao adminTypeDao;
+
 	@Override
-	public String login(Auser auser, Model model, HttpSession session) {
+	public Auser login(Auser auser) {
 		if(adminDao.login(auser) != null && adminDao.login(auser).size() > 0) {
-			session.setAttribute("auser", auser);
-			session.setAttribute("goodsType", adminTypeDao.selectGoodsType());
-			return "admin/main";
+			return auser;
+		}else{
+			return null;
 		}
-		model.addAttribute("msg", "�û������������");
-		return "admin/login";
 	}
 
 }

@@ -20,28 +20,26 @@ public class OrderServiceImpl implements OrderService{
 	private OrderDao orderDao;
 
 	@Override
-	public String orderSubmit(Model model, HttpSession session, Double amount) {
+	public Order orderSubmit(Integer id, Double amount) {
 		Order order = new Order();
 		order.setAmount(amount);
-		order.setBusertable_id(MyUtil.getUserId(session));
+		order.setBusertable_id(id);
 		orderDao.addOrder(order);
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("ordersn", order.getId());
-		map.put("uid", MyUtil.getUserId(session));
+		map.put("uid", id);
 		orderDao.addOrderDetail(map);
-
-		List<Map<String, Object>> list = orderDao.selectGoodsShop(MyUtil.getUserId(session));
+		List<Map<String, Object>> list = orderDao.selectGoodsShop(id);
 		for (Map<String, Object> map2 : list) {
 			orderDao.updateStore(map2);
 		}
-		orderDao.clear(MyUtil.getUserId(session));
-		model.addAttribute("ordersn", order.getId());
-		return "before/orderdone";
+		orderDao.clear(id);
+		return order;
 	}
 	@Override
-	public String pay(Integer ordersn) {
-		orderDao.pay(ordersn);
-		return "before/paydone";
+	public int pay(Integer ordersn) {
+		int flag = orderDao.pay(ordersn);
+		return flag;
 	}
 
 }

@@ -58,25 +58,9 @@ public class IndexServiceImpl implements IndexService{
 	}
 
 	@Override
-	public String toRegister(Model model) {
-		model.addAttribute("rbuser", new Buser());
-		return "before/register";
-	}
-
-	@Override
-	public String toLogin(Model model) {
-
-		model.addAttribute("lbuser", new Buser());
-
-		return "before/login.html";
-
-	}
-
-	@Override
-	public String goodsDetail(Model model, Integer id) {
+	public Goods goodsDetail(Integer id) {
 		Goods goods = indexDao.selectGoodsById(id);
-		model.addAttribute("goods", goods);
-		return "before/goodsdetail";
+		return goods;
 	}
 
 	@Cacheable(value = "notices", key = "#id")
@@ -87,10 +71,9 @@ public class IndexServiceImpl implements IndexService{
 	}
 
 	@Override
-	public String search(Model model, String mykey) {
+	public List<Goods> search(String mykey) {
 		List<Goods> list = indexDao.search(mykey);
-		model.addAttribute("searchlist", list);
-		return "before/searchResult";
+		return list;
 	}
 	
 }

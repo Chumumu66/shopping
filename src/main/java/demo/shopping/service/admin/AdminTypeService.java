@@ -2,11 +2,14 @@ package demo.shopping.service.admin;
 
 import javax.servlet.http.HttpSession;
 
+import demo.shopping.po.GoodsType;
 import org.springframework.ui.Model;
 
+import java.util.List;
+
 public interface AdminTypeService {
-	public String toAddType(Model model);
-	public String addType(String typename,Model model,HttpSession session);
-	public String toDeleteType(Model model);
-	public String deleteType(Integer id,Model model);
+	List<GoodsType> toAddType();
+	int addType(String typename);
+	List<GoodsType> toDeleteType();
+	boolean deleteType(Integer id);
 }

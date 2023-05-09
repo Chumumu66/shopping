@@ -17,79 +17,52 @@ import demo.shopping.util.MyUtil;
 @Service("cartService")
 @Transactional
 public class CartServiceImpl implements CartService{
+
 	@Autowired
 	private CartDao cartDao;
 
 	@Override
-	public String focus(Model model, Integer id, HttpSession session) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("uid", MyUtil.getUserId(session));
+	public Map<String, Object> focus(Integer id, Integer uId) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("uid", uId);
 		map.put("gid", id);
-		List<Map<String, Object>> list = cartDao.isFocus(map);
-		if(list.size() > 0) {
-			model.addAttribute("msg", "�ѹ�ע����Ʒ��");
-		}else {
-			int n = cartDao.focus(map);
-			if(n > 0)
-				model.addAttribute("msg", "�ɹ���ע����Ʒ��");
-			else
-				model.addAttribute("msg", "��עʧ�ܣ�");
-		}
-		return "forward:/goodsDetail?id=" + id;
+		return map;
 	}
 
 	@Override
-	public String putCart(Model model, Integer shoppingnum, Integer id, HttpSession session) {
+	public Map<String, Object> putCart(Integer shoppingnum, Integer id, Integer uId) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("uid", MyUtil.getUserId(session));
+		map.put("uid", uId);
 		map.put("gid", id);
 		map.put("shoppingnum", shoppingnum);
-		List<Map<String, Object>> list = cartDao.isPutCart(map);
-		if(list.size() > 0)
-			cartDao.updateCart(map);
-		else
-			cartDao.putCart(map);
-		return "forward:/cart/selectCart";
+		return map;
 	}
 
 	@Override
-	public String selectCart(Model model, HttpSession session) {
-		List<Map<String, Object>> list = cartDao.selectCart(MyUtil.getUserId(session));
-		double sum = 0;
-		for (Map<String, Object> map : list) {
-			sum = sum + (Double)map.get("smallsum");
-		}
-		model.addAttribute("total", sum);
-		model.addAttribute("cartlist", list);
-		System.out.println(1111111);
-		return "before/cart";
+	public List<Map<String, Object>> selectCart(Integer id) {
+		List<Map<String, Object>> mapList = cartDao.selectCart(id);
+		return mapList;
 	}
 
 	@Override
-	public String deleteAgoods(Integer id, HttpSession session) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("uid", MyUtil.getUserId(session));
+	public int deleteAgoods(Integer id, Integer uId) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("uid", uId);
 		map.put("gid", id);
-		cartDao.deleteAgoods(map);
-		return "forward:/cart/selectCart";
+		int flag = cartDao.deleteAgoods(map);
+		return flag;
 	}
 
 	@Override
-	public String clear(HttpSession session) {
-		cartDao.clear(MyUtil.getUserId(session));
-		return "forward:/cart/selectCart";
+	public int clear(Integer id) {
+		int flag = cartDao.clear(id);
+		return flag;
 	}
 
 	@Override
-	public String orderConfirm(Model model, HttpSession session) {
-		List<Map<String, Object>> list = cartDao.selectCart(MyUtil.getUserId(session));
-		double sum = 0;
-		for (Map<String, Object> map : list) {
-			sum = sum + (Double)map.get("smallsum");
-		}
-		model.addAttribute("total", sum);
-		model.addAttribute("cartlist", list);
-		return "before/orderconfirm";
+	public List<Map<String, Object>> orderConfirm(Integer id) {
+		List<Map<String, Object>> mapList = cartDao.selectCart(id);
+		return mapList;
 	}
 
 }
