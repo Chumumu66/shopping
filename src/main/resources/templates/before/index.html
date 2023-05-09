@@ -78,7 +78,8 @@
 							</div>
 							<div class="post_list ared">
 								<ul th:each ="nt:${noticelist}" >
-									<li><a href="#" th:onclick="'javascript:openNotice(/selectANotice?id = ' + ${nt.id} + ')'"><span th:text="${nt.ntitle}"></span></a></li>
+									<li><a href="#" th:onclick="'javascript:openNotice(/selectANotice?id = ' + ${nt.id} + ')'">
+										<span th:text="${nt.ntitle}"></span></a></li>
 								</ul>
 							</div>
 						</div>
@@ -96,15 +97,15 @@
 							<h3 th:text="#{before.index.newProduct}"></h3>
 						</div>
 						<div class="itemgood_nr clearfix">
-							<ul th:each ="sg:${lastedlist }" >
+							<ul th:each ="sg:${lastedlist}" >
 									<li>
 										<div>
 											<p class="pic">
-												<a th:href="@{/goodsDetail?id=${sg.id }}">
-												<img src="/logos/${sg.gpicture}" /></a>
+												<a th:href="@{'/goodsDetail?id='+${sg.id}}">
+												<img th:src="@{'/images//product/'+${sg.gpicture}}" /></a>
 											</p>
 											<p class="wz">
-												<strong><a th:href="@{/goodsDetail(id=${sg.id})}"><span th:text="${sg.gname}"></span></a></strong>
+												<strong><a th:href="@{'/goodsDetail(id='+${sg.id}+')'}"><span th:text="${sg.gname}"></span></a></strong>
 												<em><span th:text="#{before.index.currentPrice}"></span><span th:text="#{before.index.symbol}"></span><span th:text="${sg.grprice}"></span></em>
 											</p>
 										</div>

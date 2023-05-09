@@ -70,8 +70,9 @@
 						<ul>
 							<li class="backbj"><a th:href="@{/before?id=0}"><span th:text="#{before.head.homePage}"></span></a></li>
 							<!-- 显示商品类型 -->
-								<li th:each=" g : ${goodsType}">
-									<a th:href="@{/before?id=${g.id}}">
+								<li th:each="g:${goodsType}">
+
+									<a th:href="@{'/before?id='+${g.id}}">
 										<span th:text="${g.typename}"></span>
 									</a>
 								</li>

@@ -33,6 +33,7 @@ public class CartController extends BaseBeforeController{
 		logger.log(Level.INFO,"获取商品细节页面");
 		Map<String, Object> map = cartService.focus(id, MyUtil.getUserId(session));
 		List<Map<String, Object>> mapList = cartDao.isFocus(map);
+
 		if(mapList.size() > 0) {
 			model.addAttribute("msg", "�ѹ�ע����Ʒ��");
 		}else {
