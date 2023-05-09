@@ -10,8 +10,8 @@ import demo.shopping.po.GoodsType;
 @Repository("adminTypeDao")
 @Mapper
 public interface AdminTypeDao {
-	public List<GoodsType> selectGoodsType();
-	public int addType(String typename);
-	public int deleteType(Integer id);
-	public List<Goods> selectGoodsByType(Integer id);
+	List<GoodsType> selectGoodsType();
+	int addType(String typename);
+	int deleteType(Integer id);
+	List<Goods> selectGoodsByType(Integer id);
 }

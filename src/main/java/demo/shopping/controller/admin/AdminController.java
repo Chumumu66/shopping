@@ -1,6 +1,7 @@
 package demo.shopping.controller.admin;
 import javax.servlet.http.HttpSession;
 
+import demo.shopping.dao.AdminTypeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,17 +13,30 @@ import demo.shopping.service.admin.AdminService;
 
 @Controller
 public class AdminController {
+
 	@Autowired
 	private AdminService adminService;
 
+	@Autowired
+	private AdminTypeDao adminTypeDao;
+
 	@RequestMapping("/admin")
-	public String toLogin(@ModelAttribute Auser auser) {
+	public String toLogin(@ModelAttribute Auser auser, HttpSession session) {
 		return "admin/login";
 	}
 
 	@RequestMapping("/admin/login")
 	public String login(@ModelAttribute Auser auser, Model model, HttpSession session) {
-		return adminService.login(auser, model, session);
+		Auser auser1 =  adminService.login(auser);
+		if(auser1 != null){
+			session.setAttribute("auser", auser);
+			session.setAttribute("goodsType", adminTypeDao.selectGoodsType());
+			return "admin/main";
+		}else{
+			model.addAttribute("msg", "登录失败！");
+			return "admin/login";
+		}
+
 	}
 
 	@RequestMapping("/exit")

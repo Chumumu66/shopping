@@ -4,11 +4,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
+import java.util.List;
+import java.util.Map;
+
 public interface CartService {
-	public String focus(Model model,Integer id, HttpSession session);
-	public String putCart(Model model,Integer shoppingnum, Integer id, HttpSession session);
-	public String selectCart(Model model, HttpSession session);
-	public String deleteAgoods(Integer id,HttpSession session);
-	public String clear(HttpSession session);
-	public String orderConfirm(Model model, HttpSession session);
+	Map<String, Object> focus(Integer id, Integer uId);
+	Map<String, Object> putCart(Integer shoppingnum, Integer id, Integer uId);
+	List<Map<String, Object>> selectCart(Integer id);
+	int deleteAgoods(Integer id,Integer uId);
+	int clear(Integer id);
+	List<Map<String, Object>> orderConfirm(Integer id);
 }

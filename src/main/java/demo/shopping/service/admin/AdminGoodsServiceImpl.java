@@ -1,6 +1,10 @@
 package demo.shopping.service.admin;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +13,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -16,6 +22,9 @@ import org.springframework.ui.Model;
 import demo.shopping.dao.AdminGoodsDao;
 import demo.shopping.po.Goods;
 import demo.shopping.util.MyUtil;
+import org.springframework.util.ClassUtils;
+import org.springframework.util.ResourceUtils;
+
 @Service("adminGoodsService")
 @Transactional
 public class AdminGoodsServiceImpl implements AdminGoodsService{
@@ -23,112 +32,101 @@ public class AdminGoodsServiceImpl implements AdminGoodsService{
 	private AdminGoodsDao adminGoodsDao;
 
 	@Override
-	public String addOrUpdateGoods(Goods goods, HttpServletRequest request, String updateAct) {
-		String newFileName = "";
-		String fileName = goods.getLogoImage().getOriginalFilename(); 
-
-		if(fileName.length() > 0){
-			String realpath = "D:\\javaeeFile\\shopping\\src\\main\\resources\\static\\images\\admin\\product";
-			String fileType = fileName.substring(fileName.lastIndexOf('.'));
-			newFileName = MyUtil.getStringID() + fileType;
-			goods.setGpicture(newFileName);
-			File targetFile = new File(realpath, newFileName); 
-			if(!targetFile.exists()){  
-	            targetFile.mkdirs();  
-	        }
-	        try {   
-	        	goods.getLogoImage().transferTo(targetFile);
-	        } catch (Exception e) {  
-	            e.printStackTrace();  
-	        }  
-		}
-
-		if("update".equals(updateAct)){
-	       if(adminGoodsDao.updateGoodsById(goods) > 0){
-	        	return "forward:/adminGoods/selectGoods?act=updateSelect";
-	        }else{
-	        	return "/adminGoods/updateAgoods";
-	       }
-		}else{
-			if(adminGoodsDao.addGoods(goods) > 0){
-				return "forward:/adminGoods/selectGoods";
-			}else{
-				return "card/addCard";
-			}
-		}
-	}
-
-	@Override
-	public String selectGoods(Model model, Integer pageCur, String act) {
+	public Map<String, Integer> getPaginationQuery(Integer pageCur) {
+		Map<String, Integer> map = new HashMap<>();
 		int temp = adminGoodsDao.getGoodsCount();
-		model.addAttribute("totalCount", temp);
+		map.put("totalCount", temp);
 		int totalPage = 0;
 		if (temp == 0) {
 			totalPage = 0;
 		} else {
 			totalPage = (int) Math.ceil((double) temp / 10);
 		}
+		map.put("totalPage", totalPage);
 		if (pageCur == null) {
 			pageCur = 1;
 		}
 		if ((pageCur - 1) * 10 > temp) {
 			pageCur = pageCur - 1;
 		}
+		map.put("pageCur", pageCur);
+		return map;
+	}
 
+	@Override
+	public List<Goods> selectGoods(Integer pageCur) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("startIndex", (pageCur - 1) * 10);
 		map.put("perPageSize", 10);
 		List<Goods> allGoods = adminGoodsDao.selectAllGoodsByPage(map);
-		model.addAttribute("allGoods", allGoods);
-		model.addAttribute("totalPage", totalPage);
-		model.addAttribute("pageCur", pageCur);
-		if("deleteSelect".equals(act)){
-			return "admin/deleteSelectGoods";
-		}else if("updateSelect".equals(act)){
-			return "admin/updateSelectGoods";
-		}else{
-			return "admin/selectGoods";
-		}
+		return allGoods;
 	}
 
 	@Override
-	public String selectAGoods(Model model, Integer id, String act, HttpServletRequest request) {
-		Goods agoods = adminGoodsDao.selectGoodsById(id);
-		model.addAttribute("goods", agoods);
-		model.addAttribute("goodsType", request.getSession().getAttribute("goodsType"));
-		if("updateAgoods".equals(act)){
-			return "admin/updateAgoods";
-		}
-		return "admin/goodsDetail";
+	public Goods getAGood(Integer id) {
+		Goods aGood = adminGoodsDao.selectGoodsById(id);
+		return aGood;
 	}
 
 	@Override
-	public String deleteGoods(Integer[] ids, Model model) {
+	public boolean deleteGoods(Integer[] ids, Model model) {
 		List<Integer> list = new ArrayList<Integer>();
 		for (int i = 0; i < ids.length; i++) {
 			if(adminGoodsDao.selectCartGoods(ids[i]).size() > 0 ||
 					adminGoodsDao.selectFocusGoods(ids[i]).size() > 0 || 
 					adminGoodsDao.selectOrderdetailGoods(ids[i]).size() > 0) {
-				model.addAttribute("msg", "��Ʒ�й�����������ɾ����");
-				return "forward:/adminGoods/selectGoods?act=deleteSelect";
+				return false;
 			}
 			list.add(ids[i]);
 		}
 		adminGoodsDao.deleteGoods(list);
-		model.addAttribute("msg", "�ɹ�ɾ����Ʒ��");
-		return "forward:/adminGoods/selectGoods?act=deleteSelect";
+		return true;
 	}
 
 	@Override
-	public String deleteAGoods(Integer id, Model model) {
+	public boolean deleteAGoods(Integer id, Model model) {
 		if(adminGoodsDao.selectCartGoods(id).size() > 0 ||
 				adminGoodsDao.selectFocusGoods(id).size() > 0 || 
 				adminGoodsDao.selectOrderdetailGoods(id).size() > 0) {
-			model.addAttribute("msg", "��Ʒ�й�����������ɾ����");
-			return "forward:/adminGoods/selectGoods?act=deleteSelect";
+			return false;
 		}
 		adminGoodsDao.deleteAGoods(id);
-		model.addAttribute("msg", "�ɹ�ɾ����Ʒ��");
-		return "forward:/adminGoods/selectGoods?act=deleteSelect";
+		return true;
+	}
+
+	@Override
+	public boolean addOrUpdateGoods(Goods goods, HttpServletRequest request, String flag) throws IOException {
+		String newFileName = "";
+		String fileName = goods.getLogoImage().getOriginalFilename();
+
+		if(fileName.length() > 0){
+			File file = new File("");
+			String realpath = file.getCanonicalPath() + "\\src\\main\\resources\\static\\images\\admin\\product";
+			String fileType = fileName.substring(fileName.lastIndexOf('.'));
+			newFileName = MyUtil.getStringID() + fileType;
+			goods.setGpicture(newFileName);
+			File targetFile = new File(realpath, newFileName);
+			if(!targetFile.exists()){
+				targetFile.mkdir();
+			}
+			try {
+				goods.getLogoImage().transferTo(targetFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if(flag.equals("update")){
+			if(adminGoodsDao.updateGoodsById(goods) > 0){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			if(adminGoodsDao.addGoods(goods) > 0){
+				return true;
+			}else{
+				return false;
+			}
+		}
 	}
 }
