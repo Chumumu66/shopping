@@ -30,14 +30,14 @@
 					</tr> 
 
 						<tr th:each ="mf:${myOrderDetail}">
-							<td bgcolor="#ffffff" align="center">${mf.id}</td>
-							<td bgcolor="#ffffff"  align="center">${mf.gname}</td>
+							<td bgcolor="#ffffff" align="center" th:text="${mf.id}"></td>
+							<td bgcolor="#ffffff"  align="center" th:text="${mf.gname}"></td>
 							<td align="center" bgcolor="#ffffff" height="60px"> <img
 									style="width: 50px; height: 50px;"
-									src="logos/${mf.gpicture}" border="0"
+									th:src="@{'/images/product'+${mf.gpicture}}" border="0"
 									title="${mf.gname}" /> </td>
-							<td align="center" bgcolor="#ffffff">${mf.grprice}</td>
-							<td align="center" bgcolor="#ffffff">${mf.shoppingnum}</td>
+							<td align="center" bgcolor="#ffffff" th:text="${mf.grprice}"></td>
+							<td align="center" bgcolor="#ffffff" th:text="${mf.shoppingnum}"></td>
 						</tr>
 
 				</table>

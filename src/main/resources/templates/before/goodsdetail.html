@@ -50,15 +50,15 @@
 						<li>
 							<span th:text="#{before.goodsdetail.num}"></span>
 							<input type="text" name="shoppingnum" class="good_txt" th:value="1" />
-							<span th:text="#{before.goodsdetail.inventory}"></span>
+							<p th:text="#{before.goodsdetail.inventory}"></p>
 							<span th:text="${goods.gstore}"></span>
 							<span th:text="#{before.goodsdetail.piece}"></span>
 						</li>
 					</ul>
 				</div>
 				<p class="bottom10 top5">
-					<img th:src="@{images/before/goods_ann2.gif}" style="cursor: pointer" onclick="goCart()" />
-					<input type="button" style="cursor: pointer" class="sh_bnt2" onclick="gofocus('${goods.id }')" th:value="关注" />
+					<img th:src="@{images/before/goods_ann2.gif}" style="cursor: pointer" th:onclick="javaScript:goCart()" />
+					<input type="button" style="cursor: pointer" class="sh_bnt2" th:onclick="'javaScript:gofocus('+${goods.id}+')'" th:value="关注" />
 				</p>
 				<span th:text="${msg}"></span>
 			</div>

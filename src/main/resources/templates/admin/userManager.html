@@ -42,7 +42,8 @@
                 <td th:text="${n.bemail}"></td>
                 <td><input type="password" value="${n.bpwd}" readonly></td>
                 <td>
-                    <a href="#" th:onclick="'javaScript:checkDel(' + ${n.id} + ')'"><span th:text="#{page.delete}"></span></a>
+                    <a href="#" th:onclick="'javaScript:
+                    (' + ${n.id} + ')'"><span th:text="#{page.delete}"></span></a>
                 </td>
             </tr>
         </div>

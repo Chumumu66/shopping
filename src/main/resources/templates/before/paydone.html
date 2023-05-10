@@ -16,7 +16,9 @@
   <div th:include="before/head::head"></div>
   <div class="blank"></div>
   <div class="block clearfix"><!--当前位置-->
-      <div class="location ared" th:text="#{before.paydone.locationared}"><a th:href="@{/''}"><span th:text="#{before.paydone.homePage}"></span></a>
+      <div class="location ared" th:text="#{before.paydone.locationared}">
+          <a th:href="@{/''}">
+          <span th:text="#{before.paydone.homePage}"></span></a>
           <span th:text="#{before.paydone.msg}"></span>
       </div>
       <div class="blank"></div>

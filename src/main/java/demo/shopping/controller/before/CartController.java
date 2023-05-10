@@ -33,6 +33,7 @@ public class CartController extends BaseBeforeController{
 		logger.log(Level.INFO,"获取商品细节页面");
 		Map<String, Object> map = cartService.focus(id, MyUtil.getUserId(session));
 		List<Map<String, Object>> mapList = cartDao.isFocus(map);
+
 		if(mapList.size() > 0) {
 			model.addAttribute("msg", "�ѹ�ע����Ʒ��");
 		}else {
@@ -74,6 +75,7 @@ public class CartController extends BaseBeforeController{
 	@RequestMapping("/deleteAgoods")
 	public String deleteAgoods(Integer id, HttpSession session, Model model) {
 		logger.log(Level.INFO,"删除对应商品");
+		//System.out.println(111);
 		int flag = cartService.deleteAgoods(id, MyUtil.getUserId(session));
 		if(flag == 0){
 			model.addAttribute("msg", "删除失败！");
