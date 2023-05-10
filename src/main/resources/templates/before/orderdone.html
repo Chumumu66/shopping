@@ -32,7 +32,7 @@
       <center>
       <form th:action="@{order/pay}" method="post" name="payForm">
             	<input type="hidden" name="ordersn" th:placeholder="${ordersn}"/>
-            	<input type="image" src="images/before/Chinapay_logo.jpg" onclick="javascript:gogo()"/>
+            	<input type="image" src="images/before/Chinapay_logo.jpg" th:onclick="javascript:gogo()"/>
       </form>
       </center>
     </div>
