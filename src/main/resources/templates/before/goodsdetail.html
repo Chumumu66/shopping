@@ -1,7 +1,7 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
-	<title>商品详情</title>
+	<title th:text="#{before.goodsdetail.title}"></title>
 	<link th:href="@{/css/before/daohang.css}" rel="stylesheet" type="text/css" />
 	<link th:href="@{/css/before/common.css}" rel="stylesheet" type="text/css" />
 	<link th:href="@{/css/before/style.css}" rel="stylesheet" type="text/css" />
@@ -10,17 +10,20 @@
 			document.putcartform.submit();
 		}
 		function gofocus(gno) {
-			window.location.href = "/focus?id=" + gno;
+			window.location.href = "/cart/focus?id=" + gno;
 		}
 	</script>
 </head>
 <body>
+	<div th:include="before/head::head"></div>
 	<form th:action="@{cart/putCart}" name="putcartform" method="post">
 		<div class="blank"></div>
 		<div class="block clearfix">
-			<div class="location ared" th:text="#{before.goodsdetail.location}">
-				<a th:href="@{/#}"><span th:text="#{before.goodsdetail.shouye}"></span></a>
-				<a th:href="@{/#}"><span th:text="#{before.goodsdetail.deteils}"></span></a>
+			<div class="location ared">
+				<span th:text="#{before.goodsdetail.location}"></span>
+				<a th:href="@{/before}"><span th:text="#{before.goodsdetail.shouye}"></span></a>
+				<span th:text="#{before.goodsdetail.sign}"></span>
+				<a href="#"><span th:text="#{before.goodsdetail.deteils}"></span></a>
 			</div>
 			<div class="blank"></div>
 			<div id="goodsInfo">
@@ -38,21 +41,22 @@
 					<ul>
 						<li>
 							<span th:text="#{before.goodsdetail.price}"></span>
-							<strong class="yj"><span th:text="${goods.goprice}"></span><span th:text="#{before.index.money}"></span></strong>
+							<strong class="yj" th:text="${goods.goprice} + #{before.index.money}"></strong>
 						</li>
 						<li>
 							<span th:text="#{before.goodsdetail.discount}"></span>
-							<strong class="xj"><span th:text="${goods.grprice}"></span><span th:text="#{before.index.money}"></span></strong>
+							<strong class="xj" th:text="${goods.grprice} + #{before.index.money}"></strong>
 						</li>
 						<li>
-							<span th:text="#{before.goodsdetail.categoly}"></span> <span th:text="${goods.typename}"></span>
+							<span th:text="#{before.goodsdetail.categoly}"></span>
+							<p th:text="${goods.typename}"></p>
 						</li>
 						<li>
 							<span th:text="#{before.goodsdetail.num}"></span>
-							<input type="text" name="shoppingnum" class="good_txt" th:value="1" />
-							<p th:text="#{before.goodsdetail.inventory}"></p>
-							<span th:text="${goods.gstore}"></span>
-							<span th:text="#{before.goodsdetail.piece}"></span>
+							<span>
+								<input type="text" name="shoppingnum" class="good_txt" th:value="1" />
+							</span>
+							<div th:text="#{before.goodsdetail.inventory} + ${goods.gstore} + #{before.goodsdetail.piece}"></div>
 						</li>
 					</ul>
 				</div>
@@ -63,7 +67,7 @@
 				<span th:text="${msg}"></span>
 			</div>
 			<!--end-->
-			</div>  
+		</div>
 	</form>
 </body>
 </html>

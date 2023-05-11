@@ -36,45 +36,45 @@
 
 </head>
 <body>
-<div th:include="before/head::head"></div>
-
-<center>
-    <form th:action="@{/user/login}" method="post" modelAttribute="buser"  name = "loginform">
-        <table>
-            <tr>
-                <td colspan="2"><img src="/images/admin/login.gif"></td>
-            </tr>
-            <tr>
-                <td th:text="#{before.login.email}"></td>
-                <td><input type="text" name="bemail"  th:placeholder="#{before.buser.bemail}"  class="textSize"/></td>
-            </tr>
-            <tr>
-                <td th:text="#{before.login.pwd}"></td>
-                <td><input type="password" name="bpwd" class="textSize"/></td>
-            </tr>
-            <tr>
-                <td th:text="#{before.login.checkPwd}"></td>
-                <td><input type="text" name="code" class="textSize"/></td>
-            </tr>
-            <tr>
-                <td>
-                    <img id="code" src="/validateCode"/>
-                </td>
-                <td class="ared">
-                    <a href="javascript:refreshCode();"><font color="blue"><span th:text="#{before.login.nosee}">
-                    </span></font></a>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="image" src="/images/admin/ok.gif" onclick="gogo()">
-                    <input type="image" src="/images/admin/cancel.gif" onclick="cancel()">
-                </td>
-            </tr>
-        </table>
-    </form >
-    <div th:text="${msg}"></div>
-
-</center>
+    <div th:include="before/head::head"></div>
+    <div style="clear:both;">
+        <center>
+            <form th:action="@{/user/login}" method="post" modelAttribute="buser"  name = "loginform">
+                <table>
+                    <tr>
+                        <td colspan="2"><img src="/images/admin/login.gif"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="#{before.login.email}"></td>
+                        <td><input type="text" name="bemail" th:placeholder="#{before.register.bemail}"  class="textSize"/></td>
+                    </tr>
+                    <tr>
+                        <td th:text="#{before.login.pwd}"></td>
+                        <td><input type="password" name="bpwd" class="textSize"/></td>
+                    </tr>
+                    <tr>
+                        <td th:text="#{before.login.checkPwd}"></td>
+                        <td><input type="text" name="code" class="textSize"/></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img id="code" src="/validateCode"/>
+                        </td>
+                        <td class="ared">
+                            <a href="#" th:onclick="javascript:refreshCode()"><font color="blue"><span th:text="#{before.login.nosee}">
+                        </span></font></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="image" src="/images/admin/ok.gif" th:onclick="javascript:gogo()">
+                            <input type="image" src="/images/admin/cancel.gif" th:onclick="javascript:cancel()">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <div th:text="${msg}"></div>
+        </center>
+    </div>
 </body>
 </html>

@@ -51,6 +51,7 @@ public class CartController extends BaseBeforeController{
 		logger.log(Level.INFO,"加入购物车成功请求");
 		Map<String, Object> map = cartService.putCart(shoppingnum, id, MyUtil.getUserId(session));
 		List<Map<String, Object>> list = cartDao.isPutCart(map);
+		int total = 0;
 		if(list.size() > 0){
 			cartDao.updateCart(map);
 		} else{

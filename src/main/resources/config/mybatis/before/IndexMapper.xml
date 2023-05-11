@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 最新商品 -->
 	<select id="getLastedGoods" resultType="Goods" parameterType="Goods">
 		select gt.*, gy.typename from goodstable gt,goodstype gy where gt.goodstype_id = gy.id
-		<if test="id != 0">
+		<if test="id != null">
 			and gy.id = #{id} 
 		</if>
 		order by  gt.id desc limit 15

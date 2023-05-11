@@ -1,13 +1,15 @@
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+	<meta charset="UTF-8">
 	<title th:text="#{before.index.title}"></title>
 	<link th:href="@{/css/before/daohang.css}" rel="stylesheet" type="text/css" />
 	<link th:href="@{/css/before/common.css}" rel="stylesheet" type="text/css" />
 	<link th:href="@{/css/before/style.css}" rel="stylesheet" type="text/css" />
 	<script type="text/javascript">
-			function openNotice(url){
-				window.open (url, '站内公告', 'height=400, width=400, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no');
-			}
+		function openNotice(url){
+			window.open(url, '站内公告', 'height=400, width=400, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no');
+		}
 	</script>
 	<script type="text/javascript">
 		function clearValue(){
@@ -51,11 +53,15 @@
 						<ul class="clearfix" th:each="sg,sgStat:${focuslist}">
 							<img class="iteration" th:src="@{'/images/before/top_' + ${sgStat.index+1} + '.gif'}" />
 							<li class="topimg">
-							<a th:href="@{/goodsDetail(id = ${sg.id})}">
-								<img class="samllimg" alt="" th:src="@{'/images/product/' + ${sg.gpicture}}" /></a></li>
+								<a th:href="@{/goodsDetail(id = ${sg.id})}">
+									<img class="samllimg" alt="" th:src="@{'/images/product/' + ${sg.gpicture}}" />
+								</a>
+							</li>
 							<li class="iteration1">
 								<a th:href="@{/goodsDetail?id=${sg.id}}"><span th:text="${sg.gname}"></span></a><br/>
-								<span th:text="#{before.index.price }"></span><font class="f1"><span th:text="#{before.index.symbol}"></span><span th:text="${sg.grprice}"></span><span th:text="#{before.index.money}"></span></font><br /></li>
+								<span th:text="#{before.index.price }"></span><font class="f1"><span th:text="#{before.index.symbol}"></span>
+								<span th:text="${sg.grprice}"></span><span th:text="#{before.index.money}"></span></font><br />
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -78,8 +84,11 @@
 							</div>
 							<div class="post_list ared">
 								<ul th:each ="nt:${noticelist}" >
-									<li><a href="#" th:onclick="'javascript:openNotice(/selectANotice?id = ' + ${nt.id} + ')'">
-										<span th:text="${nt.ntitle}"></span></a></li>
+									<li>
+										<a href="#" th:onclick="'javascript:openNotice(\'/selectANotice?id='+ ${nt.id} + '\')'">
+											<span th:text="${nt.ntitle}"></span>
+										</a>
+									</li>
 								</ul>
 							</div>
 						</div>

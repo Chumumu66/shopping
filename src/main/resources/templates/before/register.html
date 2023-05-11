@@ -87,7 +87,7 @@
 								<td class="ared"><input type="text" name="code"
 									id="textfield5" class="my_txt_120" />
 									<img id="code" src="validateCode" /> 
-									<a th:href="javascript:refreshCode()"><font color="blue"><span th:text="#{before.register.prompt}"></span></font></a>
+									<a th:href="'javascript:refreshCode()'"><font color="blue"><span th:text="#{before.register.prompt}"></span></font></a>
 								</td>
 								<td th:text="${codeError}"></td>
 							</tr>
@@ -98,7 +98,7 @@
 							<tr>
 								<td align="right">&nbsp;</td>
 								<td height="50">
-									<input type="button" name="button" id="button" th:onclick="checkForm()" th:value="注册账号" class="my_ann1" /></td>
+									<input type="button" name="button" id="button" th:onclick="'javascript:checkForm()'" th:value="注册账号" class="my_ann1" /></td>
 								<td>&nbsp</td>
 							</tr>
 						</table>

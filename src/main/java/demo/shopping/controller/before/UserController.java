@@ -23,9 +23,6 @@ public class UserController {
 	Logger logger = Logger.getLogger("UserController");
 
 	@Autowired
-	private UserService userService;
-
-	@Autowired
 	private UserDao userDao;
 
 	@RequestMapping("/register")

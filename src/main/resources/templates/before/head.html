@@ -1,6 +1,7 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-	<title>首页</title>
+	<title th:text="#{before.head.title}"></title>
 	<link th:href="@{/css/before/daohang.css}" rel="stylesheet" type="text/css" />
 	<link th:href="@{/css/before/common.css}" rel="stylesheet" type="text/css" />
 	<link th:href="@{/css/before/style.css}" rel="stylesheet" type="text/css" />
@@ -11,84 +12,96 @@
 	</script>
 </head>
 <body>
-	<div class="all_zong" th:fragment="head">
-		<!--最上面 灰色条部分本地cc修改-->
-		<div class="all_zong_top">
-			<div class="all_zong_top_right a8c">
-				<table border="0" cellspacing="0" cellpadding="0" class="main_login">
-					<tr>
+	<div th:fragment="head">
+		<div class="all_zong">
+			<!--最上面 灰色条部分-->
+			<div class="all_zong_top">
+				<div class="all_zong_top_right a8c">
+					<table border="0" cellspacing="0" cellpadding="0" class="main_login">
+						<tr>
+							<td>
+								<p id="content">
+								<span th:if="${session.bruser != null}">
+									<span th:text="#{before.head.welcome}"></span>
+									<span th:text="${session.bruser.bemail}"></span>
+								</span>
+									<span th:if="${session.bruser} == null">
+									<a th:href="@{/toLogin}" th:text="#{before.head.login}"></a>
+								</span>
+								</p>
+							</td>
+							<td>
+								<p>
+									<a th:href="@{/toRegister}" th:text="#{before.head.register}"></a>
+								</p>
+							</td>
+							<td>
+								<span class="xx">|</span>
+								<a th:href="@{/userCenter}" th:text="#{before.head.userscenter}"></a>
+								<span class="xx">|</span>
+							</td>
+							<!-- 没有登录 -->
+							<span th:if="${session.bruser != null}">
 						<td>
-							<p id="content" th:if="${bruser}">
-								<span th:text="#{before.head.welcome}"> </span><span th:text="${bruser.bemail}"></span>
-							</p>
-							<p th:if="!${bruser}">
-								<a th:href="@{/toLogin}"><span th:text="#{before.head.login}"> </span></a>
-							</p>
+							<a th:href="@{/user/exit}" th:text="#{before.head.exit}"></a>
+							<span class="xx">|</span>
 						</td>
-						<td>
-							<p>
-								<a th:href="@{/toRegister}" th:text="#{before.head.register}"></a>
-							</p>
-						</td>
-						<td><span class="xx">|</span>
-							<a th:href="@{/userCenter}" th:text="#{before.head.userscenter}"></a><span
-							class="xx">|</span></td>
-						<!-- 没有登录 -->
-						<th:if test="${bruser!= null}">
-						<td><a th:href="@{/user/exit}" th:text="#{before.head.exit}"></a><span
-							class="xx">|</span></td>
-						</th:if>
-					</tr>
-				</table>
-			</div>
-		</div>
-		<!--end-->
-		<!--logo 搜索-->
-		<div class="all_zong_logo">
-			<div class="all_zong_logo2">
-				<img src="/images/before/mylogo.png" />
-			</div>
-			<div class="back_search">
-				<div class="back_search_red">
-					<form th:action="@{search}" name="myForm" method="post">
-						<div class="div2">
-							<input type="text" name="mykey" class="txt" th:placeholder="请输入您要查询的内容"  onfocus="clearValue()" />
-						</div>
-						<div class="div1">
-							<input type="submit" class="an"  th:placeholder="搜索" />
-						</div>
-					</form>
+						</span>
+						</tr>
+					</table>
 				</div>
 			</div>
 			<!--end-->
-		</div>
-		<!--红色 导航-->
-		<div class="skin_a">
-			<div class="front_daohangbj">
-				<div class="all_zong">
-					<div class="front_daohang">
-						<ul>
-							<li class="backbj"><a th:href="@{/before?id=0}"><span th:text="#{before.head.homePage}"></span></a></li>
-							<!-- 显示商品类型 -->
+			<!--logo 搜索-->
+			<div class="all_zong_logo">
+				<div class="all_zong_logo2">
+					<img src="/images/before/mylogo.png" />
+				</div>
+				<div class="back_search">
+					<div class="back_search_red">
+						<form th:action="@{search}" name="myForm" method="post">
+							<div class="div2">
+								<input type="text" name="mykey" class="txt" th:placeholder="请输入您要查询的内容"  onfocus="clearValue()" />
+							</div>
+							<div class="div1">
+								<input type="submit" class="an"  th:value="搜索" />
+							</div>
+						</form>
+					</div>
+				</div>
+				<!--end-->
+			</div>
+			<!--红色 导航-->
+			<div class="skin_a">
+				<div class="front_daohangbj">
+					<div class="all_zong">
+						<div class="front_daohang">
+							<ul>
+								<li class="backbj">
+									<a th:href="@{/before}">
+										<span th:text="#{before.head.homePage}"></span>
+									</a>
+								</li>
+								<!-- 显示商品类型 -->
 								<li th:each="g:${goodsType}">
-
 									<a th:href="@{'/before?id='+${g.id}}">
 										<span th:text="${g.typename}"></span>
 									</a>
 								</li>
-							<li class="buy">
-								<p class="car">
-									<a th:href="@{/cart/selectCart}">
-										<span th:text="#{before.head.cart}"></span>
-									</a>
-								</p>
-							</li>
-						</ul>
+								<li class="buy">
+									<p class="car">
+										<a th:href="@{/cart/selectCart}">
+											<span th:text="#{before.head.cart}"></span>
+										</a>
+									</p>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
+			<!--红色 导航 end-->
 		</div>
-		<!--红色 导航 end-->
 	</div>
 </body>
 </html>

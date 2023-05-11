@@ -11,10 +11,10 @@ import demo.shopping.po.Goods;
 @Repository("indexDao")
 @Mapper
 public interface IndexDao {
-	public List<Map<String, Object>> getSaleOrder();
-	public List<Map<String, Object>> getFocusOrder();
-	public List<Map<String, Object>> selectNotice();
-	public List<Map<String, Object>> getLastedGoods(Goods goods);
-	public Goods selectGoodsById(Integer id);
-	public List<Goods> search(String mykey);
+	List<Map<String, Object>> getSaleOrder();
+	List<Map<String, Object>> getFocusOrder();
+	List<Map<String, Object>> selectNotice();
+	List<Map<String, Object>> getLastedGoods(Goods goods);
+	Goods selectGoodsById(Integer id);
+	List<Goods> search(String mykey);
 }
