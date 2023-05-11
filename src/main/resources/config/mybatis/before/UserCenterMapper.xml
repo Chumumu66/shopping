@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 where ft.goodstable_id=gt.id and  ft.busertable_id = #{bid} 
 	</select>
 	<select id="orderDetail" resultType="map"  parameterType="Integer">
-		select gt.id, gt.gname, gt.goprice, gt.grprice, gt.gpicture, odt.shoppingnum from  goodstable gt, ordertable odt
+		select gt.id, gt.gname, gt.goprice, gt.grprice, gt.gpicture, odt.shoppingnum from  goodstable gt, orderdetail odt
 		where  odt.orderbasetable_id=#{ordersn} and gt.id=odt.goodstable_id 
 	</select>
 </mapper>

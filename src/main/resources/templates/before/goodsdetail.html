@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div th:include="before/head::head"></div>
-	<form th:action="@{cart/putCart}" name="putcartform" method="post">
+	<form th:action="@{/cart/putCart}" name="putcartform" method="post">
 		<div class="blank"></div>
 		<div class="block clearfix">
 			<div class="location ared">
@@ -61,7 +61,7 @@
 					</ul>
 				</div>
 				<p class="bottom10 top5">
-					<img th:src="@{images/before/goods_ann2.gif}" style="cursor: pointer" th:onclick="javaScript:goCart()" />
+					<img th:src="@{/images/before/goods_ann2.gif}" style="cursor: pointer" th:onclick="javaScript:goCart()" />
 					<input type="button" style="cursor: pointer" class="sh_bnt2" th:onclick="'javaScript:gofocus('+${goods.id}+')'" th:value="关注" />
 				</p>
 				<span th:text="${msg}"></span>

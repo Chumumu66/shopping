@@ -24,7 +24,9 @@ public class OrderServiceImpl implements OrderService{
 		Order order = new Order();
 		order.setAmount(amount);
 		order.setBusertable_id(id);
-		orderDao.addOrder(order);
+
+		int n=orderDao.addOrder(order);
+		System.out.println("成功与否="+n);
 		Map<String, Object> map = new HashMap<>();
 		map.put("ordersn", order.getId());
 		map.put("uid", id);
@@ -36,6 +38,7 @@ public class OrderServiceImpl implements OrderService{
 		orderDao.clear(id);
 		return order;
 	}
+
 	@Override
 	public int pay(Integer ordersn) {
 		int flag = orderDao.pay(ordersn);

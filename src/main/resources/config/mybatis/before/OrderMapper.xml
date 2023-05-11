@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<!-- 生成订单详情 -->
 	<insert id="addOrderDetail" parameterType="map">
-		insert into ordertable (orderbasetable_id, goodstable_id, shoppingnum) select #{ordersn}, goodstable_id, shoppingnum from carttable where busertable_id = #{uid}
+		insert into orderdetail (orderbasetable_id, goodstable_id, shoppingnum) select #{ordersn}, goodstable_id, shoppingnum from carttable where busertable_id = #{uid}
 	</insert>
 	<!-- 查询商品购买量，以便更新库存使用 -->
 	<select id="selectGoodsShop"  parameterType="Integer" resultType="map">
