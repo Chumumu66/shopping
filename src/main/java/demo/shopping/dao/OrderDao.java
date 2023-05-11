@@ -17,4 +17,5 @@ public interface OrderDao {
 	int updateStore(Map<String, Object> map);
 	int clear(Integer uid);
 	int pay(Integer ordersn);
+
 }

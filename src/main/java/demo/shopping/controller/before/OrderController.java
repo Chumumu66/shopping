@@ -26,6 +26,7 @@ public class OrderController extends BaseBeforeController{
 	@RequestMapping("/orderSubmit")
 	public String orderSubmit(Model model, HttpSession session,Double amount) {
 		logger.log(Level.INFO,"获取请求提交");
+
 		Order order = orderService.orderSubmit(MyUtil.getUserId(session), amount);
 		model.addAttribute("ordersn", order.getId());
 		return "before/orderdone";
