@@ -7,6 +7,7 @@
 	<link th:href="@{/css/before/style.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
+	<div th:include="before/head::head"></div>
 	<div class="blank"></div>
 	<div class="block clearfix">
 		<div class="location ared">
@@ -27,27 +28,20 @@
 					<tr>
 						<td colspan="5" height="15px"
 							style="border: 0 none; background: #FFF"></td>
-					</tr> 
-
-						<tr th:each ="mo :${myOrder}">
+					</tr>
+						<tr th:each ="mo:${myOrder}">
 							<td bgcolor="#ffffff" align="center" th:text="${mo.id}"></td>
 							<td bgcolor="#ffffff"  align="center" th:text="${mo.amount}"></td>
 							<td align="center" bgcolor="#ffffff" th:text="${mo.orderdate}"></td>
 							<td bgcolor="#ffffff"  align="center">
-
-
 							<span th:if ="${mo.status == 0}" >
 							<span th:text="#{before.userCenter.unpaid}"></span>
 							<a style="text-decoration: none;" class="f6" th:href="@{'/order/pay?ordersn='+${mo.id}}">
 								<span th:text="#{before.userOrderDetail.toPay}"></span></a>
 							</span>
-
 							<span th:if ="${mo.status == 1}" >
 								<span th:text="#{before.userCenter.paid}"></span>
 							</span>
-
-
-
 							</td>
 							<td align="center" bgcolor="#ffffff">
 							<a style="text-decoration: none;" class="f6" th:href="@{'/orderDetail?ordersn='+${mo.id}}" target="_blank">
