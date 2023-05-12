@@ -14,7 +14,7 @@ import demo.shopping.dao.OrderDao;
 import demo.shopping.po.Order;
 import demo.shopping.util.MyUtil;
 @Service("orderService")
-@Transactional
+@Transactional//事务注解
 public class OrderServiceImpl implements OrderService{
 	@Autowired
 	private OrderDao orderDao;

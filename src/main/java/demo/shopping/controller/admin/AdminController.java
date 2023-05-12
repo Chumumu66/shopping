@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import demo.shopping.po.Auser;
 import demo.shopping.service.admin.AdminService;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 @Controller
 public class AdminController {
-
+	Logger logger =Logger.getLogger("AdminController");
 	@Autowired
 	private AdminService adminService;
 
@@ -22,12 +25,14 @@ public class AdminController {
 
 	@RequestMapping("/admin")
 	public String toLogin(@ModelAttribute Auser auser, HttpSession session) {
+		logger.log(Level.INFO,"获取登录页面");
 		return "admin/login";
 	}
 
 	@RequestMapping("/admin/login")
 	public String login(@ModelAttribute Auser auser, Model model, HttpSession session) {
 		Auser auser1 =  adminService.login(auser);
+		logger.log(Level.INFO,"登陆完成");
 		if(auser1 != null){
 			session.setAttribute("auser", auser);
 			session.setAttribute("goodsType", adminTypeDao.selectGoodsType());
@@ -42,6 +47,7 @@ public class AdminController {
 	@RequestMapping("/exit")
 	public String exit(@ModelAttribute Auser auser,HttpSession session) {
 		session.invalidate();
+		logger.log(Level.INFO,"退出");
 		return "admin/login";
 	}
 
