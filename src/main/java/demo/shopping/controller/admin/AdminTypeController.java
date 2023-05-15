@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import demo.shopping.service.admin.AdminTypeService;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/adminType")
 public class AdminTypeController extends BaseController{
-
+	Logger logger =Logger.getLogger("AdminTypeController");
 	@Autowired
 	private AdminTypeService adminTypeService;
 
@@ -24,6 +26,7 @@ public class AdminTypeController extends BaseController{
 
 	@RequestMapping("/toAddType")
 	public String toAddType(Model model) {
+		logger.log(Level.INFO,"获取添加类型");
 		List<GoodsType> goodsTypeList = adminTypeService.toAddType();
 		model.addAttribute("allTypes", goodsTypeList);
 		return "admin/addType";
@@ -31,6 +34,7 @@ public class AdminTypeController extends BaseController{
 
 	@RequestMapping("/addType")
 	public String addType(String typename,Model model,HttpSession session) {
+		logger.log(Level.INFO,"添加类型");
 		int flag = adminTypeService.addType(typename);
 		if(flag != 0){
 			session.setAttribute("goodsType", adminTypeDao.selectGoodsType());
@@ -42,6 +46,7 @@ public class AdminTypeController extends BaseController{
 
 	@RequestMapping("/toDeleteType")
 	public String toDeleteType(Model model) {
+		logger.log(Level.INFO,"获取删除类型");
 		List<GoodsType> goodsTypeList = adminTypeService.toDeleteType();
 		model.addAttribute("allTypes", goodsTypeList);
 		return "admin/deleteType";
@@ -49,6 +54,7 @@ public class AdminTypeController extends BaseController{
 
 	@RequestMapping("/deleteType")
 	public String deleteType(Integer id,Model model) {
+		logger.log(Level.INFO,"删除类型");
 		boolean flag = adminTypeService.deleteType(id);
 		if(flag == true){
 			model.addAttribute("msg", "删除成功！");

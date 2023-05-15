@@ -12,6 +12,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -28,12 +30,15 @@ import org.springframework.util.ResourceUtils;
 @Service("adminGoodsService")
 @Transactional
 public class AdminGoodsServiceImpl implements AdminGoodsService{
+
+	Log logger = LogFactory.getLog(AdminGoodsServiceImpl.class);
 	@Autowired
 	private AdminGoodsDao adminGoodsDao;
 
 	@Override
 	public Map<String, Integer> getPaginationQuery(Integer pageCur) {
 		Map<String, Integer> map = new HashMap<>();
+		logger.trace(adminGoodsDao);
 		int temp = adminGoodsDao.getGoodsCount();
 		map.put("totalCount", temp);
 		int totalPage = 0;
