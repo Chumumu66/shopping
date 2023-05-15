@@ -2,7 +2,6 @@ package demo.shopping.controller.admin;
 import javax.servlet.http.HttpSession;
 
 import demo.shopping.dao.AdminTypeDao;
-import demo.shopping.exception.BaseController;
 import demo.shopping.po.GoodsType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -14,7 +14,9 @@ import demo.shopping.po.Auser;
 @Service("adminService")
 @Transactional
 public class AdminServiceImpl implements AdminService{
+
 	Log logger = LogFactory.getLog(AdminServiceImpl.class);
+
 	@Autowired
 	private AdminDao adminDao;
 

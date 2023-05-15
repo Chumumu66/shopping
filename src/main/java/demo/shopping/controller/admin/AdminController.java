@@ -3,6 +3,7 @@ import javax.servlet.http.HttpSession;
 
 import demo.shopping.dao.AdminTypeDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,13 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import demo.shopping.po.Auser;
 import demo.shopping.service.admin.AdminService;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Controller
 public class AdminController {
+
 	Logger logger =Logger.getLogger("AdminController");
+
 	@Autowired
 	private AdminService adminService;
 
@@ -38,7 +42,7 @@ public class AdminController {
 			session.setAttribute("goodsType", adminTypeDao.selectGoodsType());
 			return "admin/main";
 		}else{
-			model.addAttribute("msg", "登录失败！");
+			model.addAttribute("msg", "登陆失败，用户名或密码错误！");
 			return "admin/login";
 		}
 
@@ -53,8 +57,8 @@ public class AdminController {
 
 
 	@RequestMapping(value = "/mul")
-	public int mulParam(int param) {
-		return 9/param;
+	public int mulParam() {
+		throw new ResponseStatusException(HttpStatus.FORBIDDEN, "出现错误！请联系管理员说明情况！");
 	}
 
 }
