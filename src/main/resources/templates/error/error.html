@@ -3,14 +3,16 @@
 
 <head>
   <meta charset="UTF-8"/>
-  <title>愿世界没有Bug</title>
+  <title th:text="#{error.error.title}"></title>
 </head>
 <body>
-<h1>发生异常，原因如下</h1>
-<div>
-  <p th:text="'错误码：' + ${errorInfo.code}"/>
-  <p th:text="'映射路径：' + ${errorInfo.url}"/>
-  <p th:text="'错误信息：' + ${errorInfo.message}"/>
-</div>
+  <div style="margin-top: 250px; text-align: center">
+    <h1 style="text-align: center" th:text="#{error.error.exception}"></h1>
+    <div style="text-align: center">
+      <p th:text="#{error.error.exceptionCode} + ${errorInfo.code}"/>
+      <p th:text="#{error.error.exceptionPath} + ${errorInfo.url}"/>
+      <p th:text="#{error.error.exceptionInfo} + ${errorInfo.message}"/>
+    </div>
+  </div>
 </body>
 </html>
