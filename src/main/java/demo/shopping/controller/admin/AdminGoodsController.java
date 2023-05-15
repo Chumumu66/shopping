@@ -1,7 +1,7 @@
 package demo.shopping.controller.admin;
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 
+import demo.shopping.exception.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import demo.shopping.po.Goods;
 import demo.shopping.service.admin.AdminGoodsService;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -22,7 +20,7 @@ import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/adminGoods")
-public class AdminGoodsController extends BaseController{
+public class AdminGoodsController extends BaseController {
 	Logger logger = Logger.getLogger("GoodsController");
 	@Autowired
 	private AdminGoodsService adminGoodsService;

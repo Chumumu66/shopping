@@ -3,19 +3,18 @@ package demo.shopping.controller.before;
 import javax.servlet.http.HttpSession;
 
 import demo.shopping.dao.UserCenterDao;
+import demo.shopping.exception.BaseBeforeController;
 import demo.shopping.util.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import demo.shopping.service.before.UserCenterService;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Controller
-public class UserCenterController extends BaseBeforeController{
+public class UserCenterController extends BaseBeforeController {
 
 	Logger logger = Logger.getLogger("UserCenterController");
 

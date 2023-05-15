@@ -1,4 +1,4 @@
-package demo.shopping.controller.admin;
+package demo.shopping.exception;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 

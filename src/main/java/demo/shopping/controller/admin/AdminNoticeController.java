@@ -1,4 +1,5 @@
 package demo.shopping.controller.admin;
+import demo.shopping.exception.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,7 @@ import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/adminNotice")
-public class AdminNoticeController extends BaseController{
+public class AdminNoticeController extends BaseController {
 	Logger logger =Logger.getLogger("AdminNoticeController");
 	@Autowired
 	private AdminNoticeService adminNoticeService;

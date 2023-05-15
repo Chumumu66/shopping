@@ -2,6 +2,7 @@ package demo.shopping.controller.before;
 
 import javax.servlet.http.HttpSession;
 
+import demo.shopping.exception.BaseBeforeController;
 import demo.shopping.po.Order;
 import demo.shopping.util.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/order")
-public class OrderController extends BaseBeforeController{
+public class OrderController extends BaseBeforeController {
 
 	Logger logger = Logger.getLogger("OrderController");
 

@@ -3,6 +3,7 @@ package demo.shopping.controller.before;
 import javax.servlet.http.HttpSession;
 
 import demo.shopping.dao.CartDao;
+import demo.shopping.exception.BaseBeforeController;
 import demo.shopping.util.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/cart")
-public class CartController extends BaseBeforeController{
+public class CartController extends BaseBeforeController {
 
 	Logger logger = Logger.getLogger("CartController");
 
@@ -35,13 +36,13 @@ public class CartController extends BaseBeforeController{
 		List<Map<String, Object>> mapList = cartDao.isFocus(map);
 
 		if(mapList.size() > 0) {
-			model.addAttribute("msg", "�ѹ�ע����Ʒ��");
+			model.addAttribute("msg", "已关注！");
 		}else {
 			int n = cartDao.focus(map);
 			if(n > 0)
-				model.addAttribute("msg", "�ɹ���ע����Ʒ��");
+				model.addAttribute("msg", "关注成功！");
 			else
-				model.addAttribute("msg", "��עʧ�ܣ�");
+				model.addAttribute("msg", "关注失败！");
 		}
 		return "forward:/goodsDetail?id=" + id;
 	}
@@ -51,7 +52,6 @@ public class CartController extends BaseBeforeController{
 		logger.log(Level.INFO,"加入购物车成功请求");
 		Map<String, Object> map = cartService.putCart(shoppingnum, id, MyUtil.getUserId(session));
 		List<Map<String, Object>> list = cartDao.isPutCart(map);
-		int total = 0;
 		if(list.size() > 0){
 			cartDao.updateCart(map);
 		} else{
