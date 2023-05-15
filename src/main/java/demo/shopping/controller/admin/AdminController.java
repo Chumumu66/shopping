@@ -1,6 +1,6 @@
 package demo.shopping.controller.admin;
-import javax.servlet.http.HttpSession;
 
+import javax.servlet.http.HttpSession;
 import demo.shopping.dao.AdminTypeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,18 +8,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import demo.shopping.po.Auser;
 import demo.shopping.service.admin.AdminService;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Controller
 public class AdminController {
 
-	Logger logger =Logger.getLogger("AdminController");
+	Logger logger = Logger.getLogger("AdminController");
 
 	@Autowired
 	private AdminService adminService;

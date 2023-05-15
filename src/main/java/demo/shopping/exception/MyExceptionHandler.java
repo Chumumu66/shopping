@@ -1,13 +1,12 @@
 package demo.shopping.exception;
+
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
-
 import demo.shopping.po.Auser;
 import demo.shopping.po.Buser;
 

@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import demo.shopping.service.admin.AdminUserService;
-
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +13,9 @@ import java.util.logging.Logger;
 @Controller
 @RequestMapping("/adminUser")
 public class AdminUserController extends BaseController {
-	Logger logger =Logger.getLogger("AdminUserController");
+
+	Logger logger = Logger.getLogger("AdminUserController");
+
 	@Autowired
 	private AdminUserService adminUserService;
 

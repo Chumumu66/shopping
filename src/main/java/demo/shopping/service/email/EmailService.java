@@ -4,5 +4,5 @@ import javax.mail.MessagingException;
 import java.util.concurrent.CompletableFuture;
 
 public interface EmailService {
-    public CompletableFuture<Void> resetPassword(String email) throws MessagingException;
+    CompletableFuture<Void> resetPassword(String email) throws MessagingException;
 }

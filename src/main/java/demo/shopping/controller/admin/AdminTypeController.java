@@ -1,15 +1,13 @@
 package demo.shopping.controller.admin;
-import javax.servlet.http.HttpSession;
 
+import javax.servlet.http.HttpSession;
 import demo.shopping.dao.AdminTypeDao;
 import demo.shopping.po.GoodsType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import demo.shopping.service.admin.AdminTypeService;
-
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +15,9 @@ import java.util.logging.Logger;
 @Controller
 @RequestMapping("/adminType")
 public class AdminTypeController extends BaseController {
-	Logger logger =Logger.getLogger("AdminTypeController");
+
+	Logger logger = Logger.getLogger("AdminTypeController");
+
 	@Autowired
 	private AdminTypeService adminTypeService;
 

@@ -2,19 +2,14 @@ package demo.shopping.service.before;
 
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 import demo.shopping.po.GoodsType;
-import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-
 import demo.shopping.dao.AdminNoticeDao;
 import demo.shopping.dao.AdminTypeDao;
 import demo.shopping.dao.IndexDao;
-import demo.shopping.po.Buser;
 import demo.shopping.po.Goods;
 import demo.shopping.po.Notice;
 

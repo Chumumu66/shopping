@@ -1,15 +1,10 @@
 package demo.shopping.service.admin;
 
-import javax.servlet.http.HttpSession;
-
 import demo.shopping.po.GoodsType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-
 import demo.shopping.dao.AdminTypeDao;
-
 import java.util.List;
 
 @Service("adminTypeService")

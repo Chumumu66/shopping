@@ -1,21 +1,18 @@
 package demo.shopping.service.before;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-
 import demo.shopping.dao.OrderDao;
 import demo.shopping.po.Order;
-import demo.shopping.util.MyUtil;
+
 @Service("orderService")
 @Transactional//事务注解
 public class OrderServiceImpl implements OrderService{
+
 	@Autowired
 	private OrderDao orderDao;
 

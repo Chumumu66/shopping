@@ -1,5 +1,4 @@
 package demo.shopping.controller.before;
-import javax.servlet.http.HttpSession;
 
 import demo.shopping.po.Buser;
 import demo.shopping.po.Notice;

@@ -1,16 +1,13 @@
 package demo.shopping.service.admin;
-import javax.servlet.http.HttpSession;
 
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-
 import demo.shopping.dao.AdminDao;
-import demo.shopping.dao.AdminTypeDao;
 import demo.shopping.po.Auser;
+
 @Service("adminService")
 @Transactional
 public class AdminServiceImpl implements AdminService{

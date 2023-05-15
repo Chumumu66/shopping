@@ -1,14 +1,13 @@
 package demo.shopping.service.admin;
+
 import demo.shopping.po.Buser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-
 import demo.shopping.dao.AdminUserDao;
 import demo.shopping.dao.CartDao;
 import demo.shopping.dao.UserCenterDao;
-
 import java.util.List;
 
 @Service("adminUserService")
