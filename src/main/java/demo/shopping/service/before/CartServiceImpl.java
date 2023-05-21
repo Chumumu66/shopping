@@ -59,4 +59,29 @@ public class CartServiceImpl implements CartService{
 		return mapList;
 	}
 
+	@Override
+	public List<Map<String, Object>> isFocus(Map<String, Object> map) {
+		return cartDao.isFocus(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> isPutCart(Map<String, Object> map) {
+		return cartDao.isPutCart(map);
+	}
+
+	@Override
+	public int putCart(Map<String, Object> map) {
+		return cartDao.putCart(map);
+	}
+
+	@Override
+	public int updateCart(Map<String, Object> map) {
+		return cartDao.updateCart(map);
+	}
+
+	@Override
+	public int focus(Map<String, Object> map) {
+		return cartDao.focus(map);
+	}
+
 }

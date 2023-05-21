@@ -23,7 +23,7 @@ public class UserController {
 	Logger logger = Logger.getLogger("UserController");
 
 	@Autowired
-	private UserDao userDao;
+	private UserService userService;
 
 	@RequestMapping("/register")
 	public String register(@ModelAttribute Buser buser,Model model, HttpSession session, String code) {
@@ -32,7 +32,7 @@ public class UserController {
 			model.addAttribute("codeError", "验证码错误");
 			return "before/register";
 		}
-		int n = userDao.register(buser);
+		int n = userService.register(buser);
 		if(n > 0) {
 			return "before/login";
 		}else {
@@ -49,7 +49,7 @@ public class UserController {
 			return "before/login";
 		}
 		Buser ruser = null;
-		List<Buser> list = userDao.login(buser);
+		List<Buser> list = userService.login(buser);
 		if(list.size() > 0) {
 			ruser = list.get(0);
 		}

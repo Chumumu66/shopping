@@ -38,5 +38,10 @@ public class AdminTypeServiceImpl implements AdminTypeService{
 			return false;
 		}
 	}
-	
+
+	@Override
+	public List<GoodsType> selectGoodsType() {
+		return adminTypeDao.selectGoodsType();
+	}
+
 }

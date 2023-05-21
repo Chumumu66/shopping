@@ -17,4 +17,14 @@ public interface CartService {
 
 	List<Map<String, Object>> orderConfirm(Integer id);
 
+	List<Map<String, Object>> isFocus(Map<String, Object> map);
+
+	List<Map<String, Object>> isPutCart(Map<String, Object> map);
+
+	int putCart (Map<String, Object> map);
+
+	int updateCart (Map<String, Object> map);
+
+	int focus(Map<String, Object> map);
+
 }

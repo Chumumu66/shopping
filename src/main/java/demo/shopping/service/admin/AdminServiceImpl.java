@@ -1,5 +1,7 @@
 package demo.shopping.service.admin;
 
+import demo.shopping.dao.AdminTypeDao;
+import demo.shopping.po.GoodsType;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import demo.shopping.dao.AdminDao;
 import demo.shopping.po.Auser;
+
+import java.util.List;
 
 @Service("adminService")
 @Transactional
@@ -17,6 +21,9 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private AdminDao adminDao;
 
+	@Autowired
+	private AdminTypeDao adminTypeDao;
+
 	@Override
 	public Auser login(Auser auser) {
 		if(adminDao.login(auser) != null && adminDao.login(auser).size() > 0) {
@@ -26,6 +33,11 @@ public class AdminServiceImpl implements AdminService{
 			logger.debug("登陆失败，用户名或密码错误");
 			return null;
 		}
+	}
+
+	@Override
+	public List<GoodsType> selectGoodsType() {
+		return adminTypeDao.selectGoodsType();
 	}
 
 }

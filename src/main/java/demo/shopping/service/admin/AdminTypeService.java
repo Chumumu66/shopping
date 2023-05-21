@@ -13,4 +13,6 @@ public interface AdminTypeService {
 
 	boolean deleteType(Integer id);
 
+	List<GoodsType> selectGoodsType();
+
 }

@@ -22,9 +22,6 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
-	@Autowired
-	private AdminTypeDao adminTypeDao;
-
 	@RequestMapping("/admin")
 	public String toLogin(@ModelAttribute Auser auser, HttpSession session) {
 		logger.log(Level.INFO,"获取登录页面");
@@ -37,7 +34,7 @@ public class AdminController {
 		logger.log(Level.INFO,"登陆完成");
 		if(auser1 != null){
 			session.setAttribute("auser", auser);
-			session.setAttribute("goodsType", adminTypeDao.selectGoodsType());
+			session.setAttribute("goodsType", adminService.selectGoodsType());
 			return "admin/main";
 		}else{
 			model.addAttribute("msg", "登陆失败，用户名或密码错误！");

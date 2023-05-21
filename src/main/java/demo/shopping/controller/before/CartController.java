@@ -25,19 +25,16 @@ public class CartController extends BaseBeforeController {
 	@Autowired
 	private CartService cartService;
 
-	@Autowired
-	private CartDao cartDao;
-
 	@RequestMapping("/focus")
 	public String focus(Model model,Integer id, HttpSession session) {
 		logger.log(Level.INFO,"获取商品细节页面");
 		Map<String, Object> map = cartService.focus(id, MyUtil.getUserId(session));
-		List<Map<String, Object>> mapList = cartDao.isFocus(map);
+		List<Map<String, Object>> mapList = cartService.isFocus(map);
 
 		if(mapList.size() > 0) {
 			model.addAttribute("msg", "已关注！");
 		}else {
-			int n = cartDao.focus(map);
+			int n = cartService.focus(map);
 			if(n > 0)
 				model.addAttribute("msg", "关注成功！");
 			else
@@ -50,11 +47,11 @@ public class CartController extends BaseBeforeController {
 	public String putCart(Model model,Integer shoppingnum, Integer id, HttpSession session) {
 		logger.log(Level.INFO,"加入购物车成功请求");
 		Map<String, Object> map = cartService.putCart(shoppingnum, id, MyUtil.getUserId(session));
-		List<Map<String, Object>> list = cartDao.isPutCart(map);
+		List<Map<String, Object>> list = cartService.isPutCart(map);
 		if(list.size() > 0){
-			cartDao.updateCart(map);
+			cartService.updateCart(map);
 		} else{
-			cartDao.putCart(map);
+			cartService.putCart(map);
 		}
 		return "forward:/cart/selectCart";
 	}

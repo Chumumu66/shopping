@@ -21,9 +21,6 @@ public class AdminTypeController extends BaseController {
 	@Autowired
 	private AdminTypeService adminTypeService;
 
-	@Autowired
-	private AdminTypeDao adminTypeDao;
-
 	@RequestMapping("/toAddType")
 	public String toAddType(Model model) {
 		logger.log(Level.INFO,"获取添加类型");
@@ -37,7 +34,7 @@ public class AdminTypeController extends BaseController {
 		logger.log(Level.INFO,"添加类型");
 		int flag = adminTypeService.addType(typename);
 		if(flag != 0){
-			session.setAttribute("goodsType", adminTypeDao.selectGoodsType());
+			session.setAttribute("goodsType", adminTypeService.selectGoodsType());
 		}else{
 			model.addAttribute("msg", "添加失败！");
 		}
