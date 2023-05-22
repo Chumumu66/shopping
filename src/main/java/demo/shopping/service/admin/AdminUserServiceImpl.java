@@ -9,6 +9,7 @@ import demo.shopping.dao.AdminUserDao;
 import demo.shopping.dao.CartDao;
 import demo.shopping.dao.UserCenterDao;
 import java.util.List;
+import java.util.Map;
 
 @Service("adminUserService")
 @Transactional
@@ -31,14 +32,29 @@ public class AdminUserServiceImpl implements AdminUserService{
 
 	//异常处理示例
 	@Override
-	public boolean deleteuserManager(Integer id, Model model) {
-		if(cartDao.selectCart(id).size() > 0 || userCenterDao.myFocus(id).size() > 0|| userCenterDao.myOrder(id).size() > 0) {
-			return false;
+	public int deleteuserManager(Integer id, Model model) {
+		List<Map<String, Object>> cartList = cartDao.selectCart(id);
+		if(cartList.size() > 0){
+			return 0;
 		}
-		if(adminUserDao.deleteuserManager(id) > 0) {
-			model.addAttribute("msg", "删除成功！");
+		List<Map<String, Object>> focusList = userCenterDao.myFocus(id);
+		if(focusList.size() > 0){
+			return 1;
 		}
-		return true;
+		List<Map<String, Object>> orderList = userCenterDao.myOrder(id);
+		if(orderList.size() > 0){
+			return 2;
+		}
+		int count = adminUserDao.deleteuserManager(id);
+		if(count == 0){
+			return 3;
+		}
+		return 4;
+	}
+
+	@Override
+	public int deleteUser(Integer id, Model model) {
+		return adminUserDao.deleteuserManager(id);
 	}
 
 }

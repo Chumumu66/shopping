@@ -8,6 +8,8 @@ public interface AdminUserService {
 
 	List<Buser> userInfo();
 
-	boolean deleteuserManager(Integer id, Model model);
+	int deleteuserManager(Integer id, Model model);
+
+	int deleteUser(Integer id, Model model);
 
 }

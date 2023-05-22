@@ -11,7 +11,7 @@ public interface AdminTypeService {
 
 	List<GoodsType> toDeleteType();
 
-	boolean deleteType(Integer id);
+	int deleteType(Integer id);
 
 	List<GoodsType> selectGoodsType();
 

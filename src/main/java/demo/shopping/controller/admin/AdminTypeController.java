@@ -47,8 +47,9 @@ public class AdminTypeController extends BaseController {
 		int flag = adminTypeService.addType(typename);
 		if(flag != 0){
 			session.setAttribute("goodsType", adminTypeService.selectGoodsType());
-		}else{
 			model.addAttribute("msg", toString("page.addSuccess"));
+		}else{
+			model.addAttribute("msg", toString("page.addError"));
 		}
 		return "forward:/adminType/toAddType";
 	}
@@ -61,14 +62,21 @@ public class AdminTypeController extends BaseController {
 		return "admin/deleteType";
 	}
 
+	//异常处理示例代码
 	@RequestMapping("/deleteType")
 	public String deleteType(Integer id,Model model) throws IOException {
 		logger.log(Level.INFO, toString("adminTypeController.deleteType"));
-		boolean flag = adminTypeService.deleteType(id);
-		if(flag == true){
-			model.addAttribute("msg", toString("page.deleteSuccess"));
-		}else{
-			model.addAttribute("msg", toString("page.deleteError"));
+		int count = adminTypeService.deleteType(id);
+		switch (count){
+			case 0:
+				model.addAttribute("msg", toString("adminTypeController.haveProduct"));
+				break;
+			case 2:
+				model.addAttribute("msg", toString("adminTypeController.deleteError"));
+				break;
+			default:
+				model.addAttribute("msg", toString("page.deleteSuccess"));
+				break;
 		}
 		return "forward:/adminType/toDeleteType";
 	}

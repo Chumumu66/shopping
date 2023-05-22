@@ -2,10 +2,12 @@ package demo.shopping.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import demo.shopping.service.admin.AdminOrderService;
+import org.springframework.web.server.ResponseStatusException;
 import org.thymeleaf.util.StringUtils;
 
 import java.io.IOException;
@@ -39,14 +41,20 @@ public class AdminOrderController extends BaseController {
 		return "admin/orderManager";
 	}
 
+	//异常处理示例代码
 	@RequestMapping("/deleteorderManager")
 	public String deleteorderManager(Model model, Integer id) throws IOException {
 		logger.log(Level.INFO, toString("adminOrderController.getDelete"));
-		boolean flag =  adminOrderService.deleteorderManager(id);
-		if(flag == true){
-			model.addAttribute(toString("page.deleteSuccess"));
-		}else {
-			model.addAttribute(toString("page.deleteError"));
+		int count =  adminOrderService.deleteorderManager(id);
+		switch (count){
+			case 0:
+				throw new ResponseStatusException(HttpStatus.FORBIDDEN, toString("adminOrderController.deleteDetail"));
+			case 1:
+				throw new ResponseStatusException(HttpStatus.FORBIDDEN, toString("adminOrderController.deleteOrder"));
+			case 2:
+				throw new ResponseStatusException(HttpStatus.FORBIDDEN, toString("adminOrderController.rollBack"));
+			default:
+				model.addAttribute(toString("page.deleteSuccess"));
 		}
 		return "forward:/adminOrder/orderInfo";
 	}

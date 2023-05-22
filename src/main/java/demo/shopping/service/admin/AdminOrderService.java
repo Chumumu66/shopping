@@ -8,6 +8,6 @@ public interface AdminOrderService {
 
 	List<Map<String,Object>> orderInfo(Model model);
 
-	boolean deleteorderManager(Integer id);
+	int deleteorderManager(Integer id);
 
 }

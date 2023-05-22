@@ -1,5 +1,6 @@
 package demo.shopping.service.admin;
 
+import demo.shopping.po.Goods;
 import demo.shopping.po.GoodsType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,12 +31,18 @@ public class AdminTypeServiceImpl implements AdminTypeService{
 		return adminTypeDao.selectGoodsType();
 	}
 
+	//异常处理示例
 	@Override
-	public boolean deleteType(Integer id) {
-		if(adminTypeDao.selectGoodsByType(id).size() > 0 || adminTypeDao.deleteType(id) > 0) {
-			return true;
+	public int deleteType(Integer id) {
+		List<Goods> goodsList = adminTypeDao.selectGoodsByType(id);
+		if(goodsList.size() > 0){
+			return 0;
+		}
+		int count = adminTypeDao.deleteType(id);
+		if(count == 0){
+			return 1;
 		}else{
-			return false;
+			return 2;
 		}
 	}
 
