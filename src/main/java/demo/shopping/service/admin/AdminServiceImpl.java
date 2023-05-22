@@ -25,8 +25,9 @@ public class AdminServiceImpl implements AdminService{
 	private AdminTypeDao adminTypeDao;
 
 	@Override
-	public Auser login(Auser auser) {
-		if(adminDao.login(auser) != null && adminDao.login(auser).size() > 0) {
+	public Auser findAUserByUserNameAndPassword(String user_name, String password) {
+		Auser auser = adminDao.findAUserByUserNameAndPassword(user_name);
+		if(auser.getApwd().equals(password)) {
 			logger.debug("登陆成功，跳转到后台管理主页面");
 			return auser;
 		}else{

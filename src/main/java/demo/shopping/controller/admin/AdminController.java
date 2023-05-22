@@ -30,7 +30,7 @@ public class AdminController {
 
 	@RequestMapping("/admin/login")
 	public String login(@ModelAttribute Auser auser, Model model, HttpSession session) {
-		Auser auser1 =  adminService.login(auser);
+		Auser auser1 =  adminService.findAUserByUserNameAndPassword(auser.getAname(), auser.getApwd());
 		logger.log(Level.INFO,"登陆完成");
 		if(auser1 != null){
 			session.setAttribute("auser", auser);

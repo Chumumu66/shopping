@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AdminService {
 
-	Auser login(Auser auser);
+	Auser findAUserByUserNameAndPassword(String user_name, String password);
 
 	List<GoodsType> selectGoodsType();
 
