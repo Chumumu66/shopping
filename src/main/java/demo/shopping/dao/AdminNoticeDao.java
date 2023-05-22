@@ -8,6 +8,7 @@ import demo.shopping.po.Notice;
 @Repository("adminNoticeDao")
 @Mapper
 public interface AdminNoticeDao {
+
 	int addNotice(Notice notice);
 
 	List<Notice> deleteNoticeSelect();
