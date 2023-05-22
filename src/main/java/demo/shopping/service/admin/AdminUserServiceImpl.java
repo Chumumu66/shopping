@@ -29,6 +29,7 @@ public class AdminUserServiceImpl implements AdminUserService{
 		return bUserList;
 	}
 
+	//异常处理示例
 	@Override
 	public boolean deleteuserManager(Integer id, Model model) {
 		if(cartDao.selectCart(id).size() > 0 || userCenterDao.myFocus(id).size() > 0|| userCenterDao.myOrder(id).size() > 0) {

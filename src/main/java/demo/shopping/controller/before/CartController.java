@@ -5,12 +5,16 @@ import javax.servlet.http.HttpSession;
 import demo.shopping.dao.CartDao;
 import demo.shopping.util.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import demo.shopping.service.before.CartService;
+import org.thymeleaf.util.StringUtils;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -25,27 +29,34 @@ public class CartController extends BaseBeforeController {
 	@Autowired
 	private CartService cartService;
 
+	public String toString(String str) throws IOException {
+		return StringUtils.substringAfter(StringUtils
+				.substringBefore(new String(Files.readAllBytes(new ClassPathResource("messages.properties").getFile().toPath()))
+						.substring(new String(Files.readAllBytes(new ClassPathResource("messages.properties").getFile().toPath()))
+								.indexOf(str)),"\r\n"), "= ");
+	}
+
 	@RequestMapping("/focus")
-	public String focus(Model model,Integer id, HttpSession session) {
-		logger.log(Level.INFO,"获取商品细节页面");
+	public String focus(Model model,Integer id, HttpSession session) throws IOException {
+		logger.log(Level.INFO, toString("cartController.getGoodsDetail"));
 		Map<String, Object> map = cartService.focus(id, MyUtil.getUserId(session));
 		List<Map<String, Object>> mapList = cartService.isFocus(map);
 
 		if(mapList.size() > 0) {
-			model.addAttribute("msg", "已关注！");
+			model.addAttribute("msg", toString("cartController.haveFocus"));
 		}else {
 			int n = cartService.focus(map);
 			if(n > 0)
-				model.addAttribute("msg", "关注成功！");
+				model.addAttribute("msg", toString("cartController.focusSuccess"));
 			else
-				model.addAttribute("msg", "关注失败！");
+				model.addAttribute("msg", toString("cartController.focusError"));
 		}
 		return "forward:/goodsDetail?id=" + id;
 	}
 
 	@RequestMapping("/putCart")
-	public String putCart(Model model,Integer shoppingnum, Integer id, HttpSession session) {
-		logger.log(Level.INFO,"加入购物车成功请求");
+	public String putCart(Model model,Integer shoppingnum, Integer id, HttpSession session) throws IOException {
+		logger.log(Level.INFO, toString("cartController.addCart"));
 		Map<String, Object> map = cartService.putCart(shoppingnum, id, MyUtil.getUserId(session));
 		List<Map<String, Object>> list = cartService.isPutCart(map);
 		if(list.size() > 0){
@@ -57,8 +68,8 @@ public class CartController extends BaseBeforeController {
 	}
 
 	@RequestMapping("/selectCart")
-	public String selectCart(Model model, HttpSession session) {
-		logger.log(Level.INFO,"获取所有商品");
+	public String selectCart(Model model, HttpSession session) throws IOException {
+		logger.log(Level.INFO, toString("cartController.getAllGoods"));
 		List<Map<String, Object>> mapList = cartService.selectCart(MyUtil.getUserId(session));
 		double sum = 0;
 		for (Map<String, Object> map : mapList) {
@@ -70,33 +81,33 @@ public class CartController extends BaseBeforeController {
 	}
 
 	@RequestMapping("/deleteAgoods")
-	public String deleteAgoods(Integer id, HttpSession session, Model model) {
-		logger.log(Level.INFO,"删除对应商品");
+	public String deleteAgoods(Integer id, HttpSession session, Model model) throws IOException {
+		logger.log(Level.INFO, toString("cartController.deleteGoods"));
 		//System.out.println(111);
 		int flag = cartService.deleteAgoods(id, MyUtil.getUserId(session));
 		if(flag == 0){
-			model.addAttribute("msg", "删除失败！");
+			model.addAttribute("msg", toString("page.deleteError"));
 		}else{
-			model.addAttribute("msg", "删除成功！");
+			model.addAttribute("msg", toString("page.deleteSuccess"));
 		}
 		return "forward:/cart/selectCart";
 	}
 
 	@RequestMapping("/clear")
-	public String clear(HttpSession session, Model model) {
-		logger.log(Level.INFO,"全部取消");
+	public String clear(HttpSession session, Model model) throws IOException {
+		logger.log(Level.INFO, toString("cartController.cancelAll"));
 		int flag = cartService.clear(MyUtil.getUserId(session));
 		if(flag == 0){
-			model.addAttribute("msg", "清空失败！！");
+			model.addAttribute("msg", toString("cartController.clearError"));
 		}else{
-			model.addAttribute("msg", "清空成功！");
+			model.addAttribute("msg", toString("cartController.clearSuccess"));
 		}
 		return "forward:/cart/selectCart";
 	}
 
 	@RequestMapping("/orderConfirm")
-	public String orderConfirm(Model model, HttpSession session) {
-		logger.log(Level.INFO,"获取搜索");
+	public String orderConfirm(Model model, HttpSession session) throws IOException {
+		logger.log(Level.INFO, toString("cartController.getSearch"));
 		List<Map<String, Object>> mapList = cartService.orderConfirm(MyUtil.getUserId(session));
 		double sum = 0;
 		for (Map<String, Object> map : mapList) {

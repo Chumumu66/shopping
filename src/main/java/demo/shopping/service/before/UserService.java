@@ -10,5 +10,5 @@ public interface UserService {
 
     int register(Buser buser);
 
-    List<Buser> login(Buser buser);
+    Buser login(Buser buser);
 }

@@ -51,7 +51,7 @@ public class AdminGoodsServiceImpl implements AdminGoodsService{
 
 	@Override
 	public List<Goods> selectGoods(Integer pageCur) {
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("startIndex", (pageCur - 1) * 10);
 		map.put("perPageSize", 10);
 		List<Goods> allGoods = adminGoodsDao.selectAllGoodsByPage(map);

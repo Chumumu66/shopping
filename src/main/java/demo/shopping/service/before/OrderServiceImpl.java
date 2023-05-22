@@ -22,8 +22,7 @@ public class OrderServiceImpl implements OrderService{
 		order.setAmount(amount);
 		order.setBusertable_id(id);
 
-		int n=orderDao.addOrder(order);
-		System.out.println("成功与否="+n);
+		int n = orderDao.addOrder(order);
 		Map<String, Object> map = new HashMap<>();
 		map.put("ordersn", order.getId());
 		map.put("uid", id);

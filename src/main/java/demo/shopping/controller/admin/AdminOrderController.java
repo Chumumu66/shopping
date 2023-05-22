@@ -1,10 +1,15 @@
 package demo.shopping.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import demo.shopping.service.admin.AdminOrderService;
+import org.thymeleaf.util.StringUtils;
+
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -19,22 +24,29 @@ public class AdminOrderController extends BaseController {
 	@Autowired
 	private AdminOrderService adminOrderService;
 
+	public String toString(String str) throws IOException {
+		return StringUtils.substringAfter(StringUtils
+				.substringBefore(new String(Files.readAllBytes(new ClassPathResource("messages.properties").getFile().toPath()))
+						.substring(new String(Files.readAllBytes(new ClassPathResource("messages.properties").getFile().toPath()))
+								.indexOf(str)),"\r\n"), "= ");
+	}
+
 	@RequestMapping("/orderInfo")
-	public String orderInfo(Model model) {
-		logger.log(Level.INFO,"获取订单信息");
+	public String orderInfo(Model model) throws IOException {
+		logger.log(Level.INFO, toString("adminOrderController.getOrder"));
 		List<Map<String,Object>> list =  adminOrderService.orderInfo(model);
 		model.addAttribute("orderList", list);
 		return "admin/orderManager";
 	}
 
 	@RequestMapping("/deleteorderManager")
-	public String deleteorderManager(Model model, Integer id) {
-		logger.log(Level.INFO,"删除订单信息");
+	public String deleteorderManager(Model model, Integer id) throws IOException {
+		logger.log(Level.INFO, toString("adminOrderController.getDelete"));
 		boolean flag =  adminOrderService.deleteorderManager(id);
 		if(flag == true){
-			model.addAttribute("删除成功");
+			model.addAttribute(toString("page.deleteSuccess"));
 		}else {
-			model.addAttribute("删除失败");
+			model.addAttribute(toString("page.deleteError"));
 		}
 		return "forward:/adminOrder/orderInfo";
 	}

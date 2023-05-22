@@ -5,12 +5,16 @@ import javax.servlet.http.HttpSession;
 import demo.shopping.po.Order;
 import demo.shopping.util.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import demo.shopping.service.before.OrderService;
+import org.thymeleaf.util.StringUtils;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,9 +27,16 @@ public class OrderController extends BaseBeforeController {
 	@Autowired
 	private OrderService orderService;
 
+	public String toString(String str) throws IOException {
+		return StringUtils.substringAfter(StringUtils
+				.substringBefore(new String(Files.readAllBytes(new ClassPathResource("messages.properties").getFile().toPath()))
+						.substring(new String(Files.readAllBytes(new ClassPathResource("messages.properties").getFile().toPath()))
+								.indexOf(str)),"\r\n"), "= ");
+	}
+
 	@RequestMapping("/orderSubmit")
-	public String orderSubmit(Model model, HttpSession session,Double amount) {
-		logger.log(Level.INFO,"获取请求提交");
+	public String orderSubmit(Model model, HttpSession session,Double amount) throws IOException {
+		logger.log(Level.INFO,toString("orderController.getPostSubmit"));
 
 		Order order = orderService.orderSubmit(MyUtil.getUserId(session), amount);
 		model.addAttribute("ordersn", order.getId());
@@ -33,8 +44,8 @@ public class OrderController extends BaseBeforeController {
 	}
 
 	@RequestMapping("/pay")
-	public String pay(Integer ordersn) {
-		logger.log(Level.INFO,"获取付款");
+	public String pay(Integer ordersn) throws IOException {
+		logger.log(Level.INFO,toString("orderController.getPay"));
 		int flag = orderService.pay(ordersn);
 		return "before/paydone";
 	}

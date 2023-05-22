@@ -21,7 +21,16 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<Buser> login(Buser buser) {
-        return userDao.login(buser);
+    public Buser login(Buser buser) {
+        Buser ruser = null;
+        List<Buser> list = userDao.login(buser);
+        if(list.size() > 0) {
+            ruser = list.get(0);
+        }
+        if(buser.getBpwd().equals(ruser.getBpwd())){
+            return ruser;
+        }else{
+            return null;
+        }
     }
 }
