@@ -24,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update carttable set shoppingnum=shoppingnum+#{shoppingnum} where busertable_id=#{uid} and goodstable_id=#{gid}
 	</update>
 	<!-- 查询购物车 -->
+
 	<select id="selectCart" parameterType="Integer" resultType="map">
 		select gt.id, gt.gname, gt.gpicture, gt.grprice, ct.shoppingnum, ct.shoppingnum*gt.grprice smallsum 
 		from goodstable gt, carttable ct where gt.id=ct.goodstable_id and ct.busertable_id=#{id}
