@@ -55,12 +55,12 @@ public class IndexController {
 	public String toLogin(Model model) throws IOException {
 		logger.log(Level.INFO,toString("indexController.getLoginPage"));
 		model.addAttribute("lbuser", new Buser());
-		return "before/login.html";
+		return "before/login";
 	}
 
-	@RequestMapping("/goodsDetail")
+	@RequestMapping("/getGoodsDetail")
 	public String goodsDetail(Model model,Integer id) throws IOException {
-		logger.log(Level.INFO,toString("indexController.getGoddsDetailPage"));
+		logger.log(Level.INFO,toString("indexController.getGoodsDetailPage"));
 		Goods goods = indexService.goodsDetail(id);
 		model.addAttribute("goods", goods);
 		return "before/goodsdetail";

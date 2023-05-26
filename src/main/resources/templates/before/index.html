@@ -35,8 +35,18 @@
 								<a th:href="@{/goodsDetail(id = ${sg.id})}">
 									<img class="samllimg" alt="" th:src="@{'/images/product/' + ${sg.gpicture}}" /></a></li>
 								<li class="iteration1">
-									<a th:href="@{/goodsDetail(id = ${sg.id})}"><span th:text="${sg.gname}"></span></a><br/>
-									<span th:text="#{before.index.price}"></span><font class="f1"><span th:text="#{before.index.symbol}"></span><span th:text="${sg.grprice}"></span><span th:text="#{before.index.money}"></span></font><br /></li>
+									<a th:href="@{/goodsDetail(id = ${sg.id})}">
+										<span th:text="${sg.gname}"></span>
+									</a>
+									<br/>
+									<span th:text="#{before.index.price}"></span>
+									<font class="f1">
+										<span th:text="#{before.index.symbol}"></span>
+										<span th:text="${sg.grprice}"></span>
+										<span th:text="#{before.index.money}"></span>
+									</font>
+									<br/>
+								</li>
 							</ul>
 					</div>
 				</div>
