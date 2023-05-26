@@ -2,9 +2,7 @@ package demo.shopping.controller.before;
 
 import javax.servlet.http.HttpSession;
 
-import demo.shopping.dao.UserCenterDao;
 import demo.shopping.service.before.UserCenterService;
-import demo.shopping.service.before.UserService;
 import demo.shopping.util.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -28,8 +26,8 @@ public class UserCenterController extends BaseBeforeController {
 
 	public String toString(String str) throws IOException {
 		return StringUtils.substringAfter(StringUtils
-				.substringBefore(new String(Files.readAllBytes(new ClassPathResource("messages.properties").getFile().toPath()))
-						.substring(new String(Files.readAllBytes(new ClassPathResource("messages.properties").getFile().toPath()))
+				.substringBefore(new String(Files.readAllBytes(new ClassPathResource("templates/i18n/messages.properties").getFile().toPath()))
+						.substring(new String(Files.readAllBytes(new ClassPathResource("templates/i18n/messages.properties").getFile().toPath()))
 								.indexOf(str)),"\r\n"), "= ");
 	}
 

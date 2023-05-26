@@ -1,8 +1,7 @@
 package demo.shopping.controller.admin;
 
 import javax.servlet.http.HttpSession;
-import demo.shopping.dao.AdminTypeDao;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
@@ -15,13 +14,8 @@ import demo.shopping.service.admin.AdminService;
 import org.springframework.web.server.ResponseStatusException;
 import org.thymeleaf.util.StringUtils;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,8 +29,8 @@ public class AdminController {
 
 	public String toString(String str) throws IOException {
 		return StringUtils.substringAfter(StringUtils
-				.substringBefore(new String(Files.readAllBytes(new ClassPathResource("messages.properties").getFile().toPath()))
-						.substring(new String(Files.readAllBytes(new ClassPathResource("messages.properties").getFile().toPath()))
+				.substringBefore(new String(Files.readAllBytes(new ClassPathResource("templates/i18n/messages.properties").getFile().toPath()))
+						.substring(new String(Files.readAllBytes(new ClassPathResource("templates/i18n/messages.properties").getFile().toPath()))
 								.indexOf(str)),"\r\n"), "= ");
 	}
 

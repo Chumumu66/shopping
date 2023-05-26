@@ -29,8 +29,8 @@ public class OrderController extends BaseBeforeController {
 
 	public String toString(String str) throws IOException {
 		return StringUtils.substringAfter(StringUtils
-				.substringBefore(new String(Files.readAllBytes(new ClassPathResource("messages.properties").getFile().toPath()))
-						.substring(new String(Files.readAllBytes(new ClassPathResource("messages.properties").getFile().toPath()))
+				.substringBefore(new String(Files.readAllBytes(new ClassPathResource("templates/i18n/messages.properties").getFile().toPath()))
+						.substring(new String(Files.readAllBytes(new ClassPathResource("templates/i18n/messages.properties").getFile().toPath()))
 								.indexOf(str)),"\r\n"), "= ");
 	}
 

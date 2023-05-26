@@ -61,10 +61,10 @@
 					<div class="back_search_red">
 						<form th:action="@{/search}" name="myForm" method="post">
 							<div class="div2">
-								<input type="text" name="mykey" class="txt" th:placeholder="请输入您要查询的内容"  onfocus="clearValue()" />
+								<input type="text" name="mykey" class="txt" th:placeholder="#{before.head.searchAbout}"  onfocus="clearValue()" />
 							</div>
 							<div class="div1">
-								<input type="submit" class="an"  th:value="搜索" />
+								<input type="submit" class="an"  th:value="#{before.head.search}" />
 							</div>
 						</form>
 					</div>

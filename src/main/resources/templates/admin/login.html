@@ -41,13 +41,13 @@
                 <td colspan="2"><img th:src="@{/images/admin/login.gif}"></td>
             </tr>
             <tr>
-                <td>姓名：</td>
+                <td th:text="#{admin.login.name}"></td>
                 <td>
                     <input name="aname" class="textSize"/>
                 </td>
             </tr>
             <tr>
-                <td>密码：</td>
+                <td th:text="#{admin.login.pwd}"> </td>
                 <td>
                     <input type="password" name="apwd" class="textSize" maxlength="20"/>
                 </td>

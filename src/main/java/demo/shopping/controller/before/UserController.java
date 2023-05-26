@@ -2,7 +2,6 @@ package demo.shopping.controller.before;
 
 import javax.servlet.http.HttpSession;
 
-import demo.shopping.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,6 @@ import org.thymeleaf.util.StringUtils;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,8 +29,8 @@ public class UserController {
 
 	public String toString(String str) throws IOException {
 		return StringUtils.substringAfter(StringUtils
-				.substringBefore(new String(Files.readAllBytes(new ClassPathResource("messages.properties").getFile().toPath()))
-						.substring(new String(Files.readAllBytes(new ClassPathResource("messages.properties").getFile().toPath()))
+				.substringBefore(new String(Files.readAllBytes(new ClassPathResource("templates/i18n/messages.properties").getFile().toPath()))
+						.substring(new String(Files.readAllBytes(new ClassPathResource("templates/i18n/messages.properties").getFile().toPath()))
 								.indexOf(str)),"\r\n"), "= ");
 	}
 
